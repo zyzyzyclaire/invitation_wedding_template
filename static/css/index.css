@@ -1,0 +1,12 @@
+#app {
+  height: 100%;
+  background-color: #313131
+}
+#container{
+  margin: 0 auto;
+  max-width: 420px;
+  background-color: #f3f3f3;
+}
+#container .title_box{
+
+}
