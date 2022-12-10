@@ -7,6 +7,7 @@
   max-width: 420px;
   background-color: #f3f3f3;
 }
+/* title_box */
 #container .title_box{
   padding: 0 0 40px;
 }
@@ -44,7 +45,7 @@
   line-height: 2rem;
   color: rgb(51, 51, 51);
 }
-
+/* famous_quote */
 #container .famous_quote > div:nth-child(1) {
   opacity: 1;
   transform: translate(0px, 0px);
@@ -169,4 +170,38 @@
   font-size: .8rem;
   cursor: pointer;
   letter-spacing: 0;
+}
+/* calendar_area */
+#container .calendar_area{
+  margin: 1px 0;
+  padding: 40px 0;
+  text-align: center;
+  line-height: 2rem;
+}
+#container .calendar_area .title{
+  margin-bottom: 20px;
+}
+#container .calendar_area .title > div:nth-child(1){
+  letter-spacing: .5px;
+  font-size: 1.1rem;
+  color: rgb(191, 131, 98);
+}
+#container .calendar_area .title > div:nth-child(2){
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  color: rgb(51, 51, 51);
+}
+#container .calendar {
+  padding: 0 1rem;
+  margin: 0 auto;
+  border: 1px solid hsla(8,26%,54%,.3);
+  border-left: 0;
+  border-right: 0;
+}
+#container .calendar table{
+  margin: auto;
+  width: 100%;
+  font-size: .875rem;
+  line-height: 2.375rem;
+  padding: 1.5rem 0;
 }
