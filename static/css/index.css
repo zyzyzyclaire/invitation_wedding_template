@@ -1,12 +1,24 @@
 #app {
   height: 100%;
-  background-color: #313131
+  background-color: #313131;
+  text-align: center;
 }
 #container{
   margin: 0 auto;
   max-width: 420px;
   background-color: #f3f3f3;
+  line-height: 2rem;
 }
+
+.m-title {
+  letter-spacing: .5px;
+  font-size: 1.1rem;
+}
+
+.m-subtitle, .m-title {
+  color: #bf8362;
+}
+
 /* title_box */
 #container .title_box{
   padding: 0 0 40px;
@@ -154,13 +166,14 @@
   margin-top: 3px;
   fill: rgb(191, 131, 98);
 }
-#container .invitation_message > div > div:nth-child(5) {
+/* #container .invitation_message > div > div:nth-child(5) {
   opacity: 1; 
   transform: translate(0px, 0px);
   transition: all .8s ease-out;
   box-sizing: border-box;
-}
+} */
 .contact-box {
+  display: block;
   margin: 0 auto;
   max-width: 260px;
   color: rgb(191, 131, 98);
@@ -171,6 +184,115 @@
   cursor: pointer;
   letter-spacing: 0;
 }
+.contact-modal-wrap {
+  display: flex;
+  width: 300px;
+    height: auto;
+  text-align: left;
+  background: #f3f3f3;
+  font-size: 1rem;
+  color: #544f4d;
+}
+.contact-modal-inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.contact-modal-wrap .title {
+  display: block;
+  padding: 0;
+  line-height: 1.5rem;
+}
+.contact-modal-wrap .title>div {
+  background: rgba(140,117,93,.1);
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1rem;
+}
+.contact-modal-wrap .content {
+  padding: 1rem;
+  display: block;
+}
+.contact-modal-wrap .content>div {
+  display: flex;
+  padding: 0;
+  margin-bottom: 4px;
+}
+.contact-modal-wrap .content>div>.cell {
+  flex: 1;
+  text-align: center;
+  letter-spacing: 2px;
+}
+.phone-square {
+  display: inline-block;
+  margin-top: -2px;
+  height: 30px;
+  width: 30px;
+  background: hsla(0,0%,100%,.58);
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 5%);
+  border-radius: 50px;
+  vertical-align: middle;
+  cursor: pointer;
+  text-align: center;
+}
+.phone-square svg {
+  width: 23px;
+  height: 23px;
+  margin-top: 4px;
+  fill: #fff;
+}
+
+
+
+input[id*=popup] {
+  display: none;
+}
+input[id*=popup] + label {}
+input[id*=popup] + label + div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition:.1s;
+}
+input[id*=popup]:checked + label + div{
+  opacity: 1;
+  visibility: visible;
+}
+input[id*=popup] + label + div > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 300px; */
+  /* height: 300px; */
+  background: #fff;
+  z-index: 2;
+}
+input[id*=popup] + label + div > div label {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  transform: translate(40%, -40%);
+  padding:20px;
+  background: red;
+  border-radius: 100%;
+  z-index: 1;
+}
+input[id*=popup] + label +div > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 1;
+}
+
 /* calendar_area */
 #container .calendar_area{
   margin: 1px 0;
@@ -193,15 +315,375 @@
 }
 #container .calendar {
   padding: 0 1rem;
-  margin: 0 auto;
+  margin: 0 2rem;
   border: 1px solid hsla(8,26%,54%,.3);
   border-left: 0;
   border-right: 0;
 }
 #container .calendar table{
-  margin: auto;
   width: 100%;
-  font-size: .875rem;
-  line-height: 2.375rem;
+  min-width: 252px;
+  height: 272px;
   padding: 1.5rem 0;
+  margin: 14px auto;
+  font-size: .875rem;
+  text-align: center;
+  line-height: 2.375rem;
+}
+
+.dday-wrap {
+  margin: 20px auto;
+  font-size: .9rem;
+}
+.dday-wrap .highlight {
+  color: #ea7664;
+}
+
+/* 갤러리 */
+.gallery-wrap {
+  padding: 40px 0;
+  margin: 1px 0;
+}
+.gallery-container {
+  margin: 40px 0 0;
+}
+.gallery-square {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 4px;
+}
+.gallery-square .item {
+  position: relative;
+  width: calc(33.3% - 8px);
+  background: #eee;
+  margin: 4px;
+  overflow: hidden;
+}
+
+.gallery-square .ph {
+  position: relative;
+  padding-bottom: 100%;
+  background: rgba(0,0,0,.02);
+}
+.gallery-square img {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: calc(100% + 2px);
+  cursor: pointer;
+}
+/* 맵 */
+.map-wrap {
+  margin: 1px 0;
+  padding: 40px 0;
+}
+.location-wrap {
+  margin: 18px 0 26px;
+}
+.location-hall {
+  color: #000
+}
+.location-address {
+  font-size: .95rem;
+  color: #797979;
+}
+
+.waytocome-wrap {
+  padding: 0 2rem;
+  text-align: left;
+}
+.waytocome-wrap .box {
+  margin-top: 20px;
+}
+.waytocome-wrap .title {
+  font-size: 1rem;
+  color: #bf8362;
+}
+.waytocome-wrap .content {
+  font-size: .85rem;
+  line-height: 1.6rem;
+  /* white-space: pre-wrap; */
+}
+.waytocome-wrap .content p {
+  margin-block-end: 0.7rem;
+  margin-block-start: 0.7rem;
+}
+.c-bold {
+  font-family: 'Gowun Dodum';
+  font-weight: bold;
+}
+/* 마음 전하실 곳 */
+.account-wrap {
+  margin: 1px 0;
+  padding: 40px 0;
+}
+.m-subtitle {
+  letter-spacing: .18rem;
+  font-size: .5rem;
+}
+.m-subtitle img {
+  height: 1.5rem;
+}
+.account-wrap > .title {
+  position: relative;
+  color: #bf8362;
+  font-size: 1rem;
+}
+
+.c-account {
+  max-width: 290px;
+  margin: 2rem auto 0;
+  font-size: .9rem;
+}
+.c-account .item {
+  margin-top: 8px;
+}
+.c-account .title {
+  position: relative;
+  margin: 0 auto;
+  padding: 4px 0;
+  text-align: center;
+  cursor: pointer;
+  background: #efe8e3;
+  color: #4a3c35;
+}
+.c-account .title>.arrow {
+  position: absolute;
+  top: 6px;
+  right: 18px;
+  transform: rotate(0);
+  transition-duration: .5s;
+  transform-origin: center center;
+}
+.c-account svg {
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+}
+.c-account .text {
+  position: relative;
+  overflow: hidden;
+  transition: .5s ease-out;
+  font-size: min(.85rem,16px);
+  border-top: 1px solid #eee;
+  margin-top: -1px;
+}
+
+.c-account .text>.inner {
+  padding: 10px;
+  line-height: 26px;
+  letter-spacing: 0;
+  text-align: left;
+  background: hsla(0,0%,100%,.4);
+}
+.c-account .btn-copy, .c-account .btn-kakaopay {
+  position: absolute;
+  right: 10px;
+  width: 60px;
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.c-account .btn-copy {
+  top: 10px;
+  border-radius: 2px;
+  background: #f2efed;
+  color: #e56623;
+}
+input[id*=accordion] {
+  display: none;
+}
+input[id*=accordion] + label + div {
+  max-height: 0;
+  transition: .75s;
+  overflow: hidden;
+}
+input[id*=accordion]:checked + label + div {
+  max-height: 500px;
+}
+input[id*=accordion]:checked + label .title > .arrow {
+  top: 3px;
+  transform: rotate(180deg);
+  transition-duration: .5s;
+}
+
+/* 방명록 */
+.guestbook-wrap {
+  margin: 1px 0;
+  padding: 40px 0;
+}
+.guestbook-wrap .m-title {
+  margin-bottom: 20px;
+}
+.c-guestbook {
+  margin: 0 2rem;
+  border-left: 0;
+  border-right: 0;
+  font-size: .85rem;
+}
+.c-guestbook .item {
+  position: relative;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  line-height: 1.5rem;
+  background: hsla(0,0%,100%,.75);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  box-shadow: 1px 1px 2px rgb(0 0 0 / 5%);
+}
+.c-guestbook .item .close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+  line-height: 0;
+  text-align: center;
+  cursor: pointer;
+}
+.c-guestbook .item .name {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.c-guestbook .item .date {
+  color: #aaa;
+  margin-right: 4px;
+  font-size: 11px;
+}
+.c-guestbook .item .close>.icon>svg {
+  width: 8px;
+  height: 8px;
+  fill: #aaa;
+}
+.c-guestbook .item .text {
+  line-height: 1.25rem;
+}
+.c-guestbook .pagination-wrap {
+  width: calc(100% - 6rem);
+  display: inline-block;
+}
+.c-guestbook .comments>.writing {
+  display: inline-block;
+  width: 5.5rem;
+  padding: 8px 0;
+}
+.c-guestbook .comments>.writing>label {
+  display: block;
+  width: 100%;
+  line-height: 1.8rem;
+  background: #dab396;
+  border: 0;
+  border-radius: 23px;
+  font-size: .85rem;
+  font-weight: 400;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #dab396;
+}
+.c-guestbook-delete-modal {
+  width: 320px;
+  height: auto;
+}
+.c-guestbook-delete-modal .content {
+  padding: 20px;
+  box-sizing: border-box;
+}
+.c-guestbook-delete-modal .writing {
+  font-size: 0;
+}
+.c-guestbook-delete-modal .writing input {
+  width: 50%;
+}
+.c-guestbook-delete-modal .writing textarea {
+  height: 68px;
+  margin: 10px 0 0;
+  padding: 10px;
+  resize: vertical;
+  font-family: Arial;
+}
+.c-guestbook-delete-modal input, textarea {
+  width: 100%;
+  height: 34px;
+  background: #fff;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  vertical-align: top;
+  font-size: 16px;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+.c-guestbook-delete-modal button {
+  display: block;
+  width: 100%;
+  height: 2.5rem;
+  background: #dab396;
+  border: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+.c-guestbook-delete-modal button:disabled {
+  background: #bbb;
+  cursor: auto;
+}
+/* 푸터 */
+.footer-wrap {
+  margin-top: 60px;
+  padding: 30px 0;
+  background: #efe8e3;
+}
+.kakao-wrap {
+  font-size: .8rem;
+  line-height: 24px;
+}
+.kakao-wrap .btn-kakao {
+  width: 250px;
+  margin: 0 auto;
+  line-height: 2rem;
+  cursor: pointer;
+}
+.kakao-wrap .btn-kakao:first-child {
+  margin: 0 auto;
+}
+.kakao-wrap svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+.copyright-wrap {
+  margin-top: 12px;
+  line-height: 22px;
+  text-align: center;
+}
+.copyright-wrap .copyright {
+  margin: 0 auto;
+  width: 80%;
+  min-width: 280px;
+  font-size: 10px;
+  color: rgba(0,0,0,.4);
+  letter-spacing: .3px;
+}
+.copyright-wrap .brand {
+  color: rgba(0,0,0,.7);
+  cursor: pointer;
+}
+/* 모달 */
+.v--modal-overlay {
+  position: fixed;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  opacity: 1;
 }
