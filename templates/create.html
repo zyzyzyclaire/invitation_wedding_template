@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모바일 청첩장</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    
+    <!-- filepond 라이브러리 -->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/create.css">
+
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
+
+</head>
+<body>
+    <div class="container">
+      <div id="app">
+          <div id="app-container">
+              
+              <div class="title_box">
+                  <header>
+                      <div>강지혁</div>
+                      <div>―</div>
+                      <div>최유라</div>
+                  </header>
+                  <div class="main_img_card">
+                      <div>
+                          <img src="/static/images/wedding_img/wedding_img_0.jpg" alt="웨딩 메인 이미지" />
+                      </div>
+                      <div>
+                          2022년 12월 10일 토요일 오후 1시 30분<br>
+                          <div>아펠가모 광화문 B2 로스타뇨홀</div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="famous_quote">
+                  <div>
+                      <div class="famous_quote_icon">
+                          <img src="/static/images/icon_image/icon_flower.png" alt="깃털 아이콘" >
+                      </div>
+                  </div>
+                  <div>
+                      <div>
+                          두 사람이 꽃과 나무처럼 걸어와서<br>
+                          서로의 모든 것이 되기 위해<br>
+                          오랜 기다림 끝에 혼례식을 치르는 날<br>
+                          세상은 더욱 아름다워라<br><br>
+                          이해인, <사랑의 사람들이여>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="invitation_message">
+                  <div>
+                      <div>초대합니다</div>
+                      <div>
+                          <div>
+                              살랑이는 바람결에<br>
+                              사랑이 묻어나는 계절입니다.<br>
+                              여기 곱고 예쁜 두 사람이 <span>사랑</span>을 맺어<br>
+                              인생의 반려자가 되려 합니다.<br>
+                              새 인생을 시작하는 이 자리에 오셔서<br>
+                              <span>축복</span>해 주시면 감사하겠습니다.
+                          </div>
+                      </div>
+                      <div>
+                          <img src="/static/images/wedding_img/wedding_img_1.jpg" alt="웨딩 서브 이미지">
+                      </div>
+                      <div>
+                          <div>
+                              <span>
+                                  <span>
+                                      <span>강재만</span>
+                                      <span>·</span>
+                                  </span>
+                                  <span>서미숙</span>
+                              </span>
+                              <span class="relation">
+                                  <span>의</span>
+                                  <span>아들</span>
+                              </span>
+                              <span>지혁</span>
+                              <span class="phone-circle">
+                                  <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
+                                      <g id="icon">
+                                          <path d="m54.048 43.653-3.928 6.122a7.725 7.725 0 0 0 .829 9.434l8.566 9.277 9.277 8.566a7.726 7.726 0 0 0 9.434.829l6.638-4.259 16.65 17.219-6.748 8.553a8.839 8.839 0 0 1 -9.277 3.039c-13.659-3.633-25.501-11.763-36.672-23.25-11.487-11.171-19.617-23.013-23.251-36.672a8.84 8.84 0 0 1 3.04-9.276l8.605-6.79z"></path>
+                                          <path d="m85.054 73.5-1 .641 17.126 17.123.375-.475a5.5 5.5 0 0 0 -.434-7.3l-9.237-9.237a5.493 5.493 0 0 0 -6.83-.752z"></path>
+                                          <path d="m37.212 26.445-.475.375 17.123 17.125.641-1a5.493 5.493 0 0 0 -.75-6.829l-9.237-9.237a5.5 5.5 0 0 0 -7.302-.434z"></path>
+                                      </g>
+                                  </svg>
+                              </span>
+                          </div>
+                          <div>
+                              <span>
+                                  <span>
+                                      <span>최현상</span>
+                                      <span>·</span>
+                                  </span>
+                                  <span>정선화</span>
+                              </span>
+                              <span class="relation">
+                                  <span>의</span>
+                                  <span>딸</span>
+                              </span>
+                              <span>유라</span>
+                              <span class="phone-circle">
+                                  <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
+                                      <g id="icon">
+                                          <path d="m54.048 43.653-3.928 6.122a7.725 7.725 0 0 0 .829 9.434l8.566 9.277 9.277 8.566a7.726 7.726 0 0 0 9.434.829l6.638-4.259 16.65 17.219-6.748 8.553a8.839 8.839 0 0 1 -9.277 3.039c-13.659-3.633-25.501-11.763-36.672-23.25-11.487-11.171-19.617-23.013-23.251-36.672a8.84 8.84 0 0 1 3.04-9.276l8.605-6.79z"></path>
+                                          <path d="m85.054 73.5-1 .641 17.126 17.123.375-.475a5.5 5.5 0 0 0 -.434-7.3l-9.237-9.237a5.493 5.493 0 0 0 -6.83-.752z"></path>
+                                          <path d="m37.212 26.445-.475.375 17.123 17.125.641-1a5.493 5.493 0 0 0 -.75-6.829l-9.237-9.237a5.5 5.5 0 0 0 -7.302-.434z"></path>
+                                      </g>
+                                  </svg>
+                              </span>
+                          </div>
+                      </div>
+                      <div>
+                          <input type="checkbox" id="popup_1">
+                          <label for="popup_1" class="contact-box">혼주에게 연락하기</label>
+                          <div>
+                              <div class="contact-modal-wrap">
+                                  <!-- <label for="popup_1"></label> -->
+                                  <div class="contact-modal-inner">
+                                      <div class="title"><div>혼주에게 연락하기</div></div>
+                                      <div class="content">
+                                          <div>
+                                              <div class="cell">
+                                                  <span style="color: rgb(102, 142, 170);">신랑 父</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span>강재만</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span class="phone-square">
+                                                      <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(102, 142, 170);">
+                                                          <g id="icon">
+                                                              <path d="m54.048 43.653-3.928 6.122a7.725 7.725 0 0 0 .829 9.434l8.566 9.277 9.277 8.566a7.726 7.726 0 0 0 9.434.829l6.638-4.259 16.65 17.219-6.748 8.553a8.839 8.839 0 0 1 -9.277 3.039c-13.659-3.633-25.501-11.763-36.672-23.25-11.487-11.171-19.617-23.013-23.251-36.672a8.84 8.84 0 0 1 3.04-9.276l8.605-6.79z"></path>
+                                                              <path d="m85.054 73.5-1 .641 17.126 17.123.375-.475a5.5 5.5 0 0 0 -.434-7.3l-9.237-9.237a5.493 5.493 0 0 0 -6.83-.752z"></path>
+                                                              <path d="m37.212 26.445-.475.375 17.123 17.125.641-1a5.493 5.493 0 0 0 -.75-6.829l-9.237-9.237a5.5 5.5 0 0 0 -7.302-.434z"></path>
+                                                          </g>
+                                                      </svg>
+                                                  </span>
+                                                  <span class="phone-square">
+                                                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve" style="width: 16px; fill: rgb(102, 142, 170);">
+                                                          <g><g>
+                                                              <path d="M507.49,101.721L352.211,256L507.49,410.279c2.807-5.867,4.51-12.353,4.51-19.279V121C512,114.073,510.297,107.588,507.49,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M467,76H45c-6.927,0-13.412,1.703-19.279,4.51l198.463,197.463c17.548,17.548,46.084,17.548,63.632,0L486.279,80.51C480.412,77.703,473.927,76,467,76z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M4.51,101.721C1.703,107.588,0,114.073,0,121v270c0,6.927,1.703,13.413,4.51,19.279L159.789,256L4.51,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M331,277.211l-21.973,21.973c-29.239,29.239-76.816,29.239-106.055,0L181,277.211L25.721,431.49C31.588,434.297,38.073,436,45,436h422c6.927,0,13.412-1.703,19.279-4.51L331,277.211z"></path>
+                                                          </g></g>
+                                                          <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                                                      </svg>
+                                                  </span>
+                                              </div>
+                                          </div>
+                                          <div>
+                                              <div class="cell">
+                                                  <span style="color: rgb(102, 142, 170);">신랑 母</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span>서미숙</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span class="phone-square">
+                                                      <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(102, 142, 170);">
+                                                          <g id="icon">
+                                                              <path d="m54.048 43.653-3.928 6.122a7.725 7.725 0 0 0 .829 9.434l8.566 9.277 9.277 8.566a7.726 7.726 0 0 0 9.434.829l6.638-4.259 16.65 17.219-6.748 8.553a8.839 8.839 0 0 1 -9.277 3.039c-13.659-3.633-25.501-11.763-36.672-23.25-11.487-11.171-19.617-23.013-23.251-36.672a8.84 8.84 0 0 1 3.04-9.276l8.605-6.79z"></path>
+                                                              <path d="m85.054 73.5-1 .641 17.126 17.123.375-.475a5.5 5.5 0 0 0 -.434-7.3l-9.237-9.237a5.493 5.493 0 0 0 -6.83-.752z"></path>
+                                                              <path d="m37.212 26.445-.475.375 17.123 17.125.641-1a5.493 5.493 0 0 0 -.75-6.829l-9.237-9.237a5.5 5.5 0 0 0 -7.302-.434z"></path>
+                                                          </g>
+                                                      </svg>
+                                                  </span>
+                                                  <span class="phone-square">
+                                                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve" style="width: 16px; fill: rgb(102, 142, 170);">
+                                                          <g><g>
+                                                              <path d="M507.49,101.721L352.211,256L507.49,410.279c2.807-5.867,4.51-12.353,4.51-19.279V121C512,114.073,510.297,107.588,507.49,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M467,76H45c-6.927,0-13.412,1.703-19.279,4.51l198.463,197.463c17.548,17.548,46.084,17.548,63.632,0L486.279,80.51C480.412,77.703,473.927,76,467,76z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M4.51,101.721C1.703,107.588,0,114.073,0,121v270c0,6.927,1.703,13.413,4.51,19.279L159.789,256L4.51,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M331,277.211l-21.973,21.973c-29.239,29.239-76.816,29.239-106.055,0L181,277.211L25.721,431.49C31.588,434.297,38.073,436,45,436h422c6.927,0,13.412-1.703,19.279-4.51L331,277.211z"></path>
+                                                          </g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g>
+                                                      </svg>
+                                                  </span>
+                                              </div>
+                                          </div>
+                                          <div style="height: 1px; border-bottom: 1px solid rgb(216, 216, 216); width: 90%; margin: 20px auto;"></div>
+                                          <div>
+                                              <div class="cell">
+                                                  <span style="color: rgb(217, 124, 116);">신부 父</span>
+                                              </div> <div class="cell">
+                                                  <span>최현상</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span class="phone-square">
+                                                      <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(217, 124, 116);">
+                                                          <g id="icon">
+                                                              <path d="m54.048 43.653-3.928 6.122a7.725 7.725 0 0 0 .829 9.434l8.566 9.277 9.277 8.566a7.726 7.726 0 0 0 9.434.829l6.638-4.259 16.65 17.219-6.748 8.553a8.839 8.839 0 0 1 -9.277 3.039c-13.659-3.633-25.501-11.763-36.672-23.25-11.487-11.171-19.617-23.013-23.251-36.672a8.84 8.84 0 0 1 3.04-9.276l8.605-6.79z"></path>
+                                                              <path d="m85.054 73.5-1 .641 17.126 17.123.375-.475a5.5 5.5 0 0 0 -.434-7.3l-9.237-9.237a5.493 5.493 0 0 0 -6.83-.752z"></path>
+                                                              <path d="m37.212 26.445-.475.375 17.123 17.125.641-1a5.493 5.493 0 0 0 -.75-6.829l-9.237-9.237a5.5 5.5 0 0 0 -7.302-.434z"></path>
+                                                          </g>
+                                                      </svg>
+                                                  </span>
+                                                  <span class="phone-square">
+                                                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve" style="width: 16px; fill: rgb(217, 124, 116);">
+                                                          <g><g>
+                                                              <path d="M507.49,101.721L352.211,256L507.49,410.279c2.807-5.867,4.51-12.353,4.51-19.279V121C512,114.073,510.297,107.588,507.49,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M467,76H45c-6.927,0-13.412,1.703-19.279,4.51l198.463,197.463c17.548,17.548,46.084,17.548,63.632,0L486.279,80.51C480.412,77.703,473.927,76,467,76z"></path></g></g> <g><g><path d="M4.51,101.721C1.703,107.588,0,114.073,0,121v270c0,6.927,1.703,13.413,4.51,19.279L159.789,256L4.51,101.721z"></path></g></g> <g><g><path d="M331,277.211l-21.973,21.973c-29.239,29.239-76.816,29.239-106.055,0L181,277.211L25.721,431.49C31.588,434.297,38.073,436,45,436h422c6.927,0,13.412-1.703,19.279-4.51L331,277.211z"></path>
+                                                          </g></g>
+                                                          <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g>
+                                                      </svg>
+                                                  </span>
+                                              </div>
+                                          </div>
+                                          <div>
+                                              <div class="cell">
+                                                  <span style="color: rgb(217, 124, 116);">신부 母</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span>정선화</span>
+                                              </div>
+                                              <div class="cell">
+                                                  <span class="phone-square">
+                                                      <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg" style="fill: rgb(217, 124, 116);">
+                                                          <g id="icon">
+                                                              <path d="m54.048 43.653-3.928 6.122a7.725 7.725 0 0 0 .829 9.434l8.566 9.277 9.277 8.566a7.726 7.726 0 0 0 9.434.829l6.638-4.259 16.65 17.219-6.748 8.553a8.839 8.839 0 0 1 -9.277 3.039c-13.659-3.633-25.501-11.763-36.672-23.25-11.487-11.171-19.617-23.013-23.251-36.672a8.84 8.84 0 0 1 3.04-9.276l8.605-6.79z"></path>
+                                                              <path d="m85.054 73.5-1 .641 17.126 17.123.375-.475a5.5 5.5 0 0 0 -.434-7.3l-9.237-9.237a5.493 5.493 0 0 0 -6.83-.752z"></path>
+                                                              <path d="m37.212 26.445-.475.375 17.123 17.125.641-1a5.493 5.493 0 0 0 -.75-6.829l-9.237-9.237a5.5 5.5 0 0 0 -7.302-.434z"></path>
+                                                          </g>
+                                                      </svg>
+                                                  </span>
+                                                  <span class="phone-square">
+                                                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve" style="width: 16px; fill: rgb(217, 124, 116);">
+                                                          <g><g>
+                                                              <path d="M507.49,101.721L352.211,256L507.49,410.279c2.807-5.867,4.51-12.353,4.51-19.279V121C512,114.073,510.297,107.588,507.49,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M467,76H45c-6.927,0-13.412,1.703-19.279,4.51l198.463,197.463c17.548,17.548,46.084,17.548,63.632,0L486.279,80.51C480.412,77.703,473.927,76,467,76z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M4.51,101.721C1.703,107.588,0,114.073,0,121v270c0,6.927,1.703,13.413,4.51,19.279L159.789,256L4.51,101.721z"></path>
+                                                          </g></g>
+                                                          <g><g>
+                                                              <path d="M331,277.211l-21.973,21.973c-29.239,29.239-76.816,29.239-106.055,0L181,277.211L25.721,431.49C31.588,434.297,38.073,436,45,436h422c6.927,0,13.412-1.703,19.279-4.51L331,277.211z"></path>
+                                                          </g></g>
+                                                          <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g> <g></g>
+                                                      </svg>
+                                                  </span>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <label for="popup_1"></label>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="calendar_area">
+                  <div class="title">
+                      <div id="current_date"></div>
+
+                      <div style="font-size: 0.9rem; color: rgb(51, 51, 51); opacity: 1; transform: translate(0px, 0px);">
+                          토요일 오후 1시 30분<br>
+                      </div>
+                  </div>
+                      
+                  <div class="calendar">
+                      <table>
+                          <thead>
+                              <tr>
+                                  <td>일</td>
+                                  <td>월</td>
+                                  <td>화</td>
+                                  <td>수</td>
+                                  <td>목</td>
+                                  <td>금</td>
+                                  <td>토</td>
+                              </tr>
+                          </thead>
+                          <tbody id="tb_body">
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="dday-wrap">
+                      <div>
+                          지혁 <span class="highlight" style="font-size:11px;">♥</span> 유라의 결혹시이 <span class="highlight">42일</span> 남았습니다.
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="gallery-wrap">
+                  <div class="m-title">갤러리</div>
+                  <div class="gallery-container">
+                      <div class="gallery-square">
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_001.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_002.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_003.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_004.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_005.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_006.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_007.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_008.jpg" class="img-blur" />
+                          </div>
+                          <div class="item">
+                              <div class="ph"></div>
+                              <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_009.jpg" class="img-blur" />
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+              <div class="map-wrap">
+                  <div class="m-title">오시는 길</div>
+                  <div class="location-wrap">
+                      <div class="location-hall">
+                          <div>아펠가모 광화문 B2 로스타뇨홀</div>
+                      </div>
+                      <div class="location-address">
+                          <div>서울 종로구 종로1길 50</div>
+                      </div>
+                  </div>
+                  <div>
+                      <div id="map" style="width:100%;height:240px;"></div>
+
+                  </div>
+                  <div>
+                      <div class="waytocome-wrap">
+                          <div class="box">
+                              <div class="title">
+                                  <span>지하철</span>
+                              </div>
+                              <div class="content">
+                                  <div>[분당선] <span class="c-bold">서울숲역</span> 5번 출구 도보 2분<br>[2호선] <span class="c-bold">뚝섬역</span> 8번 출구 도보 5분</div>
+                              </div>
+                          </div>
+
+                          <div class="box">
+                              <div class="title">
+                                  <span>버스</span>
+                              </div>
+                              <div class="content">
+                                  <div>뚝섬 서울숲 정류장<br>121, 141, 145, 148, 463<p></p>뜩삼약 8반 츨그 정류장<br>2016, 2224, 2413</div>
+                              </div>
+                          </div>
+                          <div class="box">
+                              <div class="title">
+                                  <span>자가용</span>
+                              </div>
+                              <div class="content">
+                                  <div>건물 내 B3-B7 <u>2시간</u> 무료주차<br>안내데스크에서 주차 등록</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="account-wrap">
+                  <div class="m-subtitle">
+                      <img src="/static/images/icon_image/icon_flower_07.png" alt="">
+                  </div>
+                  <div class="title">
+                      <span>마음 전하실 곳</span>
+                  </div>
+                  <div class="c-account">
+                      <div class="item">
+                          <input type="checkbox" id="accordion_1">
+                          <label for="accordion_1">
+                              <div class="title">
+                                  <div>신랑측 계좌번호</div>
+                                  <div class="arrow">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                      </svg>
+                                  </div>
+                              </div>
+                          </label>
+                          <div>
+                              <div class="text gothic" style="height: 72px;">
+                                  <div class="inner">
+                                      <span>
+                                          <span class="bank">신한</span>
+                                          <span>110-123-456789</span>
+                                      </span>
+                                      <br>
+                                      <span>강재만</span>
+                                  </div>
+                                  <div>
+                                      <div class="btn-copy">복사하기</div>
+                                  </div>
+                              </div>
+                              <div class="text gothic" style="height: 72px;">
+                                  <div class="inner">
+                                      <span>
+                                          <span class="bank">신한</span>
+                                          <span>110-123-456789</span>
+                                      </span>
+                                      <br>
+                                      <span>강지혁</span>
+                                  </div>
+                                  <div>
+                                      <div class="btn-copy">복사하기</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <input type="checkbox" id="accordion_2">
+                          <label for="accordion_2">
+                              <div class="title">
+                                  <div>신랑측 계좌번호</div>
+                                  <div class="arrow">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                      </svg>
+                                  </div>
+                              </div>
+                          </label>
+                          <div>
+                              <div class="text gothic" style="height: 72px;">
+                                  <div class="inner">
+                                      <span>
+                                          <span class="bank">국민</span>
+                                          <span>200123-45-6789000</span>
+                                      </span>
+                                      <br>
+                                      <span>최유라</span>
+                                  </div>
+                                  <div>
+                                      <div class="btn-copy">복사하기</div>
+                                  </div>
+                              </div>
+                              <div class="text gothic" style="height: 72px;">
+                                  <div class="inner">
+                                      <span>
+                                          <span class="bank">신한</span>
+                                          <span>110-123-456789</span>
+                                      </span>
+                                      <br>
+                                      <span>최현상</span>
+                                  </div>
+                                  <div>
+                                      <div class="btn-copy">복사하기</div>
+                                  </div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </div>
+              <div class="guestbook-wrap">
+                  <div class="m-title">방명록</div>
+                  <div class="c-guestbook">
+                      <div class="comments">
+                          <div class="item">
+                              <div class="close">
+                                  <span class="date">2021.08.08</span>
+                                  <span class="icon">
+                                      <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                          <title></title>
+                                          <path d="M8.25,0,32,23.75,55.75,0,64,8.25,40.25,32,64,55.75,55.75,64,32,40.25,8.25,64,0,55.75,23.75,32,0,8.25Z" data-name="<Compound Path>" id="_Compound_Path_"></path>
+                                      </svg>
+                                  </span>
+                              </div>
+                              <div class="name">김주리</div>
+                              <div class="text">지혁씨 많이많이 축하합니다!! 함께 걸어가는 길에 꽃길만🌸🌼🌿</div>
+                          </div>
+                          <div class="item">
+                              <div class="close">
+                                  <span class="date">2021.08.08</span>
+                                  <span class="icon">
+                                      <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                          <title></title>
+                                          <path d="M8.25,0,32,23.75,55.75,0,64,8.25,40.25,32,64,55.75,55.75,64,32,40.25,8.25,64,0,55.75,23.75,32,0,8.25Z" data-name="<Compound Path>" id="_Compound_Path_"></path>
+                                      </svg>
+                                  </span>
+                              </div>
+                              <div class="name">박수림</div>
+                              <div class="text">결혼 축하드려요🎉<br>
+                                  이렇게 두 분의 결혼을 축하할 수 있어 너무 너무 기쁩니다!! 늘 건강하고 행복한 가정되시길 기도하고 응원할게요🌼
+                              </div>
+                          </div>
+                          <div class="item">
+                              <div class="close">
+                                  <span class="date">2021.08.08</span>
+                                  <span class="icon">
+                                      <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                          <title></title>
+                                          <path d="M8.25,0,32,23.75,55.75,0,64,8.25,40.25,32,64,55.75,55.75,64,32,40.25,8.25,64,0,55.75,23.75,32,0,8.25Z" data-name="<Compound Path>" id="_Compound_Path_"></path>
+                                      </svg>
+                                  </span>
+                              </div>
+                              <div class="name">윤지</div>
+                              <div class="text">
+                                  유라야💕 너무 이쁘다 러블리하구 봄바람에 흩날리는 민들레꽃씨같아! 행복행복기운이 뿜뿜한다! 평생 이쁘고 행복하게 잘살거같아 나는 걱정이 하나도 없어❣️축하해💝
+                              </div>
+                          </div>
+                          <div class="pagination-wrap"></div>
+                          <div class="writing">
+                              
+                              <input type="checkbox" id="popup_2">
+
+                              <label for="popup_2">작성하기</label>
+                              <div>
+                                  <div>
+                                      <!-- <label for="popup_2"></label> -->
+                                      <div class="c-guestbook-delete-modal">
+                                          <div class="content">
+                                              <div class="writing">
+                                                  <div>
+                                                      <input type="text" maxlength="8" placeholder="이름">
+                                                      <input type="password" maxlength="15" placeholder="비밀번호">
+                                                  </div>
+                                                  <textarea maxlength="100"></textarea>
+                                              </div>
+                                          </div>
+                                          <div class="action">
+                                              <button disabled="disabled">작성하기</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <label for="popup_2"></label>
+                              </div>
+                          </div>
+
+
+
+
+
+                      </div>
+                  </div>
+              </div>
+              <div class="footer-wrap">
+                  <div class="kakao-wrap">
+                      <div class="btn-kakao">
+                          <svg id="Bold" enable-background="new 0 0 24 24" height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                              <path d="m9.462 9.306-.692 1.951h1.383z"></path>
+                              <path d="m12 1c-6.627 0-12 4.208-12 9.399 0 3.356 2.246 6.301 5.625 7.963-1.299 4.45-1.333 4.47-1.113 4.599.276.161.634-.005 5.357-3.311.692.097 1.404.148 2.131.148 6.627 0 12-4.208 12-9.399s-5.373-9.399-12-9.399zm-5.942 12.023c0 .362-.311.657-.692.657s-.692-.295-.692-.657v-4.086h-1.08c-.375 0-.679-.302-.679-.673s.303-.674.678-.674h3.545c.375 0 .679.302.679.673s-.305.674-.679.674h-1.08zm5.378.648c-.72 0-.587-.565-.919-1.195h-2.111c-.329.625-.2 1.195-.919 1.195-.693.001-.815-.421-.604-1.071l1.656-4.33c.117-.33.471-.669.922-.679.452.01.807.349.923.679 1.093 3.39 2.654 5.402 1.052 5.401zm3.939-.092h-2.221c-1.159 0-.454-1.565-.663-5.301 0-.379.317-.688.707-.688s.707.308.707.688v4.04h1.471c.366 0 .663.283.663.63-.001.348-.298.631-.664.631zm5.419-.518c-.025.181-.122.344-.269.454-.955.721-1.661-1.381-2.593-2.271l-.24.239v1.5c0 .38-.31.688-.693.688-.382 0-.692-.308-.692-.688v-4.705c0-.379.31-.688.692-.688s.692.308.692.688v1.478c1.277-.958 1.985-2.67 2.792-1.869.792.786-.848 1.474-1.527 2.422 1.604 2.212 1.909 2.267 1.838 2.752z"></path>
+                          </svg>
+                          <span style="display: inline-block; width: 9.2rem; margin-left: 6px;">
+                              카카오톡으로 공유하기
+                          </span>
+                      </div>
+                      <div class="btn-kakao">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"></path>
+                          </svg>
+                          <span style="display: inline-block; width: 9.2rem; margin-left: 6px;">
+                              청첩장 주소 복사하기
+                          </span>
+                      </div>
+                      
+                      <div class="copyright-wrap">
+                          <div class="copyright">
+                              Copyright 2023. <span class="brand">FROMTODAY</span>. All rights reserved.
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div id="create-container">
+        <!-- 신랑측 정보 -->
+        <div class="card">
+            <div class="card-top">
+                신랑측 정보
+            </div>
+            <div class="card-body">
+                <form name="groom-info" action="">
+                    <div>
+                        <h4>신랑님</h4>
+                        <input type="text" name="groom lastName" placeholder="성">
+                        <input type="text" name="groom firstName" placeholder="이름">
+                    </div>
+                    <div>
+                        <h4>아버님</h4>
+                        <input type="text" name="groom father lastName" placeholder="성">
+                        <input type="text" name="groom father firstName" placeholder="이름">
+                        <input type="checkbox" name="groom father dead-state">
+                    </div>
+                    <div>
+                        <h4>어머님</h4>
+                        <input type="text" name="groom mother lastName" placeholder="성">
+                        <input type="text" name="groom mother firstName" placeholder="이름">
+                        <input type="checkbox" name="groom mother dead-state">
+                    </div>
+                    <div>
+                        <h4>관계</h4>
+                        <select name="relation" id="">
+                            <option value=""></option>
+                            <option value="">아들</option>
+                            <option value="">장남</option>
+                            <option value="">차남</option>
+                            <option value="">삼남</option>
+                            <option value="">사남</option>
+                            <option value="">오남</option>
+                            <option value="">육남</option>
+                            <option value="">칠남</option>
+                            <option value="">막내</option>
+                            <option value="">조카</option>
+                            <option value="">손자</option>
+                            <option value="">동생</option>
+                        </select>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <!-- 신부측 정보 -->
+        <div class="card">
+            <div class="card-top">
+                신부측 정보
+            </div>
+            <div class="card-body">
+                <form name="groom-info" action="">
+                    <div>
+                        <h4>신부님</h4>
+                        <input type="text" name="bride lastName" placeholder="성">
+                        <input type="text" name="bride firstName" placeholder="이름">
+                    </div>
+                    <div>
+                        <h4>아버님</h4>
+                        <input type="text" name="bride father lastName" placeholder="성">
+                        <input type="text" name="bride father firstName" placeholder="이름">
+                        <input type="checkbox" name="bride father dead-state">
+                    </div>
+                    <div>
+                        <h4>어머님</h4>
+                        <input type="text" name="bride mother lastName" placeholder="성">
+                        <input type="text" name="bride mother firstName" placeholder="이름">
+                        <input type="checkbox" name="bride mother dead-state">
+                    </div>
+                    <div>
+                        <h4>관계</h4>
+                        <select name="relation" id="">
+                            <option value=""></option>
+                            <option value="">딸</option>
+                            <option value="">장녀</option>
+                            <option value="">차녀</option>
+                            <option value="">삼녀</option>
+                            <option value="">사녀</option>
+                            <option value="">오녀</option>
+                            <option value="">육녀</option>
+                            <option value="">칠녀</option>
+                            <option value="">막내</option>
+                            <option value="">조카</option>
+                            <option value="">손녀</option>
+                            <option value="">동생</option>
+                        </select>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <!-- 예식일시 -->
+        <div class="card">
+            <div class="card-top">
+                예식일시
+            </div>
+            <div class="card-body">
+                <form name="reservation-date-time-info" action="">
+                    <div>
+                        <h4>예약일</h4>
+                        <input type="date" name="reservation date">
+                    </div>
+                    <div>
+                        <h4>예약시간</h4>
+                        <select name="reservation time hour" id="">
+                            <option value="">없음</option>
+                            <option value="">오전 7시</option>
+                            <option value="">오전 8시</option>
+                            <option value="">오전 9시</option>
+                            <option value="">오전 10시</option>
+                            <option value="">오전 11시</option>
+                            <option value="">낮 12시</option>
+                            <option value="">오후 1시</option>
+                            <option value="">오후 2시</option>
+                            <option value="">오후 3시</option>
+                            <option value="">오후 4시</option>
+                            <option value="">오후 5시</option>
+                            <option value="">오후 6시</option>
+                            <option value="">오후 7시</option>
+                            <option value="">오후 8시</option>
+                            <option value="">오후 9시</option>
+                            <option value="">오후 10시</option>
+                        </select>
+                        <select name="reservation time minute" id="">
+                            <option value="">정각</option>
+                            <option value="">5분</option>
+                            <option value="">10분</option>
+                            <option value="">15분</option>
+                            <option value="">20분</option>
+                            <option value="">25분</option>
+                            <option value="">30분</option>
+                            <option value="">35분</option>
+                            <option value="">40분</option>
+                            <option value="">45분</option>
+                            <option value="">50분</option>
+                            <option value="">55분</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- 예식장소 -->
+        <div class="card">
+            <div class="card-top">
+                예식장소
+            </div>
+            <div class="card-body">
+                <form name="wedding-place-info" action="">
+                    <div>
+                        <h4>예식장명</h4>
+                        <input type="type" name="wedding-place name">
+                    </div>
+                    <div>
+                        <h4>층과 홀</h4>
+                        <input type="text" name="wedding-place detail">
+                    </div>
+                    <div>
+                        <h4>주소</h4>
+                        <input type="text" name="wedding-place addr">
+                        <div onclick="openPostCode()" class="map-search-btn">검색</div>
+                        
+                    </div>
+                    <div id="createMap" style="width:100%; height:240px;"></div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- 메인 이미지 -->
+        <div class="card">
+            <div class="card-top">
+                메인 이미지
+            </div>
+            <div class="card-body">
+                <form name="main-image-info" action="">
+                    <div>
+                        <h4>사진</h4>
+                        <input type="file" 
+                            class="filepond main-image-info"
+                            name="filepond"
+                            accept="image/png, image/jpeg, image/gif"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- 갤러리 -->
+        <div class="card">
+            <div class="card-top">
+                갤러리
+            </div>
+            <div class="card-body">
+                <form name="gallery-image-info" action="">
+                    <div>
+                        
+                        <input type="file" 
+                            class="filepond gallery-image-info"
+                            multiple
+                            data-allow-reorder="true"
+                            name="filepond"
+                            accept="image/png, image/jpeg, image/gif"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        
+      </div>  
+    </div>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- filepond 라이브러리 -->
+    <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script>  
+        /* 이미지 조작 및 미리 보기를 수행하려면 필요한 플러그인을 등록해야 합니다. */
+        FilePond.registerPlugin(
+            FilePondPluginFileEncode, // 파일을 base64 데이터로 인코딩
+            FilePondPluginFileValidateType, // 입력 유형에 따라 파일 유효성 검사
+            FilePondPluginImageExifOrientation, // 모바일 이미지 방향 수정
+            FilePondPluginImagePreview, // 이미지 미리보기
+            FilePondPluginImageCrop, // 이미지를 특정 종횡비로 자릅니다.
+            FilePondPluginImageResize, // 특정 크기에 맞게 이미지 크기를 조정합니다.
+            FilePondPluginImageTransform, // 클라이언트에 자르기 및 크기 조정 정보를 적용합니다.
+            FilePondPluginFileValidateSize, // 파일 크기 유효성 검사 플러그인은 너무 큰 파일의 차단을 처리합니다.
+            FilePondPluginImageEdit
+        );
+
+        // 파일 입력을 선택하고 create()를 사용하여 이 예제에서 연못으로 전환합니다. 
+        // 우리는 파일 입력 요소 자체에 넣을 수도 있는 생성 메서드와 함께 속성을 전달합니다.
+        const mainImageFilePond = FilePond.create(
+            document.querySelector('input.main-image-info'),
+            {
+                labelIdle: `<span class="filepond--label-action" style="color: rgb(246, 94, 50); font-size: 11px; text-decoration: underline;">클릭 후 업로드</span>`,
+                stylePanelLayout: 'compact compact',
+                styleButtonRemoveItemPosition : 'right',
+                styleItemPanelAspectRatio: 1,
+            }
+        );
+        
+        const galleryImageFilePond = FilePond.create(
+            document.querySelector('input.gallery-image-info'),
+            {
+                labelIdle: `<span class="filepond--label-action" style="color: rgb(246, 94, 50); font-size: 11px; text-decoration: underline;">클릭 후 업로드</span>`,
+                stylePanelLayout: 'compact compact',
+                
+            }
+        );
+        
+        
+
+
+        const openPostCode = () => {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                    console.log(data)
+                }
+            }).open({
+                // q: '하단 아트몰링'
+            });
+
+        }
+        const createMapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
+            zoom: 16, //지도의 초기 줌 레벨
+            minZoom: 7, //지도의 최소 줌 레벨
+            zoomControl: false, //줌 컨트롤의 표시 여부
+            zoomControlOptions: { //줌 컨트롤의 옵션
+                position: naver.maps.Position.TOP_RIGHT
+            }
+        };
+        const createMap = new naver.maps.Map('createMap', createMapOptions);
+        new naver.maps.Marker({
+            map: createMap,
+            position: new naver.maps.LatLng(37.3595704, 127.105399)
+        })
+
+        const mapOptions = {
+            center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
+            zoom: 16, //지도의 초기 줌 레벨
+            minZoom: 7, //지도의 최소 줌 레벨
+            zoomControl: false, //줌 컨트롤의 표시 여부
+            zoomControlOptions: { //줌 컨트롤의 옵션
+                position: naver.maps.Position.TOP_RIGHT
+            }
+        };
+        const map = new naver.maps.Map('map', mapOptions);
+        new naver.maps.Marker({
+            map: map,
+            position: new naver.maps.LatLng(37.3595704, 127.105399)
+        })
+        
+        // setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
+        map.setOptions("mapTypeControl", false); // 지도 유형 컨트롤의 표시 여부
+        map.setOptions("scaleControl", false); // 지도 축척 컨트롤의 표시 여부입니다.
+        map.setOptions("mapDataControl", false); // 지도 데이터 저작권 컨트롤의 표시 여부입니다.
+
+
+
+        
+        // 달력 시작
+
+        // 윤년 체크
+        function checkedLeapYear(year){
+            if(year % 400 == 0) return true;
+            else if(year % 100 == 0) return false;
+            else if(year % 4 == 0) return true;
+            else return false;
+        };
+
+        // 달의 시작일이 어떤 요일(몇 번째 위치)에서 시작하는지 계산
+        function getFirstDayOfWeek(year, month){
+            if(month < 10) {
+                month = "0" + month;
+            };
+            return (new Date(year + "-" + month + "-01" )).getDay();
+        };
+
+        // 월의 마지막 일자 계산
+        function changeYearMonth(year, month){
+            let month_day = [31,28,31,30,31,30,31,31,30,31,30,31];
+            if(month == 2) if(checkedLeapYear(year)) month_day[1] = 29;
+            let first_day_of_week = getFirstDayOfWeek(year, month);
+            let arr_calendar = [];
+            for(let i=0; i<first_day_of_week; i++){
+                arr_calendar.push('');
+            };
+            for(let i=1; i<=month_day[month-1]; i++){
+                arr_calendar.push(String(i));
+            };
+            let remain_day = 7 - (arr_calendar.length % 7);
+            if(remain_day < 7){
+                for(let i=0; i<remain_day; i++){
+                    arr_calendar.push('');
+                };
+            };
+            renderCalendar(arr_calendar)
+
+        };
+
+        function renderCalendar(data){
+            let h = [];
+            for(let i=0; i<data.length; i++){
+                if(i==0){
+                    h.push('<tr>');
+                }else if(i % 7 == 0){
+                    h.push('</tr>')
+                    h.push('<tr>');
+                };
+                h.push(`<td onclick="setDate(${data[i]})"; style="cursor:pointer;">
+                    <div id="calendar_${current_year}_${current_month}_${data[i]}" style="position: relative;">
+                        ${data[i]}
+                    </div>
+                </td>`);
+            }
+            h.push('</tr>');
+            document.getElementById('tb_body').innerHTML = h.join('')
+            // $("#tb_body").html(h.join(''));
+        }
+
+        function setDate(day){
+            // document.querySelector('.current_day').classList.remove('current_day')
+            let target_date = `calendar_${current_year}_${current_month}_${day}`
+            document.getElementById(`${target_date}`).classList.add('current_day')
+            // const el = document.querySelector('#parse_emotion_view');
+            // const sheet = el.sheet;
+            // const rules = sheet.cssRules;
+            // const rule = rules[0];
+            // sheet.insertRule('.current_day::after{content: "'+ day +'"; position: absolute; line-height: 29px; top: -1.5px; bottom: 0; margin: 0 auto; width: 32px; height: 32px; background: #FFE3DF; left: 0; border-radius: 50%;}', rules.length)
+            // if(day<10){
+            //     day = "0" + day;
+            // }
+            // console.log(current_year, current_month, day)
+
+        }
+
+        function changeMonth(diff) {
+            current_month = current_month + diff;
+            if(current_month == 0){
+                current_year = current_year - 1;
+                current_month = 12;
+            }else if(current_month === 13){
+                current_year = current_year + 1;
+                current_month = 1;
+            }
+            loadCalendar(current_year, current_month)
+        }
+
+        function loadCalendar(year, month){
+            changeYearMonth(year, month);
+            document.getElementById('current_date').innerText = `${year}년  ${month}월`
+            // $("#current_date").text(`${year}년  ${month}월`)
+            console.log(this_year, year, this_month, month)
+            if(this_year === year && this_month === month){
+                setDate(this_date)
+            }
+            
+        }
+
+        let current_year = (new Date()).getFullYear();
+        let current_month = (new Date()).getMonth() + 1;
+        let current_date = (new Date()).getDate();
+
+        let this_year = (new Date()).getFullYear();
+        let this_month = (new Date()).getMonth() + 1;
+        let this_date = (new Date()).getDate();
+
+        loadCalendar(current_year, current_month)
+        setDate((new Date()).getDate())
+        // 달력 만들기 끝
+
+        // 오늘 날짜 LNB에 추가하기
+        // document.getElementById('current_date_tag').innerText = `${current_year}-${current_month}-${current_date}`
+        // 달력 끝
+
+
+
+    </script>
+</body>
+</html>

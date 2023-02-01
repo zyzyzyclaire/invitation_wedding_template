@@ -1,0 +1,148 @@
+.container {
+  display:flex; 
+  justify-content:center;
+  padding: 15px;
+  background: rgb(246, 246, 246);
+}
+#app-container {
+  max-width: 400px;
+  border: 1px solid #e8e8e8;
+}
+#create-container {
+  display: flex;
+  flex-flow: column;
+  gap: 15px;
+  padding: 0 15px;
+}
+.card {
+  background: #fff;
+  color: #111;
+  border: 1px solid #e8e8e8;
+  font-size: 15px;
+  font-weight: 600;
+}
+.card-top {
+  padding: 20px 22px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.card-body {
+  padding: 20px 22px;
+}
+
+.card-body form{
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+}
+.card-body h4{
+  width: 80px;
+  color: #2f2825;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 38px;
+}
+.card-body form > div{
+  display: flex;
+  gap: 5px;
+}
+.card-body form input[name*="lastName"] {
+  width: 38px;
+}
+.card-body form input[name*="firstName"] {
+  width: 48px;
+}
+.map-search-btn {
+  display: inline-block;
+    padding: 0 12px;
+    min-width: 60px;
+    height: 38px;
+    line-height: 36px;
+    background-color: #fff;
+    border: 1px solid #666;
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 2px;
+    vertical-align: middle;
+}
+
+/* FilePond Custom Styles */
+
+ .filepond--drop-label {
+	color: #4c4e53;
+}
+
+.filepond--label-action {
+	text-decoration-color: #babdc0;
+}
+
+/* Page Styles */
+
+.filepond--root {
+	width:170px;
+  height: 170px;
+	margin: 0;
+  margin-bottom: 0;
+}
+.filepond--root .filepond--credits{
+  display:none;
+}
+.filepond--file-info { /* 파일명, 파일크기 제거 */
+  display: none;
+}
+.filepond--image-preview-overlay-idle { /* 그라데이션 제거 */
+  color: inherit;
+}
+
+.gallery-image-info.filepond--root {
+	width:100px;
+  height: 100px;
+	margin: 0;
+  margin-bottom: 0;
+}
+
+/* 경계 드롭 영역 */
+.filepond--panel-root { /* 이미지 없을 때 배경 설정 */
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: initial;
+}
+
+.filepond--root[data-style-panel-layout~='compact'] .filepond--list-scroller, 
+.filepond--root[data-style-panel-layout~='integrated'] .filepond--list-scroller {
+  overflow:inherit;
+}
+
+.filepond--list-scroller[data-state='overflow']{
+  overflow-y: inherit;
+  overflow-x: inherit;
+  -webkit-mask: inherit;
+}
+
+.filepond--image-preview-wrapper{ /* 선택한 이미지 border-radius 조정 */
+  border-radius: initial;
+}
+/* 클릭 후 업로드 텍스트 영역 */
+.filepond--root .filepond--drop-label{ 
+  height: 100%;
+}
+/* 
+.filepond--file{ 
+  border-radius: initial;
+} */
+
+.filepond--file-action-button.filepond--file-action-button::after { /* 삭제 버튼 클릭 영역 삭제 */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: '';
+}
+
+.filepond--item-panel{ /* 이미지 로딩 중 보이는 영역 */
+  border-radius: initial;
+}

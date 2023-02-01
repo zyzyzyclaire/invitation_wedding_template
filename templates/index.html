@@ -5,15 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모바일 청첩장</title>
-    <link rel="stylesheet" href="/static/css/reset.css" >
-    <link rel="stylesheet" href="/static/css/index.css" >
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
-
+    <link rel="stylesheet" href="../static/css/reset.css" >
+    <link rel="stylesheet" href="../static/css/index.css" >
 
 </head>
 <body>
     <div id="app">
-        <div id="container">
+        <div id="app-container">
             
             <div class="title_box">
                 <header>
@@ -595,6 +593,8 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
+
     <script>        
         const mapOptions = {
             center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
