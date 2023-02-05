@@ -17,6 +17,9 @@
 
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
 
+    <script src="https://unpkg.com/phosphor-icons"></script>
+    
+
 </head>
 <body>
     <div class="container">
@@ -779,15 +782,17 @@
                 메인 이미지
             </div>
             <div class="card-body">
-                <form name="main-image-info" action="">
+                <form name="main-image-info">
                     <div>
                         <h4>사진</h4>
-                        <input type="file" 
-                            class="filepond main-image-info"
-                            name="filepond"
-                            accept="image/png, image/jpeg, image/gif"/>
+                        <div class="main-image img-container">
+                            <input type="file" accept="image/*" hidden="hidden">
+                            <p>클릭 후 업로드</p>
+
+                        </div>
                     </div>
                 </form>
+
             </div>
         </div>
         
@@ -797,17 +802,6 @@
                 갤러리
             </div>
             <div class="card-body">
-                <form name="gallery-image-info" action="">
-                    <div>
-                        
-                        <input type="file" 
-                            class="filepond gallery-image-info"
-                            multiple
-                            data-allow-reorder="true"
-                            name="filepond"
-                            accept="image/png, image/jpeg, image/gif"/>
-                    </div>
-                </form>
             </div>
         </div>
         
@@ -815,56 +809,8 @@
       </div>  
     </div>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-    <!-- filepond 라이브러리 -->
-    <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js"></script>
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src="/static/js/create.js"></script>
     <script>  
-        /* 이미지 조작 및 미리 보기를 수행하려면 필요한 플러그인을 등록해야 합니다. */
-        FilePond.registerPlugin(
-            FilePondPluginFileEncode, // 파일을 base64 데이터로 인코딩
-            FilePondPluginFileValidateType, // 입력 유형에 따라 파일 유효성 검사
-            FilePondPluginImageExifOrientation, // 모바일 이미지 방향 수정
-            FilePondPluginImagePreview, // 이미지 미리보기
-            FilePondPluginImageCrop, // 이미지를 특정 종횡비로 자릅니다.
-            FilePondPluginImageResize, // 특정 크기에 맞게 이미지 크기를 조정합니다.
-            FilePondPluginImageTransform, // 클라이언트에 자르기 및 크기 조정 정보를 적용합니다.
-            FilePondPluginFileValidateSize, // 파일 크기 유효성 검사 플러그인은 너무 큰 파일의 차단을 처리합니다.
-            FilePondPluginImageEdit
-        );
-
-        // 파일 입력을 선택하고 create()를 사용하여 이 예제에서 연못으로 전환합니다. 
-        // 우리는 파일 입력 요소 자체에 넣을 수도 있는 생성 메서드와 함께 속성을 전달합니다.
-        const mainImageFilePond = FilePond.create(
-            document.querySelector('input.main-image-info'),
-            {
-                labelIdle: `<span class="filepond--label-action" style="color: rgb(246, 94, 50); font-size: 11px; text-decoration: underline;">클릭 후 업로드</span>`,
-                stylePanelLayout: 'compact compact',
-                styleButtonRemoveItemPosition : 'right',
-                styleItemPanelAspectRatio: 1,
-            }
-        );
-        
-        const galleryImageFilePond = FilePond.create(
-            document.querySelector('input.gallery-image-info'),
-            {
-                labelIdle: `<span class="filepond--label-action" style="color: rgb(246, 94, 50); font-size: 11px; text-decoration: underline;">클릭 후 업로드</span>`,
-                stylePanelLayout: 'compact compact',
-                
-            }
-        );
-        
-        
-
-
         const openPostCode = () => {
             new daum.Postcode({
                 oncomplete: function(data) {

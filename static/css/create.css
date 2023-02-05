@@ -69,80 +69,46 @@
     vertical-align: middle;
 }
 
-/* FilePond Custom Styles */
-
- .filepond--drop-label {
-	color: #4c4e53;
+/* 메인 이미지 */
+[name="main-image-info"] > div .img-container {
+  position: relative;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  max-width:150px; 
+  max-height:150px; 
+  width: 100%;
+  height: 150px;
+  background: #f8f8f8; 
+  border: 1px solid #ddd; 
+  cursor: pointer;
 }
 
-.filepond--label-action {
-	text-decoration-color: #babdc0;
+[name="main-image-info"] > div p {
+  font-size: 11px; 
+  color: rgb(246, 94, 50); 
+  text-decoration: underline;
 }
 
-/* Page Styles */
-
-.filepond--root {
-	width:170px;
-  height: 170px;
-	margin: 0;
-  margin-bottom: 0;
-}
-.filepond--root .filepond--credits{
-  display:none;
-}
-.filepond--file-info { /* 파일명, 파일크기 제거 */
+[name="main-image-info"] > div .hasSrc p {
   display: none;
 }
-.filepond--image-preview-overlay-idle { /* 그라데이션 제거 */
-  color: inherit;
+
+[name="main-image-info"] > div img {
+  object-fit: cover;
+  width: 100%;
+  display: none;
 }
 
-.gallery-image-info.filepond--root {
-	width:100px;
-  height: 100px;
-	margin: 0;
-  margin-bottom: 0;
+[name="main-image-info"] > div .btn-delete-img {
+  position:absolute; 
+  top:5px; 
+  right:5px; 
+  display: none;
 }
 
-/* 경계 드롭 영역 */
-.filepond--panel-root { /* 이미지 없을 때 배경 설정 */
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  border-radius: initial;
+[name="main-image-info"] > div .btn-delete-img i{
+  color: #1f1f1f;
+  font-size: 16px; 
 }
 
-.filepond--root[data-style-panel-layout~='compact'] .filepond--list-scroller, 
-.filepond--root[data-style-panel-layout~='integrated'] .filepond--list-scroller {
-  overflow:inherit;
-}
-
-.filepond--list-scroller[data-state='overflow']{
-  overflow-y: inherit;
-  overflow-x: inherit;
-  -webkit-mask: inherit;
-}
-
-.filepond--image-preview-wrapper{ /* 선택한 이미지 border-radius 조정 */
-  border-radius: initial;
-}
-/* 클릭 후 업로드 텍스트 영역 */
-.filepond--root .filepond--drop-label{ 
-  height: 100%;
-}
-/* 
-.filepond--file{ 
-  border-radius: initial;
-} */
-
-.filepond--file-action-button.filepond--file-action-button::after { /* 삭제 버튼 클릭 영역 삭제 */
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  content: '';
-}
-
-.filepond--item-panel{ /* 이미지 로딩 중 보이는 영역 */
-  border-radius: initial;
-}
