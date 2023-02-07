@@ -69,8 +69,8 @@
     vertical-align: middle;
 }
 
-/* 메인 이미지 */
-[name="main-image-info"] > div .img-container {
+/* 시작 메인 이미지 */
+.image-info > div .img-container {
   position: relative;
   display: flex; 
   justify-content: center; 
@@ -84,31 +84,32 @@
   cursor: pointer;
 }
 
-[name="main-image-info"] > div p {
+.image-info > div p {
   font-size: 11px; 
   color: rgb(246, 94, 50); 
   text-decoration: underline;
 }
 
-[name="main-image-info"] > div .hasSrc p {
+.image-info > div .hasImg p {
   display: none;
 }
 
-[name="main-image-info"] > div img {
-  object-fit: cover;
-  width: 100%;
-  display: none;
-}
-
-[name="main-image-info"] > div .btn-delete-img {
+.image-info > div .btn-delete-img {
   position:absolute; 
   top:5px; 
   right:5px; 
-  display: none;
+  z-index: 1;
 }
 
-[name="main-image-info"] > div .btn-delete-img i{
+.image-info > div .btn-delete-img i{
   color: #1f1f1f;
   font-size: 16px; 
 }
+/* 끝 메인 이미지 */
 
+/* 시작 갤러리 */
+[name="gallery-info"] div .img-container {
+  
+}
+
+/* 끝 갤러리 */

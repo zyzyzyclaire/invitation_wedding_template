@@ -782,13 +782,12 @@
                 메인 이미지
             </div>
             <div class="card-body">
-                <form name="main-image-info">
+                <form name="main-image-info" class="image-info">
                     <div>
                         <h4>사진</h4>
-                        <div class="main-image img-container">
+                        <div class="main-image img-container" onclick="clickAddImg(this);">
                             <input type="file" accept="image/*" hidden="hidden">
                             <p>클릭 후 업로드</p>
-
                         </div>
                     </div>
                 </form>
@@ -802,6 +801,15 @@
                 갤러리
             </div>
             <div class="card-body">
+                <form name="gallery-info" class="image-info">
+                    <div>
+                        <!-- <h4>갤러리</h4> -->
+                        <div class="gallery-image img-container" onclick="clickAddImg(this);">
+                            <input type="file" accept="image/*" hidden="hidden">
+                            <p>클릭 후 업로드</p>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         
