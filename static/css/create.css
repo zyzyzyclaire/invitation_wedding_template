@@ -108,8 +108,15 @@
 /* 끝 메인 이미지 */
 
 /* 시작 갤러리 */
+[name="gallery-info"] div {
+  flex-wrap: wrap;
+}
 [name="gallery-info"] div .img-container {
-  
+  height:initial;
+  max-width: calc(20% - 8px);
+}
+[name="gallery-info"] div .img-container  canvas{
+  max-width: 100%;
 }
 
 /* 끝 갤러리 */

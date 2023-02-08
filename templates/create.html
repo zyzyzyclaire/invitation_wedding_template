@@ -786,7 +786,7 @@
                     <div>
                         <h4>사진</h4>
                         <div class="main-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden">
+                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
                             <p>클릭 후 업로드</p>
                         </div>
                     </div>
@@ -805,7 +805,7 @@
                     <div>
                         <!-- <h4>갤러리</h4> -->
                         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden">
+                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
                             <p>클릭 후 업로드</p>
                         </div>
                     </div>
