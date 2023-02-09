@@ -660,7 +660,7 @@
                 신부측 정보
             </div>
             <div class="card-body">
-                <form name="groom-info" action="">
+                <form name="bride-info" action="">
                     <div>
                         <h4>신부님</h4>
                         <input type="text" name="bride lastName" placeholder="성">
@@ -706,7 +706,7 @@
                 예식일시
             </div>
             <div class="card-body">
-                <form name="reservation-date-time-info" action="">
+                <form name="reservation-info" action="">
                     <div>
                         <h4>예약일</h4>
                         <input type="date" name="reservation date">
@@ -756,7 +756,7 @@
                 예식장소
             </div>
             <div class="card-body">
-                <form name="wedding-place-info" action="">
+                <form name="place-info" action="">
                     <div>
                         <h4>예식장명</h4>
                         <input type="type" name="wedding-place name">
@@ -788,6 +788,7 @@
                         <div class="main-image img-container" onclick="clickAddImg(this);">
                             <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
                             <p>클릭 후 업로드</p>
+                            <canvas width="300" height="300"></canvas>
                         </div>
                     </div>
                 </form>
@@ -807,6 +808,7 @@
                         <div class="gallery-image img-container" onclick="clickAddImg(this);">
                             <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
                             <p>클릭 후 업로드</p>
+                            <canvas width="300" height="300"></canvas>
                         </div>
                     </div>
                 </form>

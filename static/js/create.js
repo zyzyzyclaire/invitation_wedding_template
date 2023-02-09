@@ -3,10 +3,13 @@ const imgTypelist = ['main-image-info', 'gallery-info'];
 
 // input type file의 value가 변했을 때
 const changeInputImg = (target) => {
-    const _imgContainer = target.closest('.img-container');
-    const isMainImageInfo = target.closest('.image-info').getAttribute('name') === imgTypelist[0] ? true : false;
     const fileList = target.files ;
     if(fileList.length === 0 ) return;
+
+    const _imgContainer = target.closest('.img-container');
+    const isMainImageInfo = target.closest('.image-info').getAttribute('name') === imgTypelist[0] ? true : false;
+    const _canvas = _imgContainer.querySelector('canvas');
+    console.log(_canvas)
     // 읽기
     const reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
@@ -17,7 +20,7 @@ const changeInputImg = (target) => {
         tempImage.src = reader.result; //data-uri를 이미지 객체에 주입
         // 이미지 URL 로드가 완료된 후
         tempImage.onload = (e) => {
-            const canvas = createCanvasTag(e);
+            const canvas = createCanvasTag(_canvas, e);
             _imgContainer.appendChild(canvas);
             _imgContainer.classList.add('hasImg');
 
@@ -32,20 +35,19 @@ const changeInputImg = (target) => {
 }
 
 // 이미지 캔바스 태그 만들기
-const createCanvasTag = (e) => {
+const createCanvasTag = (canvas, e) => {
     const imgWidth = e.target.width;
     const imgHeight = e.target.height;
-    const canvasSize = 150;
+    const canvasSize = 300;
     const canvasImgHeight = (imgHeight*canvasSize)/imgWidth;
     const cnavasImgY = (canvasSize-canvasImgHeight)/2;
-
     // 리사이즈를 위해 캔버스 객체 생성
-    const canvas = document.createElement('canvas');
+    // const canvas = document.createElement('canvas');
     const canvasContext = canvas.getContext("2d");
     
     // 캔버스 크기 설정
-    canvas.width = canvasSize; // 가로 150px
-    canvas.height = canvasSize; // 세로 150px
+    // canvas.width = canvasSize; // 가로 150px
+    // canvas.height = canvasSize; // 세로 150px
 
     // 이미지를 캔버스에 그리기
     canvasContext.drawImage(e.target, 0, cnavasImgY, canvasSize, canvasImgHeight);
@@ -66,7 +68,8 @@ const clickDeleteImg = (e) => {
     const type = _imgInfo.getAttribute('name');
     if(type === imgTypelist[0]){
         _imgContainer.classList.remove('hasImg');
-        _imgContainer.querySelector('canvas').remove();
+        const canvas = _imgContainer.querySelector('canvas')
+        canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
         _imgContainer.querySelector('.btn-delete-img').remove();
         _imgContainer.querySelector('input').value = '';
         return
@@ -84,6 +87,7 @@ const addNewImgContainer = () => {
         <div class="gallery-image img-container" onclick="clickAddImg(this);">
             <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
             <p>클릭 후 업로드</p>
+            <canvas width="300" height="300"></canvas>
         </div>`;
     const lastImgContainer = document.querySelector('[name="gallery-info"] div .img-container:last-child');
     lastImgContainer.insertAdjacentHTML('afterend',newImgContainer);

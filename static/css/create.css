@@ -15,6 +15,7 @@
   padding: 0 15px;
 }
 .card {
+  max-width: 570px;
   background: #fff;
   color: #111;
   border: 1px solid #e8e8e8;
@@ -41,8 +42,13 @@
   font-weight: 400;
   line-height: 38px;
 }
-.card-body form > div{
+.card-body form > div {
   display: flex;
+}
+.card-body form[name="groom-info"] > div,
+.card-body form[name="bride-info"] > div,
+.card-body form[name="reservation-info"] > div,
+.card-body form[name="place-info"] > div{
   gap: 5px;
 }
 .card-body form input[name*="lastName"] {
@@ -53,23 +59,28 @@
 }
 .map-search-btn {
   display: inline-block;
-    padding: 0 12px;
-    min-width: 60px;
-    height: 38px;
-    line-height: 36px;
-    background-color: #fff;
-    border: 1px solid #666;
-    font-size: 13px;
-    font-weight: 400;
-    color: #333;
-    text-align: center;
-    box-sizing: border-box;
-    cursor: pointer;
-    border-radius: 2px;
-    vertical-align: middle;
+  padding: 0 12px;
+  min-width: 60px;
+  height: 38px;
+  line-height: 36px;
+  background-color: #fff;
+  border: 1px solid #666;
+  font-size: 13px;
+  font-weight: 400;
+  color: #333;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 2px;
+  vertical-align: middle;
 }
 
 /* 시작 메인 이미지 */
+.image-info canvas {
+  width: 100%;
+  height: 100%;
+}
+
 .image-info > div .img-container {
   position: relative;
   display: flex; 
@@ -85,6 +96,7 @@
 }
 
 .image-info > div p {
+  position: absolute;
   font-size: 11px; 
   color: rgb(246, 94, 50); 
   text-decoration: underline;
@@ -109,14 +121,15 @@
 
 /* 시작 갤러리 */
 [name="gallery-info"] div {
+  gap: 10px;  
   flex-wrap: wrap;
 }
 [name="gallery-info"] div .img-container {
   height:initial;
-  max-width: calc(20% - 8px);
-}
-[name="gallery-info"] div .img-container  canvas{
-  max-width: 100%;
+  max-width: 30%;
+  max-height: 30%;
+  min-width: 90px;
+
 }
 
 /* 끝 갤러리 */
