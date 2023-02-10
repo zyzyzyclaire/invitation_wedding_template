@@ -93,4 +93,43 @@ const addNewImgContainer = () => {
     lastImgContainer.insertAdjacentHTML('afterend',newImgContainer);
 }
 
+// 이미지 크롭 모달 열기
+const openCropModar = () => {
+    const modalHtml = `
+    <!-- 모달 -->
+    <div class="crop-modal">
+        <!-- 모달 콘텐츠 -->
+        <div class="modal-content">
+            <div class="crop-modal-top">
+                <h1>썸네일 편집</h1>
+                <button class="btn-close-modal"><i class="ph-x-bold"></i></button>
+            </div>
+            <div class="crop-modal-content">
+                <img src="/static/images/wedding_img/gallery_img/gallery_img_origin_003.jpg" alt="">
+            </div>
+            <div class="crop-modal-bottom">
+                <button>
+                    <i class="ph-check-bold"></i>
+                    <div>적용</div>
+                </button>
+            </div>
+        </div>
+    </div>`;
+}
 
+
+const _cropModal = document.querySelector('.crop-modal');
+const _btnOpenModal = document.querySelector('.btn-open-modal');
+const _btnCloseModal = document.querySelector('.btn-close-modal');
+
+// 사용자가 버튼을 클릭하면 모달을 엽니다.
+_btnOpenModal.onclick = function() {
+    _cropModal.style.display = "block";
+}
+
+// 사용자가 모달 외부 아무 곳이나 클릭하면 닫습니다.
+window.onclick = function(event) {
+  if (event.target == _cropModal || event.target == _btnCloseModal) {
+    _cropModal.style.display = "none";
+  }
+}

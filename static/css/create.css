@@ -133,3 +133,83 @@
 }
 
 /* 끝 갤러리 */
+
+
+/* 시작 크롭 모달 */
+
+.crop-modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  max-width: 600px;
+  min-width: 280px;
+  margin: auto;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+}
+
+.crop-modal-top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  color: #262626;
+}
+
+.crop-modal-content{
+  display: flex;
+  justify-content: center;
+  background: gray;
+}
+
+.crop-modal-content img {
+  height: 300px;
+}
+
+.btn-close-modal {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #262626;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: inherit;
+  outline: none;
+  border: inherit;
+  cursor: pointer;
+}
+
+
+.crop-modal-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.crop-modal-bottom button {
+  background-color: inherit;
+  border: inherit;
+  text-align: center;
+  outline: none;
+}
+/* 끝 크롭 모달 */
