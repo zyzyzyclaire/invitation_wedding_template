@@ -94,7 +94,7 @@ const addNewImgContainer = () => {
     lastImgContainer.insertAdjacentHTML('afterend',newImgContainer);
 }
 
-// 이미지 크롭 모달 열기
+// 이미지 크롭 모달 생성
 const openCropModar = (src, e) => {
     e.preventDefault();
     const modalHtml = `
@@ -106,7 +106,9 @@ const openCropModar = (src, e) => {
                 <button class="btn-close-modal"><i class="ph-x-bold i-close-modal"></i></button>
             </div>
             <div class="crop-modal-content">
-                <img src="${src}" alt="">
+                <div>
+                    <img src="${src}" alt="">
+                </div>
             </div>
             <div class="crop-modal-bottom">
                 <button>
@@ -119,6 +121,9 @@ const openCropModar = (src, e) => {
     document.querySelector('.container').insertAdjacentHTML('afterend', modalHtml)
     document.querySelector('.crop-modal').addEventListener('click',(e)=>{clickDeleteModal(e)});
     document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteModal(e)});
+    const image = document.querySelector('.crop-modal-content img');
+    createNewCropper(image)
+    
 }
 
 // 크랍 모달 HTML 삭제
@@ -130,11 +135,10 @@ const clickDeleteModal = (e) => {
     document.querySelector('.crop-modal').removeEventListener('click', clickDeleteImg)
     document.querySelector('.crop-modal').remove();
 }
-
-// 사용자가 모달 외부 아무 곳이나 클릭하면 닫습니다.
-// window.onclick = function(event) {
-//     const _cropModal = document.querySelector('.crop-modal');
-//     if (event.target == _cropModal) {
-//         clickDeleteModal();
-//     }
-// }
+// 크롭퍼 객체 생성
+const createNewCropper = (img) => {
+    const cropper = new Cropper(img, {
+        dragMode: 'none',
+        aspectRatio: 1 / 1,
+    });
+}
