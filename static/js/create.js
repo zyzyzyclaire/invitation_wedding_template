@@ -9,7 +9,6 @@ const changeInputImg = (target) => {
     const _imgContainer = target.closest('.img-container');
     const isMainImageInfo = target.closest('.image-info').getAttribute('name') === imgTypelist[0] ? true : false;
     const _canvas = _imgContainer.querySelector('canvas');
-    console.log(_canvas)
     // 읽기
     const reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
@@ -28,6 +27,9 @@ const changeInputImg = (target) => {
             _imgContainer.insertAdjacentHTML('beforeend',closeDiv);
             _imgContainer.querySelector('.btn-delete-img').addEventListener('click',(e)=>clickDeleteImg(e))
             if(isMainImageInfo) return;
+            const EditButton = `<button class="btn-open-modal">썸네일 편집</button>`
+            _imgContainer.insertAdjacentHTML('beforeend',EditButton);
+            _imgContainer.querySelector('.btn-open-modal').addEventListener('click',(e)=>openCropModar(reader.result, e))
             addNewImgContainer();
 
         }
@@ -36,21 +38,20 @@ const changeInputImg = (target) => {
 
 // 이미지 캔바스 태그 만들기
 const createCanvasTag = (canvas, e) => {
+    const canvasContext = canvas.getContext("2d");
     const imgWidth = e.target.width;
     const imgHeight = e.target.height;
     const canvasSize = 300;
-    const canvasImgHeight = (imgHeight*canvasSize)/imgWidth;
-    const cnavasImgY = (canvasSize-canvasImgHeight)/2;
-    // 리사이즈를 위해 캔버스 객체 생성
-    // const canvas = document.createElement('canvas');
-    const canvasContext = canvas.getContext("2d");
-    
-    // 캔버스 크기 설정
-    // canvas.width = canvasSize; // 가로 150px
-    // canvas.height = canvasSize; // 세로 150px
-
-    // 이미지를 캔버스에 그리기
-    canvasContext.drawImage(e.target, 0, cnavasImgY, canvasSize, canvasImgHeight);
+    if(imgWidth > imgHeight) {
+        const canvasImgHeight = (imgHeight*canvasSize)/imgWidth;
+        const cnavasImgY = (canvasSize-canvasImgHeight)/2;
+        // 이미지를 캔버스에 그리기
+        canvasContext.drawImage(e.target, 0, cnavasImgY, canvasSize, canvasImgHeight);
+    }else{
+        const canvasImgWidth = (imgWidth*canvasSize)/imgHeight;
+        const cnavasImgX =  (canvasSize-canvasImgWidth)/2;
+        canvasContext.drawImage(e.target, cnavasImgX, 0, canvasImgWidth, canvasSize);
+    }   
     return canvas;
 }
 
@@ -94,18 +95,18 @@ const addNewImgContainer = () => {
 }
 
 // 이미지 크롭 모달 열기
-const openCropModar = () => {
+const openCropModar = (src, e) => {
+    e.preventDefault();
     const modalHtml = `
-    <!-- 모달 -->
     <div class="crop-modal">
         <!-- 모달 콘텐츠 -->
         <div class="modal-content">
             <div class="crop-modal-top">
                 <h1>썸네일 편집</h1>
-                <button class="btn-close-modal"><i class="ph-x-bold"></i></button>
+                <button class="btn-close-modal"><i class="ph-x-bold i-close-modal"></i></button>
             </div>
             <div class="crop-modal-content">
-                <img src="/static/images/wedding_img/gallery_img/gallery_img_origin_003.jpg" alt="">
+                <img src="${src}" alt="">
             </div>
             <div class="crop-modal-bottom">
                 <button>
@@ -115,21 +116,25 @@ const openCropModar = () => {
             </div>
         </div>
     </div>`;
+    document.querySelector('.container').insertAdjacentHTML('afterend', modalHtml)
+    document.querySelector('.crop-modal').addEventListener('click',(e)=>{clickDeleteModal(e)});
+    document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteModal(e)});
 }
 
-
-const _cropModal = document.querySelector('.crop-modal');
-const _btnOpenModal = document.querySelector('.btn-open-modal');
-const _btnCloseModal = document.querySelector('.btn-close-modal');
-
-// 사용자가 버튼을 클릭하면 모달을 엽니다.
-_btnOpenModal.onclick = function() {
-    _cropModal.style.display = "block";
+// 크랍 모달 HTML 삭제
+const clickDeleteModal = (e) => {
+    const isCropModal = e.target == document.querySelector('.crop-modal') ? true : false;
+    const isBtnCloseModal = e.target == document.querySelector('.btn-close-modal') ? true : false;
+    const isICloseModal = e.target == document.querySelector('.i-close-modal') ? true : false;
+    if(!isCropModal && !isBtnCloseModal && !isICloseModal) return;
+    document.querySelector('.crop-modal').removeEventListener('click', clickDeleteImg)
+    document.querySelector('.crop-modal').remove();
 }
 
 // 사용자가 모달 외부 아무 곳이나 클릭하면 닫습니다.
-window.onclick = function(event) {
-  if (event.target == _cropModal || event.target == _btnCloseModal) {
-    _cropModal.style.display = "none";
-  }
-}
+// window.onclick = function(event) {
+//     const _cropModal = document.querySelector('.crop-modal');
+//     if (event.target == _cropModal) {
+//         clickDeleteModal();
+//     }
+// }

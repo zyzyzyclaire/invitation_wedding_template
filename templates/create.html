@@ -812,33 +812,12 @@
                         </div>
                     </div>
                 </form>
-                
-                <!-- 모달 트리거/열기 -->
-                <button class="btn-open-modal">Open Modal</button>
-
             </div>
         </div>
       </div>  
     </div>
 
     
-    <!-- <div class="crop-modal">
-        <div class="modal-content">
-            <div class="crop-modal-top">
-                <h1>썸네일 편집</h1>
-                <button class="btn-close-modal"><i class="ph-x-bold"></i></button>
-            </div>
-            <div class="crop-modal-content">
-                <img src="/static/images/wedding_img/gallery_img/gallery_img_origin_003.jpg" alt="">
-            </div>
-            <div class="crop-modal-bottom">
-                <button>
-                    <i class="ph-check-bold"></i>
-                    <div>적용</div>
-                </button>
-            </div>
-        </div>
-    </div> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/static/js/create.js"></script>
     <script>  
@@ -983,8 +962,6 @@
         function loadCalendar(year, month){
             changeYearMonth(year, month);
             document.getElementById('current_date').innerText = `${year}년  ${month}월`
-            // $("#current_date").text(`${year}년  ${month}월`)
-            console.log(this_year, year, this_month, month)
             if(this_year === year && this_month === month){
                 setDate(this_date)
             }
