@@ -111,7 +111,7 @@ const openCropModar = (src, e) => {
                 </div>
             </div>
             <div class="crop-modal-bottom">
-                <button>
+                <button onclick="clickSaveCropImage()">
                     <i class="ph-check-bold"></i>
                     <div>적용</div>
                 </button>
@@ -138,7 +138,16 @@ const clickDeleteModal = (e) => {
 // 크롭퍼 객체 생성
 const createNewCropper = (img) => {
     const cropper = new Cropper(img, {
+        toggleDragModeOnDblclick: false,
         dragMode: 'none',
+        zoomable: false,
+        autoCropArea:1,
         aspectRatio: 1 / 1,
     });
-}
+
+};
+
+// 크롭 모달에서 적용 버튼 클릭 시
+const clickSaveCropImage = () => {
+
+};
