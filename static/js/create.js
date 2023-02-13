@@ -136,18 +136,41 @@ const clickDeleteModal = (e) => {
     document.querySelector('.crop-modal').remove();
 }
 // 크롭퍼 객체 생성
-const createNewCropper = (img) => {
-    const cropper = new Cropper(img, {
+function createNewCropper (img) {
+    window.cropper = new Cropper(img, {
         toggleDragModeOnDblclick: false,
         dragMode: 'none',
         zoomable: false,
         autoCropArea:1,
         aspectRatio: 1 / 1,
     });
-
 };
 
 // 크롭 모달에서 적용 버튼 클릭 시
 const clickSaveCropImage = () => {
-
+    const cropper = window.cropper;
+    cropper.getCroppedCanvas({
+        width: 300,
+        height: 300,
+    }).toBlob((blob) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function() {
+            const img = new Image();
+            img.src = reader.result;
+            document.querySelector('form[name="cropper-info"] div').appendChild(img)
+        };
+    }, 'image/png' );
+    
 };
+
+
+
+
+
+
+
+
+
+
+
