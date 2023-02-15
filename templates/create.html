@@ -835,10 +835,15 @@
       
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/static/js/create.js"></script>
     <script>  
+
+        const _gallery = document.querySelector('form[name="gallery-info"] div')
+        let sortable = Sortable.create(_gallery);
+        
         const openPostCode = () => {
             new daum.Postcode({
                 oncomplete: function(data) {
