@@ -1,4 +1,4 @@
-const imgTypelist = ['main-image-info', 'gallery-info'];
+const imgTypelist = ['main-image-info', 'gallery-info', 'phrase-info'];
 
 
 // input type file의 value가 변했을 때
@@ -7,7 +7,8 @@ const changeInputImg = (target) => {
     if(fileList.length === 0 ) return;
 
     const _imgContainer = target.closest('.img-container');
-    const isMainImageInfo = target.closest('.image-info').getAttribute('name') === imgTypelist[0] ? true : false;
+    const targetName = target.closest('.image-info').getAttribute('name');
+    const isMainImageInfo = targetName === imgTypelist[0] || targetName === imgTypelist[2] ? true : false;
     const _canvas = _imgContainer.querySelector('canvas');
     // 읽기
     const reader = new FileReader();
@@ -67,7 +68,7 @@ const clickDeleteImg = (e) => {
     const _imgContainer = e.target.closest('.img-container')
     const _imgInfo = e.target.closest('.image-info');
     const type = _imgInfo.getAttribute('name');
-    if(type === imgTypelist[0]){
+    if(type === imgTypelist[0] || type === imgTypelist[2]){
         _imgContainer.classList.remove('hasImg');
         const canvas = _imgContainer.querySelector('canvas')
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
@@ -98,14 +99,14 @@ const addNewImgContainer = () => {
 const openCropModar = (src, e) => {
     e.preventDefault();
     const modalHtml = `
-    <div class="crop-modal">
+    <div class="crop-modal modal">
         <!-- 모달 콘텐츠 -->
         <div class="modal-content">
-            <div class="crop-modal-top">
+            <div class="modal-top">
                 <h1>썸네일 편집</h1>
                 <button class="btn-close-modal"><i class="ph-x-bold i-close-modal"></i></button>
             </div>
-            <div class="crop-modal-content">
+            <div class="crop-modal-content modal-middle">
                 <div>
                     <img src="${src}" alt="">
                 </div>
@@ -119,15 +120,15 @@ const openCropModar = (src, e) => {
         </div>
     </div>`;
     document.querySelector('.container').insertAdjacentHTML('afterend', modalHtml)
-    document.querySelector('.crop-modal').addEventListener('click',(e)=>{clickDeleteModal(e)});
-    document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteModal(e)});
+    document.querySelector('.crop-modal').addEventListener('click',(e)=>{clickDeleteCropModal(e)});
+    document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteCropModal(e)});
     const image = document.querySelector('.crop-modal-content img');
     createNewCropper(image)
     
 }
 
 // 크랍 모달 HTML 삭제
-const clickDeleteModal = (e) => {
+const clickDeleteCropModal = (e) => {
     const isCropModal = e.target == document.querySelector('.crop-modal') ? true : false;
     const isBtnCloseModal = e.target == document.querySelector('.btn-close-modal') ? true : false;
     const isICloseModal = e.target == document.querySelector('.i-close-modal') ? true : false;
@@ -165,12 +166,121 @@ const clickSaveCropImage = () => {
 };
 
 
+// 샘플 문구 모달 생성
+const openSamplePhrasesModal = (e) => {
+    e.preventDefault();
 
+    const samplePhrase = [
+        `새로운 마음과 새 의미를 간직하며
+        저희 두 사람이 새 출발의 첫 걸음을 내딛습니다.
+        좋은 꿈, 바른 뜻으로 올바르게 살 수 있도록
+        축복과 격려주시면
+        더없는 기쁨으로 간직하겠습니다.`,
 
+        `두 사람이 사랑으로 만나
+        진실과 이해로써 하나를 이루려 합니다.
+        이 두 사람을 지성으로 아끼고 돌봐주신
+        여러 어른과 친지를 모시고 서약을 맺고자 하오니
+        바쁘신 가운데 두 사람의 장래를
+        가까이에서 축복해 주시면 고맙겠습니다.`,
 
+        `다른 공간, 다른 시간을 걷던 두 사람이
+        서로를 마주한 이후
+        같은 공간, 같은 시간을 꿈꾸며
+        걷게 되었습니다.
+        소박하지만 단단하고 따뜻한
+        믿음의 가정을 이뤄가겠습니다.
+        오셔서 첫 날의 기쁨과 설렘을
+        함께 해 주시고 축복해 주세요.`,
 
+        `모든 것이 새로워지는 봄날,
+        사랑하는 두 사람이 새 인생을 시작하려 합니다.
+        바쁘시더라도 와주셔서 두 사람의 결혼을 축복해 주시고
+        따뜻한 마음으로 격려해 주신다면
+        큰 힘이 되겠습니다.`,
 
+        `살랑이는 바람결에
+        사랑이 묻어나는 계절입니다.
+        여기 곱고 예쁜 두 사람이 사랑을 맺어
+        인생의 반려자가 되려 합니다.
+        새 인생을 시작하는 이 자리에 오셔서
+        축복해 주시면 감사하겠습니다.`,
 
+        `같은 생각, 같은 마음으로 지혜롭게 살겠습니다.
+        저희 두 사람이 소중한 분들을 모시고
+        사랑의 결실을 이루려 합니다.
+        오로지 믿음과 사랑만을 약속하는 귀한 날에
+        축복의 걸음을 하시어 저희의 하나 됨을
+        지켜보아 주시고 격려해 주시면
+        더없는 기쁨으로 간직하겠습니다.`,
 
+        `평생을 같이하고 싶은 사람을 만났습니다.
+        서로 아껴주고 이해하며 사랑을 베풀며 살고 싶습니다.
+        저희 약속 위에 따뜻한 격려로 축복해 주셔서
+        힘찬 출발의 디딤이 되어 주십시오.`,
 
+        `진실과 이해로써 만난 두 사람이
+        사랑으로써 하나를 이루려 합니다.
+        그동안 이 두 사람을 지성으로 보살펴 주신
+        여러 어른과 친지를 모시고 하나되는 서약을 맺고자 하오니
+        바쁘신 가운데 찾아주시어 두 사람의 미래를
+        가까이에서 축복해 주시면 감사하겠습니다.`,
+
+        `부족하지 않되 지나치지 말라는 말씀
+        마음속 깊이 간직하고 있습니다.
+        오늘 저희 두 사람
+        평소 존경해온 어른, 친지분들 앞에서
+        백년의 서약을 하려고 합니다.
+        부디 참석해 주셔서
+        앞으로도 삶의 참 의미를 깨달아 가도록
+        축복해 주시기 바랍니다.`,
+
+        `어제의 너와 내가 오늘의 우리가 되어
+        저희 두 사람 이제 한길을 같이 걷고자 합니다.
+        저희가 내딛는 첫 걸음에 부디 오셔서
+        따뜻한 사랑으로 축복해 주십시오.`
+    ];
+
+    let modalHtml = `
+    <div class="sample-phrase-modal modal">
+        <div class="modal-content">
+            <div class="modal-top">
+                <h1>샘플 문구</h1>
+                <button class="btn-close-modal">
+                    <i class="ph-x-bold i-close-modal"></i>
+                </button>
+            </div>
+            <div class="modal-middle">
+                <div>`
+                
+    samplePhrase.forEach((phrase)=>{
+        modalHtml += `<div class="phrase-container" onclick="addSampleRhrase(this)">${phrase.replace(/\n/g, '<br/>')}</div>`            
+    })
+    
+    modalHtml += `</div>
+            </div>
+        </div>
+    </div>`
+    document.querySelector('.container').insertAdjacentHTML('afterend', modalHtml)
+    document.querySelector('.sample-phrase-modal').addEventListener('click',(e)=>{clickDeleteSamplePhraseModal(e)});
+    document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteSamplePhraseModal(e)});
+}
+
+// 크랍 모달 HTML 삭제
+const clickDeleteSamplePhraseModal = (e) => {
+    const isCropModal = e.target == document.querySelector('.sample-phrase-modal') ? true : false;
+    const isBtnCloseModal = e.target == document.querySelector('.btn-close-modal') ? true : false;
+    const isICloseModal = e.target == document.querySelector('.i-close-modal') ? true : false;
+    if(!isCropModal && !isBtnCloseModal && !isICloseModal) return;
+    // document.querySelector('.sample-phrase-modal').removeEventListener('click', clickDeleteImg)
+    document.querySelector('.sample-phrase-modal').remove();
+}
+
+// 샘플 문구를 클릭했을 때 textarea에 해당 문구를 추가한다.
+const addSampleRhrase = (target) => {
+    newText = target.innerHTML.replace(/<br>/g, "\n").trim().split('\n').map(line => line.trimLeft()).join('\n');
+    document.querySelector('[name="phrase-info"] textarea').innerHTML = newText
+}
+
+document.querySelector('.btn-show-sample-phrase').addEventListener('click',(e)=>{openSamplePhrasesModal(e)})
 

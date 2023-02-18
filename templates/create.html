@@ -121,6 +121,36 @@
                 </form>
             </div>
         </div>
+        <!-- 모시는 글 -->
+        <div class="card">
+            <div class="card-top">
+                모시는 글
+            </div>
+            <div class="card-body">
+                <form name="phrase-info" action="" class="image-info">
+                    <div>
+                        <h4>제목</h4>
+                        <input type="text" name="phrase-title" placeholder="초대합니다">
+                    </div>
+                    <div>
+                        <h4>내용</h4>
+                        <div>
+                            <button class="sample-phrase btn-show-sample-phrase">샘플 문구 보기</button>
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>사진</h4>
+                        <div class="main-image img-container" onclick="clickAddImg(this);">
+                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
+                            <p>클릭 후 업로드</p>
+                            <canvas width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
         <!-- 예식일시 -->
         <div class="card">
             <div class="card-top">
@@ -256,7 +286,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/static/js/create.js"></script>
-    <script>  
+    <script>
+
+
+
         const _gallery = document.querySelector('form[name="gallery-info"] div')
         let sortable = Sortable.create(_gallery);
         

@@ -12,10 +12,12 @@
   display: flex;
   flex-flow: column;
   gap: 15px;
+  max-width: 640px;
+  width: 100%;
   padding: 0 15px;
 }
 .card {
-  max-width: 570px;
+  /* max-width: 570px; */
   background: #fff;
   color: #111;
   border: 1px solid #e8e8e8;
@@ -156,7 +158,7 @@
 
 /* 시작 크롭 모달 */
 
-.crop-modal {
+.modal {
   /* display: none; */
   position: fixed;
   z-index: 100;
@@ -182,7 +184,7 @@
   transform: translate(-50%, -50%);
 }
 
-.crop-modal-top {
+.modal-top {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -190,8 +192,10 @@
   padding: 20px;
   color: #262626;
 }
+.modal-middle {
 
-.crop-modal-content{
+}
+.crop-modal-conten {
   display: flex;
   justify-content: center;
   background: gray;
@@ -232,3 +236,27 @@
   outline: none;
 }
 /* 끝 크롭 모달 */
+
+/* 시작 샘플 보기 모달 */
+.sample-phrase-modal .modal-middle{
+  padding: 20px;
+  padding-top: 0;
+}
+.sample-phrase-modal .modal-middle > div{
+  overflow-y: scroll;
+  height: calc(70vh - 80px);
+  border: 1px solid #eee;
+}
+.phrase-container{
+  padding: 20px 10px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 30px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgb(17,17,17);
+}
+.phrase-container:not(:last-child){
+  border-bottom: 1px solid #eee;
+}
+/* 끝 샘플 보기 모달 */
