@@ -13,7 +13,7 @@
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet" />
 
-    <link rel="stylesheet" href="/static/css/index.css">
+    <!-- <link rel="stylesheet" href="/static/css/index.css"> -->
     <link rel="stylesheet" href="/static/css/create.css">
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css" rel="stylesheet">
 
@@ -134,7 +134,7 @@
                     </div>
                     <div>
                         <h4>내용</h4>
-                        <div>
+                        <div class="textarea-container">
                             <button class="sample-phrase btn-show-sample-phrase">샘플 문구 보기</button>
                             <textarea></textarea>
                         </div>
@@ -226,7 +226,35 @@
                 </form>
             </div>
         </div>
-        
+        <!-- 교통 수단 -->
+        <div class="card">
+            <div class="card-top">교통 수단</div>
+            <div class="card-body">
+                <form name="transit-info" action="">
+                    <div>
+                        <h4>자가용</h4>
+                        <div class="textarea-container">
+                            <input type="text" placeholder="자가용">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>지하철</h4>
+                        <div class="textarea-container">
+                            <input type="text" placeholder="지하철">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>버스</h4>
+                        <div class="textarea-container">
+                            <input type="text" placeholder="버스">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <!-- 메인 이미지 -->
         <div class="card">
             <div class="card-top">
@@ -261,6 +289,83 @@
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
                         </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 신랑 신부 전화걸기 -->
+        <div class="card">
+            <div class="card-top">
+                신랑 신부 전화걸기
+            </div>
+            <div class="card-body">
+                <form name="couple-call-info" action="">
+                    <div>
+                        <h4>신랑님</h4>
+                        <input type="text" placeholder="'-'없이 입력해주세요">
+                    </div>
+                    <div>
+                        <h4>신부님</h4>
+                        <input type="text" placeholder="'-'없이 입력해주세요">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 혼주 전화걸기 -->
+        <div class="card">
+            <div class="card-top">
+                혼주 전화걸기
+            </div>
+            <div class="card-body">
+                <form name="couple-parents-call-info" action="">
+                    <div>
+                        <h4>신랑 아버님</h4>
+                        <input type="text" placeholder="'-'없이 입력해주세요">
+                    </div>
+                    <div>
+                        <h4>신랑 어머님</h4>
+                        <input type="text" placeholder="'-'없이 입력해주세요">
+                    </div>
+                    <div>
+                        <h4>신부 아버님</h4>
+                        <input type="text" placeholder="'-'없이 입력해주세요">
+                    </div>
+                    <div>
+                        <h4>신부 어머님</h4>
+                        <input type="text" placeholder="'-'없이 입력해주세요">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 계좌번호 -->
+        <div class="card">
+            <div class="card-top">
+                계좌번호
+            </div>
+            <div class="card-body">
+                <form name="account-number-info" action="">
+                    
+                    <div>
+                        <h4>그룹명</h4>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <h4>계좌번호</h4>
+                        <input type="text" placeholder="은행">
+                        <input type="text" placeholder="계좌번호">
+                    </div>
+                    <br>
+                    <div>
+                        <h4>그룹명</h4>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <h4>계좌번호</h4>
+                        <input type="text" placeholder="은행">
+                        <input type="text" placeholder="계좌번호">
                     </div>
                 </form>
             </div>

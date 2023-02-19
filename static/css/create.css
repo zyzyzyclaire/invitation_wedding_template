@@ -77,6 +77,31 @@
   vertical-align: middle;
 }
 
+/* 시작 모시는 글 */
+.textarea-container {
+  display: flex;
+  flex-flow: column;
+  max-width: 400px;
+  width: 100%;
+}
+.textarea-container button {
+  display: flex;
+  width: max-content;
+  margin: 10px 0;
+  padding: 0;
+  outline: none;
+  background: inherit;
+  border: inherit;
+  font-size: 13px;
+  color: rgb(246, 94, 50);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.textarea-container textarea{
+  resize : vertical;
+}
+/* 끝 모시는 글 */
+
 /* 시작 메인 이미지 */
 .image-info canvas {
   width: 100%;

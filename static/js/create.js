@@ -266,7 +266,7 @@ const openSamplePhrasesModal = (e) => {
     document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteSamplePhraseModal(e)});
 }
 
-// 크랍 모달 HTML 삭제
+// 샘플 문구 모달 HTML 삭제
 const clickDeleteSamplePhraseModal = (e) => {
     const isCropModal = e.target == document.querySelector('.sample-phrase-modal') ? true : false;
     const isBtnCloseModal = e.target == document.querySelector('.btn-close-modal') ? true : false;
@@ -278,8 +278,9 @@ const clickDeleteSamplePhraseModal = (e) => {
 
 // 샘플 문구를 클릭했을 때 textarea에 해당 문구를 추가한다.
 const addSampleRhrase = (target) => {
-    newText = target.innerHTML.replace(/<br>/g, "\n").trim().split('\n').map(line => line.trimLeft()).join('\n');
-    document.querySelector('[name="phrase-info"] textarea').innerHTML = newText
+    const newText = target.innerHTML.replace(/<br>/g, "\n").trim().split('\n').map(line => line.trimLeft()).join('\n');
+    document.querySelector('[name="phrase-info"] textarea').value = newText
+    document.querySelector('.sample-phrase-modal').remove();
 }
 
 document.querySelector('.btn-show-sample-phrase').addEventListener('click',(e)=>{openSamplePhrasesModal(e)})
