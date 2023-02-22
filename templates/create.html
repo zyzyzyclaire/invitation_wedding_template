@@ -8,12 +8,12 @@
     
     <link rel="stylesheet" href="/static/css/reset.css">
     
-    <!-- filepond 라이브러리 -->
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet" />
+    <!-- 웹폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" href="/static/css/index.css"> -->
+
     <link rel="stylesheet" href="/static/css/create.css">
     <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.min.css" rel="stylesheet">
 
@@ -57,7 +57,7 @@
                         <h4>관계</h4>
                         <select name="relation" id="">
                             <option value=""></option>
-                            <option value="">아들</option>
+                            <option value="" selected>아들</option>
                             <option value="">장남</option>
                             <option value="">차남</option>
                             <option value="">삼남</option>
@@ -103,7 +103,7 @@
                         <h4>관계</h4>
                         <select name="relation" id="">
                             <option value=""></option>
-                            <option value="">딸</option>
+                            <option value="" selected>딸</option>
                             <option value="">장녀</option>
                             <option value="">차녀</option>
                             <option value="">삼녀</option>
@@ -130,13 +130,13 @@
                 <form name="phrase-info" action="" class="image-info">
                     <div>
                         <h4>제목</h4>
-                        <input type="text" name="phrase-title" placeholder="초대합니다">
+                        <input type="text" size="10" name="phrase-title" placeholder="초대합니다">
                     </div>
                     <div>
                         <h4>내용</h4>
                         <div class="textarea-container">
                             <button class="sample-phrase btn-show-sample-phrase">샘플 문구 보기</button>
-                            <textarea></textarea>
+                            <textarea cols="10" rows="5"></textarea>
                         </div>
                     </div>
                     <div>
@@ -162,41 +162,44 @@
                         <h4>예약일</h4>
                         <input type="date" name="reservation date">
                     </div>
-                    <div>
+                    <div >
                         <h4>예약시간</h4>
-                        <select name="reservation time hour" id="">
-                            <option value="">없음</option>
-                            <option value="">오전 7시</option>
-                            <option value="">오전 8시</option>
-                            <option value="">오전 9시</option>
-                            <option value="">오전 10시</option>
-                            <option value="">오전 11시</option>
-                            <option value="">낮 12시</option>
-                            <option value="">오후 1시</option>
-                            <option value="">오후 2시</option>
-                            <option value="">오후 3시</option>
-                            <option value="">오후 4시</option>
-                            <option value="">오후 5시</option>
-                            <option value="">오후 6시</option>
-                            <option value="">오후 7시</option>
-                            <option value="">오후 8시</option>
-                            <option value="">오후 9시</option>
-                            <option value="">오후 10시</option>
-                        </select>
-                        <select name="reservation time minute" id="">
-                            <option value="">정각</option>
-                            <option value="">5분</option>
-                            <option value="">10분</option>
-                            <option value="">15분</option>
-                            <option value="">20분</option>
-                            <option value="">25분</option>
-                            <option value="">30분</option>
-                            <option value="">35분</option>
-                            <option value="">40분</option>
-                            <option value="">45분</option>
-                            <option value="">50분</option>
-                            <option value="">55분</option>
-                        </select>
+                        <div class="reservation-time">
+
+                            <select name="reservation time hour" id="">
+                                <option value="">없음</option>
+                                <option value="">오전 7시</option>
+                                <option value="">오전 8시</option>
+                                <option value="">오전 9시</option>
+                                <option value="">오전 10시</option>
+                                <option value="">오전 11시</option>
+                                <option value="">낮 12시</option>
+                                <option value="" selected>오후 1시</option>
+                                <option value="">오후 2시</option>
+                                <option value="">오후 3시</option>
+                                <option value="">오후 4시</option>
+                                <option value="">오후 5시</option>
+                                <option value="">오후 6시</option>
+                                <option value="">오후 7시</option>
+                                <option value="">오후 8시</option>
+                                <option value="">오후 9시</option>
+                                <option value="">오후 10시</option>
+                            </select>
+                            <select name="reservation time minute" id="">
+                                <option value="">정각</option>
+                                <option value="">5분</option>
+                                <option value="">10분</option>
+                                <option value="">15분</option>
+                                <option value="">20분</option>
+                                <option value="">25분</option>
+                                <option value="" selected>30분</option>
+                                <option value="">35분</option>
+                                <option value="">40분</option>
+                                <option value="">45분</option>
+                                <option value="">50분</option>
+                                <option value="">55분</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -210,19 +213,21 @@
                 <form name="place-info" action="">
                     <div>
                         <h4>예식장명</h4>
-                        <input type="type" name="wedding-place name">
+                        <input type="text" size="10" name="wedding-place name">
                     </div>
                     <div>
                         <h4>층과 홀</h4>
-                        <input type="text" name="wedding-place detail">
+                        <input type="text" size="10" name="wedding-place detail">
                     </div>
                     <div>
                         <h4>주소</h4>
-                        <input type="text" name="wedding-place addr">
+                        <input type="text" size="1" name="wedding-place addr">
                         <div onclick="openPostCode()" class="map-search-btn">검색</div>
                         
                     </div>
-                    <div id="createMap" style="width:100%; height:240px;"></div>
+                    <div id="createMap" style="width:100%; height:240px; max-width: 508px;
+                    border: 1px solid #ddd;
+                    box-sizing: border-box;"></div>
                 </form>
             </div>
         </div>
@@ -235,21 +240,21 @@
                         <h4>자가용</h4>
                         <div class="textarea-container">
                             <input type="text" placeholder="자가용">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea name="" id="" cols="10"  rows="5"></textarea>
                         </div>
                     </div>
                     <div>
                         <h4>지하철</h4>
                         <div class="textarea-container">
                             <input type="text" placeholder="지하철">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea name="" id="" cols="10"  rows="5"></textarea>
                         </div>
                     </div>
                     <div>
                         <h4>버스</h4>
                         <div class="textarea-container">
                             <input type="text" placeholder="버스">
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                            <textarea name="" id="" cols="10"  rows="5"></textarea>
                         </div>
                     </div>
                 </form>
@@ -303,11 +308,11 @@
                 <form name="couple-call-info" action="">
                     <div>
                         <h4>신랑님</h4>
-                        <input type="text" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
                     </div>
                     <div>
                         <h4>신부님</h4>
-                        <input type="text" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
                     </div>
                 </form>
             </div>
@@ -322,19 +327,19 @@
                 <form name="couple-parents-call-info" action="">
                     <div>
                         <h4>신랑 아버님</h4>
-                        <input type="text" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
                     </div>
                     <div>
                         <h4>신랑 어머님</h4>
-                        <input type="text" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
                     </div>
                     <div>
                         <h4>신부 아버님</h4>
-                        <input type="text" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
                     </div>
                     <div>
                         <h4>신부 어머님</h4>
-                        <input type="text" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
                     </div>
                 </form>
             </div>
@@ -353,8 +358,14 @@
                     </div>
                     <div>
                         <h4>계좌번호</h4>
-                        <input type="text" placeholder="은행">
-                        <input type="text" placeholder="계좌번호">
+                        <div class="account-data">
+                            <input type="text" placeholder="은행">
+                            <input type="text" placeholder="계좌번호">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>예금주</h4>
+                        <input type="text">
                     </div>
                     <br>
                     <div>
@@ -363,8 +374,14 @@
                     </div>
                     <div>
                         <h4>계좌번호</h4>
-                        <input type="text" placeholder="은행">
-                        <input type="text" placeholder="계좌번호">
+                        <div class="account-data">
+                            <input type="text" placeholder="은행">
+                            <input type="text" placeholder="계좌번호">
+                        </div>
+                    </div>
+                    <div>
+                        <h4>예금주</h4>
+                        <input type="text">
                     </div>
                 </form>
             </div>
@@ -393,7 +410,9 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/static/js/create.js"></script>
     <script>
-
+        
+        // 예약일 기본 값 오늘로 지정
+        document.querySelector('[name="reservation-info"] [type="date"]').value = new Date().toISOString().substring(0, 10);;
 
 
         const _gallery = document.querySelector('form[name="gallery-info"] div')
@@ -426,141 +445,12 @@
             position: new naver.maps.LatLng(37.3595704, 127.105399)
         })
 
-        const mapOptions = {
-            center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
-            zoom: 16, //지도의 초기 줌 레벨
-            minZoom: 7, //지도의 최소 줌 레벨
-            zoomControl: false, //줌 컨트롤의 표시 여부
-            zoomControlOptions: { //줌 컨트롤의 옵션
-                position: naver.maps.Position.TOP_RIGHT
-            }
-        };
-        const map = new naver.maps.Map('map', mapOptions);
-        new naver.maps.Marker({
-            map: map,
-            position: new naver.maps.LatLng(37.3595704, 127.105399)
-        })
         
         // setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
-        map.setOptions("mapTypeControl", false); // 지도 유형 컨트롤의 표시 여부
-        map.setOptions("scaleControl", false); // 지도 축척 컨트롤의 표시 여부입니다.
-        map.setOptions("mapDataControl", false); // 지도 데이터 저작권 컨트롤의 표시 여부입니다.
+        // map.setOptions("mapTypeControl", false); // 지도 유형 컨트롤의 표시 여부
+        // map.setOptions("scaleControl", false); // 지도 축척 컨트롤의 표시 여부입니다.
+        // map.setOptions("mapDataControl", false); // 지도 데이터 저작권 컨트롤의 표시 여부입니다.
 
-
-
-        
-        // 달력 시작
-
-        // 윤년 체크
-        function checkedLeapYear(year){
-            if(year % 400 == 0) return true;
-            else if(year % 100 == 0) return false;
-            else if(year % 4 == 0) return true;
-            else return false;
-        };
-
-        // 달의 시작일이 어떤 요일(몇 번째 위치)에서 시작하는지 계산
-        function getFirstDayOfWeek(year, month){
-            if(month < 10) {
-                month = "0" + month;
-            };
-            return (new Date(year + "-" + month + "-01" )).getDay();
-        };
-
-        // 월의 마지막 일자 계산
-        function changeYearMonth(year, month){
-            let month_day = [31,28,31,30,31,30,31,31,30,31,30,31];
-            if(month == 2) if(checkedLeapYear(year)) month_day[1] = 29;
-            let first_day_of_week = getFirstDayOfWeek(year, month);
-            let arr_calendar = [];
-            for(let i=0; i<first_day_of_week; i++){
-                arr_calendar.push('');
-            };
-            for(let i=1; i<=month_day[month-1]; i++){
-                arr_calendar.push(String(i));
-            };
-            let remain_day = 7 - (arr_calendar.length % 7);
-            if(remain_day < 7){
-                for(let i=0; i<remain_day; i++){
-                    arr_calendar.push('');
-                };
-            };
-            renderCalendar(arr_calendar)
-
-        };
-
-        function renderCalendar(data){
-            let h = [];
-            for(let i=0; i<data.length; i++){
-                if(i==0){
-                    h.push('<tr>');
-                }else if(i % 7 == 0){
-                    h.push('</tr>')
-                    h.push('<tr>');
-                };
-                h.push(`<td onclick="setDate(${data[i]})"; style="cursor:pointer;">
-                    <div id="calendar_${current_year}_${current_month}_${data[i]}" style="position: relative;">
-                        ${data[i]}
-                    </div>
-                </td>`);
-            }
-            h.push('</tr>');
-            document.getElementById('tb_body').innerHTML = h.join('')
-            // $("#tb_body").html(h.join(''));
-        }
-
-        function setDate(day){
-            // document.querySelector('.current_day').classList.remove('current_day')
-            let target_date = `calendar_${current_year}_${current_month}_${day}`
-            document.getElementById(`${target_date}`).classList.add('current_day')
-            // const el = document.querySelector('#parse_emotion_view');
-            // const sheet = el.sheet;
-            // const rules = sheet.cssRules;
-            // const rule = rules[0];
-            // sheet.insertRule('.current_day::after{content: "'+ day +'"; position: absolute; line-height: 29px; top: -1.5px; bottom: 0; margin: 0 auto; width: 32px; height: 32px; background: #FFE3DF; left: 0; border-radius: 50%;}', rules.length)
-            // if(day<10){
-            //     day = "0" + day;
-            // }
-            // console.log(current_year, current_month, day)
-
-        }
-
-        function changeMonth(diff) {
-            current_month = current_month + diff;
-            if(current_month == 0){
-                current_year = current_year - 1;
-                current_month = 12;
-            }else if(current_month === 13){
-                current_year = current_year + 1;
-                current_month = 1;
-            }
-            loadCalendar(current_year, current_month)
-        }
-
-        function loadCalendar(year, month){
-            changeYearMonth(year, month);
-            document.getElementById('current_date').innerText = `${year}년  ${month}월`
-            if(this_year === year && this_month === month){
-                setDate(this_date)
-            }
-            
-        }
-
-        let current_year = (new Date()).getFullYear();
-        let current_month = (new Date()).getMonth() + 1;
-        let current_date = (new Date()).getDate();
-
-        let this_year = (new Date()).getFullYear();
-        let this_month = (new Date()).getMonth() + 1;
-        let this_date = (new Date()).getDate();
-
-        loadCalendar(current_year, current_month)
-        setDate((new Date()).getDate())
-        // 달력 만들기 끝
-
-        // 오늘 날짜 LNB에 추가하기
-        // document.getElementById('current_date_tag').innerText = `${current_year}-${current_month}-${current_date}`
-        // 달력 끝
 
 
 
