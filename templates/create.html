@@ -409,51 +409,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/static/js/create.js"></script>
-    <script>
-        
-        // 예약일 기본 값 오늘로 지정
-        document.querySelector('[name="reservation-info"] [type="date"]').value = new Date().toISOString().substring(0, 10);;
-
-
-        const _gallery = document.querySelector('form[name="gallery-info"] div')
-        let sortable = Sortable.create(_gallery);
-        
-        const openPostCode = () => {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-                    console.log(data)
-                }
-            }).open({
-                // q: '하단 아트몰링'
-            });
-
-        }
-        const createMapOptions = {
-            center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
-            zoom: 16, //지도의 초기 줌 레벨
-            minZoom: 7, //지도의 최소 줌 레벨
-            zoomControl: false, //줌 컨트롤의 표시 여부
-            zoomControlOptions: { //줌 컨트롤의 옵션
-                position: naver.maps.Position.TOP_RIGHT
-            }
-        };
-        const createMap = new naver.maps.Map('createMap', createMapOptions);
-        new naver.maps.Marker({
-            map: createMap,
-            position: new naver.maps.LatLng(37.3595704, 127.105399)
-        })
-
-        
-        // setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
-        // map.setOptions("mapTypeControl", false); // 지도 유형 컨트롤의 표시 여부
-        // map.setOptions("scaleControl", false); // 지도 축척 컨트롤의 표시 여부입니다.
-        // map.setOptions("mapDataControl", false); // 지도 데이터 저작권 컨트롤의 표시 여부입니다.
-
-
-
-
-    </script>
 </body>
 </html>
