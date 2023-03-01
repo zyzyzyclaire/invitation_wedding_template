@@ -1,45 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    div#items {
-      border: 1px red solid;
-      padding: 10px;
-      text-align: center;
-    }
-    
-    div#items div {
-      display: inline-block; 
-      border: 1px solid #555;
-      text-align: center;
-      padding: 1em;
-      margin: 10px;
-      width: 100px;
-      height: 100px;
-      font-size: 200%;
-    }
-  </style>
+  <title>네이버 지오코딩 API</title>
 </head>
 <body>
-  <div id="items">
-  </div>
-  
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" ></script>
   <script>
-        
-    let el = document.getElementById('items');
-    for(let i = 1; i <= 12; i++) {
-      let div = document.createElement('div');
-      div.textContent = i;
-      el.appendChild(div);
+    const clientId = 'ko0r34e7m9';
+const clientSecret = 'prCzt8XuwLxK0WlPW8QxqyDQHVhWnZkywBSlrlDA';
+
+const address = prompt('주소를 입력하세요.');
+
+const url = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURIComponent(address)}&coordinate=127.1054324,37.3595963`;
+const headers = {
+  'X-NCP-APIGW-API-KEY-ID': clientId,
+  'X-NCP-APIGW-API-KEY': clientSecret
+};
+
+fetch(url, { headers, mode: 'cors' })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-
-    var sortable = Sortable.create(el);
-
+    return response.json();
+  })
+  .then(responseJson => console.log(responseJson))
+  .catch(error => console.error(error));
   </script>
 </body>
 </html>
