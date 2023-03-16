@@ -7,7 +7,16 @@ app = Flask(__name__)
 def index():
     with session_scope() as session:
         test = session.query(User).filter(User.id == 1).first()
-    return render_template('/index.html', test=test)
+        name = test.name
+    return render_template('/index.html', test=name)
+
+@app.route("/login")
+def login():
+    return render_template('/login.html')
+
+@app.route("/create")
+def create():
+    return render_template('/create.html')
 
 if __name__ == '__main__':
     app.run()
