@@ -46,6 +46,9 @@
           <div class="inputBox">
             <input type="submit" value="로그인" id="btn">
           </div>
+          <div class="inputBox">
+            <a href="javascript:kakaoLogin()">카카오 로그인</a>
+          </div>
         </div>
         <div class="group">
           <a href="#" >계정을 잊으셨나요?</a>
@@ -54,7 +57,27 @@
       </div>
       <img class="trees" src="" alt="">
     </section>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
+      window.Kakao.init('19e6d6ca2612380690e073e3e59433ec');
+      function kakaoLogin() {
+        window.Kakao.Auth.login({
+          scope: 'profile_nickname, account_email',
+          success: function (authObj) {
+            console.log(authObj);
+            window.Kakao.API.request({
+              url:'/v2/user/me',
+              success: function (res) {
+                const kakao_account = res.kakao_account;
+                console.log(kakao_account);
+                alert('잠시 정지')
+                // window.location.href = './index.html';
+                
+              }
+            })
+          }
+        })
+      }
     </script>
 </body>
 </html>
