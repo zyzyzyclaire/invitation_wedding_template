@@ -7,7 +7,7 @@
     <title>모바일 청첩장</title>
     
     <link rel="stylesheet" href="/static/css/reset.css">
-    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/register.css">
     <script src="https://unpkg.com/phosphor-icons"></script>
   
 </head>
@@ -26,26 +26,39 @@
         </div>
       </div>
       <img class="bg" src="https://img.lovepik.com/photo/40189/4902.jpg_wh860.jpg" alt="">
-      <img class="girl" src="" alt="">
-      <div class="login">
-        <h2>로그인</h2>
+      <form class="login" onsubmit="registerSubmit(event)">
+        <h2>회원가입</h2>
         <div>
           <div class="inputBox">
-            <input type="text" placeholder="아이디">
+            <label for="inputEmail">이메일</label>
+            <input id="inputEmail" type="email" placeholder="HongGilDong@gmail.com">
           </div>
           <div class="inputBox">
-            <input type="password" placeholder="비밀번호">
+            <label for="inputName">이름</label>
+            <input id="inputName" type="text" placeholder="홍길동">
           </div>
           <div class="inputBox">
-            <input type="submit" value="로그인" id="btn">
+            <label for="inputId">아이디</label>
+            <input id="inputId" type="text" placeholder="HongGilDong">
+          </div>
+          <div class="inputBox">
+            <label for="inputPassword">비밀번호</label>
+            <input id="inputPassword" type="password" placeholder="*****">
+          </div>
+          <div class="inputBox">
+            <label for="inputPassword2">비밀번호 재확인</label>
+            <input id="inputPassword2" type="password" placeholder="*****">
+          </div>
+          <div class="inputBox">
+            <button type="submit" id="btn">계정 생성</button>
           </div>
         </div>
         <div class="group">
-          <a href="#" >계정을 잊으셨나요?</a>
-          <a href="register" >회원가입</a>
+          <a href="login">이미 계정이 있으신가요?</a>
         </div>
-      </div>
+      </form>
     </section>
-
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/register.js"></script>
 </body>
 </html>
