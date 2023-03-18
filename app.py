@@ -1,6 +1,8 @@
 from flask import Flask,render_template
 from models import session_scope, User
 
+from views.template.index import geocoding
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -8,6 +10,7 @@ def index():
     with session_scope() as session:
         test = session.query(User).filter(User.id == 1).first()
         name = test.name
+        print(geocoding("부산시 연제구 거제대로 198"))
     return render_template('/index.html', test=name)
 
 @app.route("/login")
