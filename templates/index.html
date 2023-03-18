@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모바일 청첩장</title>
+    <title>{{groom_dict.lastname}}{{groom_dict.firstname}} ♥ {{bride_dict.lastname}}{{bride_dict.firstname}} 결혼 합니다</title>
     
     <!-- 웹폰트 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,18 +21,17 @@
             
             <div class="title_box">
                 <header>
-                    <div>{{test}}</div>
-                    <div>강지혁</div>
+                    <div>{{groom_dict.lastname}}{{groom_dict.firstname}}</div>
                     <div>―</div>
-                    <div>최유라</div>
+                    <div>{{bride_dict.lastname}}{{bride_dict.firstname}}</div>
                 </header>
                 <div class="main_img_card">
                     <div>
                         <img src="/static/images/wedding_img/wedding_img_0.jpg" alt="웨딩 메인 이미지" />
                     </div>
                     <div>
-                        2022년 12월 10일 토요일 오후 1시 30분<br>
-                        <div>아펠가모 광화문 B2 로스타뇨홀</div>
+                        {{wedding_schedule_dict.date}} {{wedding_schedule_dict.time}}<br>
+                        <div>{{wedding_schedule_dict.hall_detail}}</div>
                     </div>
                 </div>
             </div>
@@ -44,29 +43,14 @@
                     </div>
                 </div>
                 <div>
-                    <div>
-                        두 사람이 꽃과 나무처럼 걸어와서<br>
-                        서로의 모든 것이 되기 위해<br>
-                        오랜 기다림 끝에 혼례식을 치르는 날<br>
-                        세상은 더욱 아름다워라<br><br>
-                        이해인, <사랑의 사람들이여>
-                    </div>
+                    <div data-type="message" message-type="main"></div>
                 </div>
             </div>
             
             <div class="invitation_message">
                 <div>
                     <div>초대합니다</div>
-                    <div>
-                        <div>
-                            살랑이는 바람결에<br>
-                            사랑이 묻어나는 계절입니다.<br>
-                            여기 곱고 예쁜 두 사람이 <span>사랑</span>을 맺어<br>
-                            인생의 반려자가 되려 합니다.<br>
-                            새 인생을 시작하는 이 자리에 오셔서<br>
-                            <span>축복</span>해 주시면 감사하겠습니다.
-                        </div>
-                    </div>
+                    <div data-type="message" message-type="sub"></div>
                     <div>
                         <img src="/static/images/wedding_img/wedding_img_1.jpg" alt="웨딩 서브 이미지">
                     </div>
@@ -74,16 +58,16 @@
                         <div>
                             <span>
                                 <span>
-                                    <span>강재만</span>
+                                    <span>{{groom_dict.father}}</span>
                                     <span>·</span>
                                 </span>
-                                <span>서미숙</span>
+                                <span>{{groom_dict.mother}}</span>
                             </span>
                             <span class="relation">
                                 <span>의</span>
                                 <span>아들</span>
                             </span>
-                            <span>지혁</span>
+                            <span>{{groom_dict.firstname}}</span>
                             <span class="phone-circle">
                                 <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                     <g id="icon">
@@ -97,16 +81,16 @@
                         <div>
                             <span>
                                 <span>
-                                    <span>최현상</span>
+                                    <span>{{bride_dict.father}}</span>
                                     <span>·</span>
                                 </span>
-                                <span>정선화</span>
+                                <span>{{bride_dict.mother}}</span>
                             </span>
                             <span class="relation">
                                 <span>의</span>
                                 <span>딸</span>
                             </span>
-                            <span>유라</span>
+                            <span>{{bride_dict.firstname}}</span>
                             <span class="phone-circle">
                                 <svg height="512" viewBox="0 0 128 128" width="512" xmlns="http://www.w3.org/2000/svg">
                                     <g id="icon">
@@ -132,7 +116,7 @@
                                                 <span style="color: rgb(102, 142, 170);">신랑 父</span>
                                             </div>
                                             <div class="cell">
-                                                <span>강재만</span>
+                                                <span>{{groom_dict.father}}</span>
                                             </div>
                                             <div class="cell">
                                                 <span class="phone-square">
@@ -168,7 +152,7 @@
                                                 <span style="color: rgb(102, 142, 170);">신랑 母</span>
                                             </div>
                                             <div class="cell">
-                                                <span>서미숙</span>
+                                                <span>{{groom_dict.mother}}</span>
                                             </div>
                                             <div class="cell">
                                                 <span class="phone-square">
@@ -203,7 +187,7 @@
                                             <div class="cell">
                                                 <span style="color: rgb(217, 124, 116);">신부 父</span>
                                             </div> <div class="cell">
-                                                <span>최현상</span>
+                                                <span>{{bride_dict.father}}</span>
                                             </div>
                                             <div class="cell">
                                                 <span class="phone-square">
@@ -233,7 +217,7 @@
                                                 <span style="color: rgb(217, 124, 116);">신부 母</span>
                                             </div>
                                             <div class="cell">
-                                                <span>정선화</span>
+                                                <span>{{bride_dict.mother}}</span>
                                             </div>
                                             <div class="cell">
                                                 <span class="phone-square">
@@ -279,7 +263,7 @@
                     <div id="current_date"></div>
 
                     <div style="font-size: 0.9rem; color: rgb(51, 51, 51); opacity: 1; transform: translate(0px, 0px);">
-                        토요일 오후 1시 30분<br>
+                        {{wedding_schedule_dict.time}}<br>
                     </div>
                 </div>
                     
@@ -302,7 +286,7 @@
                 </div>
                 <div class="dday-wrap">
                     <div>
-                        지혁 <span class="highlight" style="font-size:11px;">♥</span> 유라의 결혹시이 <span class="highlight">42일</span> 남았습니다.
+                        {{groom_dict.firstname}} <span class="highlight" style="font-size:11px;">♥</span> {{bride_dict.firstname}}의 결혼까지 <span class="highlight">42일</span> 남았습니다.
                     </div>
                 </div>
             </div>
@@ -356,10 +340,10 @@
                 <div class="m-title">오시는 길</div>
                 <div class="location-wrap">
                     <div class="location-hall">
-                        <div>아펠가모 광화문 B2 로스타뇨홀</div>
+                        <div>{{wedding_schedule_dict.hall_detail}}</div>
                     </div>
                     <div class="location-address">
-                        <div>서울 종로구 종로1길 50</div>
+                        <div>{{wedding_schedule_dict.hall_addr}}</div>
                     </div>
                 </div>
                 <div>
@@ -368,31 +352,15 @@
                 </div>
                 <div>
                     <div class="waytocome-wrap">
+                        {% for transprot in transport_list %}
                         <div class="box">
                             <div class="title">
-                                <span>지하철</span>
+                                <span data-type="transport" data-index="{{loop.index0}}" transport-type="title"></span>
                             </div>
-                            <div class="content">
-                                <div>[분당선] <span class="c-bold">서울숲역</span> 5번 출구 도보 2분<br>[2호선] <span class="c-bold">뚝섬역</span> 8번 출구 도보 5분</div>
-                            </div>
+                            <div class="content" data-type="transport" data-index="{{loop.index0}}"  transport-type="contents"></div>
                         </div>
-
-                        <div class="box">
-                            <div class="title">
-                                <span>버스</span>
-                            </div>
-                            <div class="content">
-                                <div>뚝섬 서울숲 정류장<br>121, 141, 145, 148, 463<p></p>뜩삼약 8반 츨그 정류장<br>2016, 2224, 2413</div>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="title">
-                                <span>자가용</span>
-                            </div>
-                            <div class="content">
-                                <div>건물 내 B3-B7 <u>2시간</u> 무료주차<br>안내데스크에서 주차 등록</div>
-                            </div>
-                        </div>
+                        {% endfor %}
+                        
                     </div>
                 </div>
             </div>
@@ -417,32 +385,21 @@
                             </div>
                         </label>
                         <div>
+                            {% for bank_acc in groom_dict.bank_acc  %}
                             <div class="text gothic" style="height: 72px;">
                                 <div class="inner">
                                     <span>
-                                        <span class="bank">신한</span>
-                                        <span>110-123-456789</span>
+                                        <span class="bank">{{bank_acc.bank}}</span>
+                                        <span>{{bank_acc.number}}</span>
                                     </span>
                                     <br>
-                                    <span>강재만</span>
+                                    <span>{{bank_acc.name}}</span>
                                 </div>
                                 <div>
                                     <div class="btn-copy">복사하기</div>
                                 </div>
                             </div>
-                            <div class="text gothic" style="height: 72px;">
-                                <div class="inner">
-                                    <span>
-                                        <span class="bank">신한</span>
-                                        <span>110-123-456789</span>
-                                    </span>
-                                    <br>
-                                    <span>강지혁</span>
-                                </div>
-                                <div>
-                                    <div class="btn-copy">복사하기</div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="item">
@@ -458,32 +415,22 @@
                             </div>
                         </label>
                         <div>
+                            {% for bank_acc in bride_dict.bank_acc  %}
                             <div class="text gothic" style="height: 72px;">
                                 <div class="inner">
                                     <span>
-                                        <span class="bank">국민</span>
-                                        <span>200123-45-6789000</span>
+                                        <span class="bank">{{bank_acc.bank}}</span>
+                                        <span>{{bank_acc.number}}</span>
                                     </span>
                                     <br>
-                                    <span>최유라</span>
+                                    <span>{{bank_acc.name}}</span>
                                 </div>
                                 <div>
                                     <div class="btn-copy">복사하기</div>
                                 </div>
                             </div>
-                            <div class="text gothic" style="height: 72px;">
-                                <div class="inner">
-                                    <span>
-                                        <span class="bank">신한</span>
-                                        <span>110-123-456789</span>
-                                    </span>
-                                    <br>
-                                    <span>최현상</span>
-                                </div>
-                                <div>
-                                    <div class="btn-copy">복사하기</div>
-                                </div>
-                            </div>
+                            {% endfor %}
+
                         </div>
                         
                     </div>
@@ -493,9 +440,10 @@
                 <div class="m-title">방명록</div>
                 <div class="c-guestbook">
                     <div class="comments">
+                        {% for guestbook in guestbook_list %}
                         <div class="item">
                             <div class="close">
-                                <span class="date">2021.08.08</span>
+                                <span class="date">{{guestbook.created_at}}</span>
                                 <span class="icon">
                                     <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
                                         <title></title>
@@ -503,39 +451,11 @@
                                     </svg>
                                 </span>
                             </div>
-                            <div class="name">김주리</div>
-                            <div class="text">지혁씨 많이많이 축하합니다!! 함께 걸어가는 길에 꽃길만🌸🌼🌿</div>
+                            <div class="name">{{guestbook.name}}</div>
+                            <div class="text" data-type="guestbook" data-index="{{loop.index0}}" guestbook-type="content"></div>
                         </div>
-                        <div class="item">
-                            <div class="close">
-                                <span class="date">2021.08.08</span>
-                                <span class="icon">
-                                    <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                        <title></title>
-                                        <path d="M8.25,0,32,23.75,55.75,0,64,8.25,40.25,32,64,55.75,55.75,64,32,40.25,8.25,64,0,55.75,23.75,32,0,8.25Z" data-name="<Compound Path>" id="_Compound_Path_"></path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="name">박수림</div>
-                            <div class="text">결혼 축하드려요🎉<br>
-                                이렇게 두 분의 결혼을 축하할 수 있어 너무 너무 기쁩니다!! 늘 건강하고 행복한 가정되시길 기도하고 응원할게요🌼
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="close">
-                                <span class="date">2021.08.08</span>
-                                <span class="icon">
-                                    <svg data-name="Layer 1" id="Layer_1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                        <title></title>
-                                        <path d="M8.25,0,32,23.75,55.75,0,64,8.25,40.25,32,64,55.75,55.75,64,32,40.25,8.25,64,0,55.75,23.75,32,0,8.25Z" data-name="<Compound Path>" id="_Compound_Path_"></path>
-                                    </svg>
-                                </span>
-                            </div>
-                            <div class="name">윤지</div>
-                            <div class="text">
-                                유라야💕 너무 이쁘다 러블리하구 봄바람에 흩날리는 민들레꽃씨같아! 행복행복기운이 뿜뿜한다! 평생 이쁘고 행복하게 잘살거같아 나는 걱정이 하나도 없어❣️축하해💝
-                            </div>
-                        </div>
+                        {% endfor %}
+                        
                         <div class="pagination-wrap"></div>
                         <div class="writing">
                             
@@ -596,148 +516,16 @@
         </div>
     </div>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
-
-    <script>        
-        const mapOptions = {
-            center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
-            zoom: 16, //지도의 초기 줌 레벨
-            minZoom: 7, //지도의 최소 줌 레벨
-            zoomControl: false, //줌 컨트롤의 표시 여부
-            zoomControlOptions: { //줌 컨트롤의 옵션
-                position: naver.maps.Position.TOP_RIGHT
-            }
-        };
-        const map = new naver.maps.Map('map', mapOptions);
-        new naver.maps.Marker({
-            map: map,
-            position: new naver.maps.LatLng(37.3595704, 127.105399)
-        })
-        
-        // setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
-        map.setOptions("mapTypeControl", false); // 지도 유형 컨트롤의 표시 여부
-        map.setOptions("scaleControl", false); // 지도 축척 컨트롤의 표시 여부입니다.
-        map.setOptions("mapDataControl", false); // 지도 데이터 저작권 컨트롤의 표시 여부입니다.
-
-
-
-        
-        // 달력 시작
-
-        // 윤년 체크
-        function checkedLeapYear(year){
-            if(year % 400 == 0) return true;
-            else if(year % 100 == 0) return false;
-            else if(year % 4 == 0) return true;
-            else return false;
-        };
-
-        // 달의 시작일이 어떤 요일(몇 번째 위치)에서 시작하는지 계산
-        function getFirstDayOfWeek(year, month){
-            if(month < 10) {
-                month = "0" + month;
-            };
-            return (new Date(year + "-" + month + "-01" )).getDay();
-        };
-
-        // 월의 마지막 일자 계산
-        function changeYearMonth(year, month){
-            let month_day = [31,28,31,30,31,30,31,31,30,31,30,31];
-            if(month == 2) if(checkedLeapYear(year)) month_day[1] = 29;
-            let first_day_of_week = getFirstDayOfWeek(year, month);
-            let arr_calendar = [];
-            for(let i=0; i<first_day_of_week; i++){
-                arr_calendar.push('');
-            };
-            for(let i=1; i<=month_day[month-1]; i++){
-                arr_calendar.push(String(i));
-            };
-            let remain_day = 7 - (arr_calendar.length % 7);
-            if(remain_day < 7){
-                for(let i=0; i<remain_day; i++){
-                    arr_calendar.push('');
-                };
-            };
-            renderCalendar(arr_calendar)
-
-        };
-
-        function renderCalendar(data){
-            let h = [];
-            for(let i=0; i<data.length; i++){
-                if(i==0){
-                    h.push('<tr>');
-                }else if(i % 7 == 0){
-                    h.push('</tr>')
-                    h.push('<tr>');
-                };
-                h.push(`<td onclick="setDate(${data[i]})"; style="cursor:pointer;">
-                    <div id="calendar_${current_year}_${current_month}_${data[i]}" style="position: relative;">
-                        ${data[i]}
-                    </div>
-                </td>`);
-            }
-            h.push('</tr>');
-            document.getElementById('tb_body').innerHTML = h.join('')
-            // $("#tb_body").html(h.join(''));
-        }
-
-        function setDate(day){
-            // document.querySelector('.current_day').classList.remove('current_day')
-            let target_date = `calendar_${current_year}_${current_month}_${day}`
-            document.getElementById(`${target_date}`).classList.add('current_day')
-            // const el = document.querySelector('#parse_emotion_view');
-            // const sheet = el.sheet;
-            // const rules = sheet.cssRules;
-            // const rule = rules[0];
-            // sheet.insertRule('.current_day::after{content: "'+ day +'"; position: absolute; line-height: 29px; top: -1.5px; bottom: 0; margin: 0 auto; width: 32px; height: 32px; background: #FFE3DF; left: 0; border-radius: 50%;}', rules.length)
-            // if(day<10){
-            //     day = "0" + day;
-            // }
-            // console.log(current_year, current_month, day)
-
-        }
-
-        function changeMonth(diff) {
-            current_month = current_month + diff;
-            if(current_month == 0){
-                current_year = current_year - 1;
-                current_month = 12;
-            }else if(current_month === 13){
-                current_year = current_year + 1;
-                current_month = 1;
-            }
-            loadCalendar(current_year, current_month)
-        }
-
-        function loadCalendar(year, month){
-            changeYearMonth(year, month);
-            document.getElementById('current_date').innerText = `${year}년  ${month}월`
-            // $("#current_date").text(`${year}년  ${month}월`)
-            console.log(this_year, year, this_month, month)
-            if(this_year === year && this_month === month){
-                setDate(this_date)
-            }
-            
-        }
-
-        let current_year = (new Date()).getFullYear();
-        let current_month = (new Date()).getMonth() + 1;
-        let current_date = (new Date()).getDate();
-
-        let this_year = (new Date()).getFullYear();
-        let this_month = (new Date()).getMonth() + 1;
-        let this_date = (new Date()).getDate();
-
-        loadCalendar(current_year, current_month)
-        setDate((new Date()).getDate())
-        // 달력 만들기 끝
-
-        // 오늘 날짜 LNB에 추가하기
-        // document.getElementById('current_date_tag').innerText = `${current_year}-${current_month}-${current_date}`
-        // 달력 끝
-
-
-
+    <script>
+        // jinja2 데이터 받기
+        const message_templates_dict = {{message_templates_dict|safe}}; 
+        const transport_list = {{transport_list|safe}};
+        const guestbook_list = {{guestbook_list|safe}};
+        const wedding_schedule_dict = {{wedding_schedule_dict|safe}};
     </script>
+    
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/index.js"></script>
+    
 </body>
 </html>

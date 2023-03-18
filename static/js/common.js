@@ -1,5 +1,5 @@
-
-const postApi = (url, data, callbackFun) => {
+// fetch Api를 이용한 Post 요청 함수
+const postApi = (url, data, successFun) => {
   fetch(url, {
     method: 'POST', // 요청 메서드
     headers: {
@@ -10,7 +10,7 @@ const postApi = (url, data, callbackFun) => {
   .then(response => response.json()) // 응답 데이터를 JSON으로 파싱
   .then(result => {
     // 성공적으로 응답 받았을 때 실행할 코드 작성
-    callbackFun(result)
+    successFun(result)
     // console.log(result);
   })
 .catch(error => {
@@ -18,3 +18,14 @@ const postApi = (url, data, callbackFun) => {
     console.error(error);
   });
 }
+
+// html 추가
+const insertHTML = (element, dataDict) => {
+  const __element = document.querySelectorAll(element);
+  __element.forEach((_element)=>{
+    const mainDataType = _element.getAttribute('data-type');
+    const subDataType = _element.getAttribute(`${mainDataType}-type`);
+    _element.innerHTML = dataDict[`${subDataType}_${mainDataType}`];
+  })
+}
+

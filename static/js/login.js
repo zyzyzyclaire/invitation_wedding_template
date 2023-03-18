@@ -1,4 +1,4 @@
-const registerSubmit = (event) =>{
+const loginSubmit = (event) =>{
   event.preventDefault();
   const __input = document.querySelectorAll(`form .inputBox input`)
   const submitData = new Object();
@@ -6,9 +6,9 @@ const registerSubmit = (event) =>{
     const dataKey = _input.id.split('input')[1].toLocaleLowerCase()
     submitData[dataKey] = _input.value;
   })
-  postApi('/register', submitData, callbackFun);
+  postApi('/login', submitData, callbackFun);
 }
 
 const callbackFun = (data) => {
   console.log(data)
-};
+}
