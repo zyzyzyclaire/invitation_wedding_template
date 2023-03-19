@@ -35,7 +35,7 @@ bride_dict = {
     ]
 }
 wedding_schedule_dict = {
-    'date' : "2022년 12얼 10일",
+    'date' : "2023년 4월 5일",
     'time' : "토요일 오후 1시 30분",
     'hall_detail' :  "아펠가모 광화문 B2 로스타뇨홀",  # db이름수정
     'hall_addr' : "서울 종로구 종로1길 50",  #db이름수정
@@ -98,3 +98,46 @@ guestbook_list=[
         "created_at":"2021.08.08"
     }
 ]
+
+image_list = {
+    "main_img" : "/static/images/users/testtest/main_img.jpg",
+    "sub_img" : "/static/images/users/testtest/sub_img.jpg",
+    "gallery_img" : [
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_001.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_001.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_002.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_002.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_003.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_003.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_004.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_004.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_005.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_005.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_006.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_006.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_007.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_007.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_008.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_008.jpg"
+        },
+        {
+            "img": "/static/images/users/testtest/gallery_img/gallery_img_009.jpg",
+            "img_sm" : "/static/images/users/testtest/gallery_img_sm/gallery_img_sm_009.jpg"
+        },
+    ]
+}

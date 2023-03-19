@@ -10,13 +10,14 @@ def index():
         test = session.query(User).filter(User.id == 1).first()
         name = test.name
         # 더미 존
-        from views.template.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
+        from views.template.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list, image_list
         groom_dict = groom_dict # 신랑 데이터
         bride_dict = bride_dict # 신부 데이터
         wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
         message_templates_dict = message_templates_dict # 글귀 데이터
         transport_list = transport_list # 교통 수단 데이터
         guestbook_list = guestbook_list # 방명록 데이터
+        image_list = image_list # 이미지 데이터
         print(geocoding("부산시 연제구 거제대로 198"))
     return render_template('/index.html',  
                            groom_dict=groom_dict, 
@@ -24,7 +25,8 @@ def index():
                            wedding_schedule_dict=wedding_schedule_dict,
                            message_templates_dict=message_templates_dict,
                            transport_list=transport_list,
-                           guestbook_list=guestbook_list
+                           guestbook_list=guestbook_list,
+                           image_list=image_list
                            )
 
 @app.route("/login", methods=['GET', 'POST'])

@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../static/css/reset.css" >
     <link rel="stylesheet" href="../static/css/index.css" >
 
@@ -27,7 +28,7 @@
                 </header>
                 <div class="main_img_card">
                     <div>
-                        <img src="/static/images/wedding_img/wedding_img_0.jpg" alt="웨딩 메인 이미지" />
+                        <img src="{{image_list.main_img}}" alt="웨딩 메인 이미지" />
                     </div>
                     <div>
                         {{wedding_schedule_dict.date}} {{wedding_schedule_dict.time}}<br>
@@ -52,7 +53,7 @@
                     <div>초대합니다</div>
                     <div data-type="message" message-type="sub"></div>
                     <div>
-                        <img src="/static/images/wedding_img/wedding_img_1.jpg" alt="웨딩 서브 이미지">
+                        <img src="{{image_list.sub_img}}" alt="웨딩 서브 이미지">
                     </div>
                     <div>
                         <div>
@@ -286,7 +287,7 @@
                 </div>
                 <div class="dday-wrap">
                     <div>
-                        {{groom_dict.firstname}} <span class="highlight" style="font-size:11px;">♥</span> {{bride_dict.firstname}}의 결혼까지 <span class="highlight">42일</span> 남았습니다.
+                        {{groom_dict.firstname}} <span class="highlight" style="font-size:11px;">♥</span> {{bride_dict.firstname}}의 결혼까지 <span class="highlight d-day" ></span>
                     </div>
                 </div>
             </div>
@@ -296,44 +297,38 @@
                 <div class="m-title">갤러리</div>
                 <div class="gallery-container">
                     <div class="gallery-square">
+                        {% for image_data in image_list.gallery_img %}
                         <div class="item">
                             <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_001.jpg" class="img-blur" />
+                            <img src="{{image_data.img_sm}}" class="img-blur" onclick="showImgSlider('{{loop.index0}}')" />
                         </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_002.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_003.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_004.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_005.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_006.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_007.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_008.jpg" class="img-blur" />
-                        </div>
-                        <div class="item">
-                            <div class="ph"></div>
-                            <img src="/static/images/wedding_img/gallery_img_sm/gallery_img_sm_009.jpg" class="img-blur" />
-                        </div>
+                        {% endfor %}
                     </div>
+                </div>
+                <div id="gallery_slider_element">
+                    <div style="flex:1"></div>
 
+                    <div class="container">
+                        <div class="swiper gallery_swiper ">
+                            <div class="swiper-wrapper">
+                                {% for image_data in image_list.gallery_img %}
+                                <div class="swiper-slide">
+                                    <div class="swiper-zoom-container">
+                                        <img src="{{image_data.img}}" alt="">
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div style="flex:1"></div>
+
+                    <div class="slider-buttons">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                        <button onclick="closeImgSlider()">닫기</button>
+                    </div>
                 </div>
             </div>
             <div class="map-wrap">
@@ -363,6 +358,7 @@
                         
                     </div>
                 </div>
+                
             </div>
             <div class="account-wrap">
                 <div class="m-subtitle">
@@ -515,6 +511,8 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
     <script>
         // jinja2 데이터 받기

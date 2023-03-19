@@ -4,6 +4,7 @@
   text-align: center;
 }
 #app-container{
+  position: relative;
   margin: 0 auto;
   max-width: 420px;
   background-color: #f3f3f3;
@@ -330,6 +331,25 @@ input[id*=popup] + label +div > label {
   text-align: center;
   line-height: 2.375rem;
 }
+#app-container .calendar table .current_day{
+  position: relative;
+  z-index: 0;
+  color: #fff;
+}
+#app-container .calendar table .current_day::after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  background: #ea7664;
+  
+}
 
 .dday-wrap {
   margin: 20px auto;
@@ -341,6 +361,7 @@ input[id*=popup] + label +div > label {
 
 /* 갤러리 */
 .gallery-wrap {
+  position: relative;
   padding: 40px 0;
   margin: 1px 0;
 }
@@ -686,4 +707,70 @@ input[id*=accordion]:checked + label .title > .arrow {
   background: rgba(0, 0, 0, 0.2);
   z-index: 999;
   opacity: 1;
+}
+
+#gallery_slider_element{
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  opacity: 0;
+  transition: .5s;
+}
+#gallery_slider_element.show{
+  display: flex;
+  opacity: 1;
+}
+#gallery_slider_element .container{
+  position: relative;
+  max-width: 420px;
+  width: 100%;
+}
+#gallery_slider_element .container .swiper-slide{
+  width: 100%;
+}
+#gallery_slider_element img{
+  width: 100%;
+}
+#gallery_slider_element .slider-buttons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 420px;
+  width: 100%;
+  height: 50px;
+  background: #fff;
+}
+#gallery_slider_element .slider-buttons > div,
+#gallery_slider_element .slider-buttons > button {
+  flex: 1;
+}
+#gallery_slider_element .swiper-button-next, 
+#gallery_slider_element .swiper-button-prev{
+  position: relative;
+  top: inherit;
+  width: inherit;
+  height: inherit;
+  color: #111;
+  margin-top : inherit;
+}
+#gallery_slider_element .swiper-button-next, 
+#gallery_slider_element .swiper-rtl .swiper-button-prev {
+  right: inherit;
+}
+#gallery_slider_element .swiper-button-prev, 
+#gallery_slider_element .swiper-rtl .swiper-button-next{
+  left: inherit;
+}
+
+#gallery_slider_element .swiper-button-next:after, 
+#gallery_slider_element .swiper-button-prev:after{
+  font-size: 20px;
 }
