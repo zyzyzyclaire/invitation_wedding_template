@@ -11,8 +11,30 @@ guestbook_list.forEach((guestbook, index)=>{
   insertHTML(`[data-type="guestbook"][data-index="${index}"]`, guestbook);
 })
 
+// 갤러리 이미지 슬라이더 만들기
+var swiper = new Swiper(".gallery_swiper", {
+  autoHeight: true,
+  spaceBetween: 20,
+  loop: true,
+  zoom: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+// 이미지 슬라이더 열기
+const showImgSlider = (index) => {
+  const slider = document.getElementById('gallery_slider_element');
+  slider.classList.add('show');
+  swiper.slideTo(index, 300);
+}
+// 이미지 슬라이더 닫기
+const closeImgSlider = () => {
+  const slider = document.getElementById('gallery_slider_element');
+  slider.classList.remove('show');
+}
+// 위도 경도 좌표 찍기
 const lat_lng = wedding_schedule_dict.lat_lng
-
 const mapOptions = {
   center: new naver.maps.LatLng(lat_lng[0], lat_lng[1]), //지도의 초기 중심 좌표
   zoom: 16, //지도의 초기 줌 레벨
@@ -85,7 +107,7 @@ function renderCalendar(data){
           h.push('</tr>')
           h.push('<tr>');
       };
-      h.push(`<td onclick="setDate(${data[i]})"; style="cursor:pointer;">
+      h.push(`<td>
           <div id="calendar_${current_year}_${current_month}_${data[i]}" style="position: relative;">
               ${data[i]}
           </div>
@@ -143,10 +165,22 @@ let this_year = (new Date()).getFullYear();
 let this_month = (new Date()).getMonth() + 1;
 let this_date = (new Date()).getDate();
 
-loadCalendar(current_year, current_month)
-setDate((new Date()).getDate())
+
+const dateString = wedding_schedule_dict['date'];
+const dateArray = dateString.split(/\D+/); // 정규표현식을 사용하여 숫자가 아닌 문자열을 분리하여 배열로 반환
+loadCalendar(parseInt(dateArray[0]), parseInt(dateArray[1]))
+setDate(parseInt(dateArray[2]))
 // 달력 만들기 끝
 
-// 오늘 날짜 LNB에 추가하기
-// document.getElementById('current_date_tag').innerText = `${current_year}-${current_month}-${current_date}`
-// 달력 끝
+// D-day 계산 함수
+function calculateDday(targetDate) {
+  const pattern = /(\d{4})년 (\d{1,2})월 (\d{1,2})일/;
+  const [, year, month, day] = targetDate.match(pattern);
+  const target = new Date(year, month - 1, day);
+  const today = new Date();
+  const timeDiff = target.getTime() - today.getTime();
+  const dayDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  return dayDiff > 0 ? 'D-' + dayDiff : dayDiff === 0 ? 'D-Day' : 'D+' + Math.abs(dayDiff);
+}
+const dday = calculateDday(dateString);
+document.querySelector('.dday-wrap .d-day').innerHTML = dday

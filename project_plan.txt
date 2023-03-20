@@ -125,12 +125,23 @@ aws rds 연결하기
 
 팀)
 회원가입 폼 - 아이디, 비밀번호, 이름, 이메일(완료)
-index.html 에서 받을 더미데이터 넣기
-create.html 에서 받을 더미데이터 넣기
-사진 경로
-
+사진 경로 (완료) 
+  /static/images/users/[유저 고유 식별명(아이디, 이메일, 토큰)]/main_img.png or jpg
+  /static/images/users/[유저 고유 식별명(아이디, 이메일, 토큰)]/sub_img.png or jpg
+  /static/images/users/[유저 고유 식별명(아이디, 이메일, 토큰)]/gallery_img(원본 이미지)/gallery_img_001.png or jpg
+  /static/images/users/[유저 고유 식별명(아이디, 이메일, 토큰)]/gallery_img_sm(크롭 이미지)/gallery_img_sm_001.png or jpg
+index.html 에서 받을 더미데이터 넣기 (완료)
+create.html 에서 받을 더미데이터 넣기 
 
 ===========
 로그인 후 index.html 들어가는 페이지
 api 만들기
 user db에 userkey 추가하기(사람들이 해당 유저의 청첩장을 볼 수 있도록 url 파라미터에 쓰이는 키)
+
+
+
+
+================================================================
+고도화 작업
+달력 스크립트 수정,
+reset.css 수정
