@@ -286,7 +286,9 @@ const addSampleRhrase = (target) => {
 document.querySelector('.btn-show-sample-phrase').addEventListener('click',(e)=>{openSamplePhrasesModal(e)})
 
 // 예약일 기본 값 오늘로 지정
-document.querySelector('[name="reservation-info"] [type="date"]').value = new Date().toISOString().substring(0, 10);;
+if(document.querySelector('[name="reservation-info"] [type="date"]').value == ''){
+    document.querySelector('[name="reservation-info"] [type="date"]').value = new Date().toISOString().substring(0, 10);;
+}
 
 
 const _gallery = document.querySelector('form[name="gallery-info"] div')
@@ -304,8 +306,12 @@ const openPostCode = (str=null) => {
     });
 
 }
+
+// 위도 경도 좌표 찍기
+const lat_lng = wedding_schedule_dict.lat_lng
+
 const createMapOptions = {
-    center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
+    center: new naver.maps.LatLng(lat_lng[0], lat_lng[1]), //지도의 초기 중심 좌표
     zoom: 16, //지도의 초기 줌 레벨
     minZoom: 7, //지도의 최소 줌 레벨
     zoomControl: false, //줌 컨트롤의 표시 여부
@@ -316,7 +322,7 @@ const createMapOptions = {
 const createMap = new naver.maps.Map('createMap', createMapOptions);
 new naver.maps.Marker({
     map: createMap,
-    position: new naver.maps.LatLng(37.3595704, 127.105399)
+    position: new naver.maps.LatLng(lat_lng[0], lat_lng[1])
 })
 
 

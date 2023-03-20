@@ -1,8 +1,16 @@
 groom_dict = {
     "firstname":"지혁",
     "lastname":"강",
+    "phoneNum" : "01000002222",
     "father":"강재만",
+    "fatherFirstName":"재만",
+    "fatherLastName":"강",
+    "fatherPhoneNum" : "01011112222",
     "mother":"서미숙",
+    "motherFirstName":"미숙",
+    "motherLastName":"서",
+    "motherPhoneNum" : "01033332222",
+    "relation" : "아들",
     "bank_acc":[
         {
             "bank":"신한",
@@ -19,8 +27,16 @@ groom_dict = {
 bride_dict = {
     "firstname":"유라",
     "lastname":"최",
+    "phoneNum" : "01000001111",
     "father":"최현상",
+    "fatherFirstName":"현상",
+    "fatherLastName":"최",
+    "fatherPhoneNum" : "01011112222",
     "mother":"정선화",
+    "motherFirstName":"선화",
+    "motherLastName":"정",
+    "motherPhoneNum" : "01033333333",
+    "relation" : "딸",
     "bank_acc":[
         {
             "bank":"신한",
@@ -34,22 +50,61 @@ bride_dict = {
         }
     ]
 }
+
+bank_acc = [
+    {
+        "group_name" : "신랑측",
+        "list" : [
+            {
+                "bank":"신한",
+                "name":"강재만",
+                "number":"123-456-789"
+            },
+            {
+                "bank":"신한",
+                "name":"강지혁",
+                "number":"123-456-789"
+            }
+        ]
+    },
+    {
+        "group_name" : "신부측",
+        "list" : [
+            {
+                "bank":"신한",
+                "name":"최현상",
+                "number":"123-456-789"
+            },
+            {
+                "bank":"신한",
+                "name":"최유라",
+                "number":"123-456-789"
+            }
+        ]
+    },
+]
+
 wedding_schedule_dict = {
     'date' : "2023년 4월 5일",
+    'date_format' : '2023-04-05',
     'time' : "토요일 오후 1시 30분",
+    'time_hour' : "오후 1시",
+    'time_minute' : "30분",
     'hall_detail' :  "아펠가모 광화문 B2 로스타뇨홀",  # db이름수정
+    'hall_name' : "아펠가모 광화문",
+    'hall_floor' : "B2 로스타뇨홀",
     'hall_addr' : "서울 종로구 종로1길 50",  #db이름수정
     'lat_lng' : [37.3595704, 127.105399]
 }
 
 transport_list = [
     {
-        "title_transport":"지하철",
-        "contents_transport":'<div>[분당선] <span class="c-bold">서울숲역</span> 5번 출구 도보 2분<br>[2호선] <span class="c-bold">뚝섬역</span> 8번 출구 도보 5분</div>',
-    },
-    {
         "title_transport":"버스",
         "contents_transport":'<div>뚝섬 서울숲 정류장<br>121, 141, 145, 148, 463<p></p>뜩삼약 8반 츨그 정류장<br>2016, 2224, 2413</div>',
+    },
+    {
+        "title_transport":"지하철",
+        "contents_transport":'<div>[분당선] <span class="c-bold">서울숲역</span> 5번 출구 도보 2분<br>[2호선] <span class="c-bold">뚝섬역</span> 8번 출구 도보 5분</div>',
     },
     {
         "title_transport":"자가용",
@@ -65,6 +120,7 @@ message_templates_dict = {
         세상은 더욱 아름다워라<br><br>\
         이해인, <사랑의 사람들이여>\
     ",
+    "sub_title" : "초대합니다",
     "sub_message" : "\
         <div>\
             살랑이는 바람결에<br>\
