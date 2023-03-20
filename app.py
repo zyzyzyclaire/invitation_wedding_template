@@ -1,9 +1,17 @@
 from flask import Flask, render_template, request, jsonify, redirect, session
+from flask_bcrypt import Bcrypt
 
 from models import session_scope, User
+from config import secret_key, bcrypt_level
 from views.index import geocoding
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = secret_key
+app.config['BCRYPT_LEVEL'] = bcrypt_level
+
+bcrypt = Bcrypt(app) 
+
 
 @app.route("/")
 def index():
@@ -11,7 +19,7 @@ def index():
         test = db_session.query(User).filter(User.id == 1).first()
         name = test.name
         # 더미 존
-        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
+        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list, image_list
         groom_dict = groom_dict # 신랑 데이터
         bride_dict = bride_dict # 신부 데이터
         wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
@@ -53,7 +61,6 @@ def register():
         response = jsonify({'message': 'Success'})
         response.status_code = 200
         return response
-    
 
 
 @app.route("/create")
@@ -61,7 +68,7 @@ def create():
     return render_template('/create.html')
 
 
-@app.route("/create_account", method=['GET', 'POST'])
+@app.route("/create_account", methods=['GET', 'POST'])
 def create_account():
     name = request.form.get('name')
     id = request.form.get('id')
@@ -77,10 +84,24 @@ def create_account():
     return render_template('/create.html')
 
 
-@app.route('/login', methods=['GET','POST'])  
-def login():
-    session['token']=request.form.get('token')
-    return redirect('/')
+@app.route('/login_check', methods=['GET','POST'])  
+def login_check():
+    # session['token']=request.form.get('token')
+    id = request.form.get('id')
+    pw = request.form.get('pw')
+
+    with session_scope() as db_session:
+        user_item = db_session.query(User)\
+                            .filter(User.user_id == id)\
+                            .filter(User.user_pw == bcrypt.hashpw(pw.encode("utf-8"), bcrypt.gensalt()))\
+                            .first()
+        if user_item:   # 로그인 성공
+            print("로그인성공")
+            session['user']=user_item.user
+            return redirect('/login')
+        else:           # 로그인 실패
+            print("로그인실패")
+            return redirect('/login')
 
 
 if __name__ == '__main__':
