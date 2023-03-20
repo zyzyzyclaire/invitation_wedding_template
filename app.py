@@ -1,16 +1,17 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, session
+
 from models import session_scope, User
-from views.template.index import geocoding
+from views.index import geocoding
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    with session_scope() as session:
-        test = session.query(User).filter(User.id == 1).first()
+    with session_scope() as db_session:
+        test = db_session.query(User).filter(User.id == 1).first()
         name = test.name
         # 더미 존
-        from views.template.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
+        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
         groom_dict = groom_dict # 신랑 데이터
         bride_dict = bride_dict # 신부 데이터
         wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
@@ -56,6 +57,29 @@ def register():
 @app.route("/create")
 def create():
     return render_template('/create.html')
+
+
+@app.route("/create_account", method=['GET', 'POST'])
+def create_account():
+    name = request.form.get('name')
+    id = request.form.get('id')
+    pwd = request.form.get('pwd')
+    email = request.form.get('email')
+
+    with session_scope() as db_session:
+            user_item = User(name, id, pwd, email)
+            db_session.add(user_item)
+            db_session.commit()
+            db_session.refresh(user_item)
+
+    return render_template('/create.html')
+
+
+@app.route('/login', methods=['GET','POST'])  
+def login():
+    session['token']=request.form.get('token')
+    return redirect('/')
+
 
 if __name__ == '__main__':
     app.run()

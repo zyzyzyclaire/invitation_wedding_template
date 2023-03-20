@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, BigInteger, String, Text, Date, Time, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, BigInteger, String, Text, Date, Time, DateTime, ForeignKey, Float
 from werkzeug.security import generate_password_hash
 
 from sqlalchemy import create_engine, text
@@ -61,7 +61,7 @@ class User(Base):
     user_id = Column(String(512), nullable=False, unique=True)
     user_pw = Column(String(512), nullable=False)
     email = Column(String(512), nullable=False, unique=True)
-    template_id = Column(Integer, ForeignKey('template.id'), default=None)
+    template_id = Column(Integer, ForeignKey('template.id'), nullable=True, default=None)
 
     def __init__(self, name, user_id, user_pw, email, template_id):
         self.name = name
@@ -143,11 +143,13 @@ class Picture(Base):
     url = Column(String(50), nullable=False)
     user_id = Column(BigInteger, ForeignKey('user.id'), nullable=False)
     picture_type = Column(Integer, ForeignKey('picture.id'), nullable=False)
+    priority = Column(Integer, nullable=True)
 
-    def __init__(self, first_name, last_name, picture_type):
+    def __init__(self, first_name, last_name, picture_type, priority):
         self.first_name = first_name
         self.last_name = last_name
         self.picture_type = picture_type
+        self.priority = priority
 
 
 class Texttype(Base):
@@ -203,14 +205,18 @@ class Weddinghall(Base):
     date = Column(Date, nullable=False)
     time = Column(Time, nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'), default=None)
+    lat = Column(Float, nullable=False)
+    lng = Column(Float, nullable=False)
 
-    def __init__(self, name, address, address_detail, date, time, user_id):
+    def __init__(self, name, address, address_detail, date, time, user_id, lat, lng):
         self.name = name
         self.address = address
         self.address_detail = address_detail
         self.date = date
         self.time = time
         self.user_id = user_id
+        self.lat = lat
+        self.lng = lng
 
 
 Base.metadata.create_all(engine)
