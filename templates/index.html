@@ -368,11 +368,12 @@
                     <span>마음 전하실 곳</span>
                 </div>
                 <div class="c-account">
+                    {% for bank in bank_acc %}
                     <div class="item">
                         <input type="checkbox" id="accordion_1">
                         <label for="accordion_1">
                             <div class="title">
-                                <div>신랑측 계좌번호</div>
+                                <div>{{bank.group_name}} 계좌번호</div>
                                 <div class="arrow">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -381,15 +382,15 @@
                             </div>
                         </label>
                         <div>
-                            {% for bank_acc in groom_dict.bank_acc  %}
+                            {% for bank_data in bank.list  %}
                             <div class="text gothic" style="height: 72px;">
                                 <div class="inner">
                                     <span>
-                                        <span class="bank">{{bank_acc.bank}}</span>
-                                        <span>{{bank_acc.number}}</span>
+                                        <span class="bank">{{bank_data.bank}}</span>
+                                        <span>{{bank_data.number}}</span>
                                     </span>
                                     <br>
-                                    <span>{{bank_acc.name}}</span>
+                                    <span>{{bank_data.name}}</span>
                                 </div>
                                 <div>
                                     <div class="btn-copy">복사하기</div>
@@ -398,38 +399,8 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="item">
-                        <input type="checkbox" id="accordion_2">
-                        <label for="accordion_2">
-                            <div class="title">
-                                <div>신랑측 계좌번호</div>
-                                <div class="arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </label>
-                        <div>
-                            {% for bank_acc in bride_dict.bank_acc  %}
-                            <div class="text gothic" style="height: 72px;">
-                                <div class="inner">
-                                    <span>
-                                        <span class="bank">{{bank_acc.bank}}</span>
-                                        <span>{{bank_acc.number}}</span>
-                                    </span>
-                                    <br>
-                                    <span>{{bank_acc.name}}</span>
-                                </div>
-                                <div>
-                                    <div class="btn-copy">복사하기</div>
-                                </div>
-                            </div>
-                            {% endfor %}
+                    {% endfor %}
 
-                        </div>
-                        
-                    </div>
                 </div>
             </div>
             <div class="guestbook-wrap">

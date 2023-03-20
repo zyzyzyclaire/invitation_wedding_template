@@ -38,37 +38,37 @@
                 <form name="groom-info" action="">
                     <div>
                         <h4>신랑님</h4>
-                        <input type="text" name="groom lastName" placeholder="성">
-                        <input type="text" name="groom firstName" placeholder="이름">
+                        <input type="text" name="groom lastName" placeholder="성" value="{{groom_dict.lastname}}">
+                        <input type="text" name="groom firstName" placeholder="이름" value="{{groom_dict.firstname}}">
                     </div>
                     <div>
                         <h4>아버님</h4>
-                        <input type="text" name="groom father lastName" placeholder="성">
-                        <input type="text" name="groom father firstName" placeholder="이름">
+                        <input type="text" name="groom father lastName" placeholder="성" value="{{groom_dict.fatherLastName}}">
+                        <input type="text" name="groom father firstName" placeholder="이름" value="{{groom_dict.fatherFirstName}}">
                         <input type="checkbox" name="groom father dead-state">
                     </div>
                     <div>
                         <h4>어머님</h4>
-                        <input type="text" name="groom mother lastName" placeholder="성">
-                        <input type="text" name="groom mother firstName" placeholder="이름">
+                        <input type="text" name="groom mother lastName" placeholder="성" value="{{groom_dict.motherLastName}}">
+                        <input type="text" name="groom mother firstName" placeholder="이름" value="{{groom_dict.motherFirstName}}">
                         <input type="checkbox" name="groom mother dead-state">
                     </div>
                     <div>
                         <h4>관계</h4>
                         <select name="relation" id="">
-                            <option value=""></option>
-                            <option value="" selected>아들</option>
-                            <option value="">장남</option>
-                            <option value="">차남</option>
-                            <option value="">삼남</option>
-                            <option value="">사남</option>
-                            <option value="">오남</option>
-                            <option value="">육남</option>
-                            <option value="">칠남</option>
-                            <option value="">막내</option>
-                            <option value="">조카</option>
-                            <option value="">손자</option>
-                            <option value="">동생</option>
+                            <option value="" {{ 'selected' if groom_dict.relation == "" else "" }}></option>
+                            <option value="아들" {{ 'selected' if groom_dict.relation == "아들" else "" }}>아들</option>
+                            <option value="장남" {{ 'selected' if groom_dict.relation == "장남" else "" }}>장남</option>
+                            <option value="차남" {{ 'selected' if groom_dict.relation == "차남" else "" }}>차남</option>
+                            <option value="삼남" {{ 'selected' if groom_dict.relation == "삼남" else "" }}>삼남</option>
+                            <option value="사남" {{ 'selected' if groom_dict.relation == "사남" else "" }}>사남</option>
+                            <option value="오남" {{ 'selected' if groom_dict.relation == "오남" else "" }}>오남</option>
+                            <option value="육남" {{ 'selected' if groom_dict.relation == "육남" else "" }}>육남</option>
+                            <option value="칠남" {{ 'selected' if groom_dict.relation == "칠남" else "" }}>칠남</option>
+                            <option value="막내" {{ 'selected' if groom_dict.relation == "막내" else "" }}>막내</option>
+                            <option value="조카" {{ 'selected' if groom_dict.relation == "조카" else "" }}>조카</option>
+                            <option value="손자" {{ 'selected' if groom_dict.relation == "손자" else "" }}>손자</option>
+                            <option value="동생" {{ 'selected' if groom_dict.relation == "동생" else "" }}>동생</option>
                         </select>
                     </div>
                     
@@ -84,37 +84,37 @@
                 <form name="bride-info" action="">
                     <div>
                         <h4>신부님</h4>
-                        <input type="text" name="bride lastName" placeholder="성">
-                        <input type="text" name="bride firstName" placeholder="이름">
+                        <input type="text" name="bride lastName" placeholder="성" value="{{bride_dict.lastname}}">
+                        <input type="text" name="bride firstName" placeholder="이름" value="{{bride_dict.firstname}}">
                     </div>
                     <div>
                         <h4>아버님</h4>
-                        <input type="text" name="bride father lastName" placeholder="성">
-                        <input type="text" name="bride father firstName" placeholder="이름">
+                        <input type="text" name="bride father lastName" placeholder="성" value="{{bride_dict.fatherLastName}}">
+                        <input type="text" name="bride father firstName" placeholder="이름" value="{{bride_dict.fatherFirstName}}">
                         <input type="checkbox" name="bride father dead-state">
                     </div>
                     <div>
                         <h4>어머님</h4>
-                        <input type="text" name="bride mother lastName" placeholder="성">
-                        <input type="text" name="bride mother firstName" placeholder="이름">
+                        <input type="text" name="bride mother lastName" placeholder="성" value="{{bride_dict.motherLastName}}">
+                        <input type="text" name="bride mother firstName" placeholder="이름" value="{{bride_dict.motherFirstName}}">
                         <input type="checkbox" name="bride mother dead-state">
                     </div>
                     <div>
                         <h4>관계</h4>
                         <select name="relation" id="">
-                            <option value=""></option>
-                            <option value="" selected>딸</option>
-                            <option value="">장녀</option>
-                            <option value="">차녀</option>
-                            <option value="">삼녀</option>
-                            <option value="">사녀</option>
-                            <option value="">오녀</option>
-                            <option value="">육녀</option>
-                            <option value="">칠녀</option>
-                            <option value="">막내</option>
-                            <option value="">조카</option>
-                            <option value="">손녀</option>
-                            <option value="">동생</option>
+                            <option value="" {{ 'selected' if bride_dict.relation == "" else "" }}></option>
+                            <option value="딸" {{ 'selected' if bride_dict.relation == "딸" else "" }}>딸</option>
+                            <option value="장녀" {{ 'selected' if bride_dict.relation == "장녀" else "" }}>장녀</option>
+                            <option value="차녀" {{ 'selected' if bride_dict.relation == "차녀" else "" }}>차녀</option>
+                            <option value="삼녀" {{ 'selected' if bride_dict.relation == "삼녀" else "" }}>삼녀</option>
+                            <option value="사녀" {{ 'selected' if bride_dict.relation == "사녀" else "" }}>사녀</option>
+                            <option value="오녀" {{ 'selected' if bride_dict.relation == "오녀" else "" }}>오녀</option>
+                            <option value="육녀" {{ 'selected' if bride_dict.relation == "육녀" else "" }}>육녀</option>
+                            <option value="칠녀" {{ 'selected' if bride_dict.relation == "칠녀" else "" }}>칠녀</option>
+                            <option value="막내" {{ 'selected' if bride_dict.relation == "막내" else "" }}>막내</option>
+                            <option value="조카" {{ 'selected' if bride_dict.relation == "조카" else "" }}>조카</option>
+                            <option value="손녀" {{ 'selected' if bride_dict.relation == "손녀" else "" }}>손녀</option>
+                            <option value="동생" {{ 'selected' if bride_dict.relation == "동생" else "" }}>동생</option>
                         </select>
                     </div>
                     
@@ -130,7 +130,7 @@
                 <form name="phrase-info" action="" class="image-info">
                     <div>
                         <h4>제목</h4>
-                        <input type="text" size="10" name="phrase-title" placeholder="초대합니다">
+                        <input type="text" size="10" name="phrase-title" placeholder="초대합니다" value="{{message_templates_dict.sub_title}}">
                     </div>
                     <div>
                         <h4>내용</h4>
@@ -160,44 +160,44 @@
                 <form name="reservation-info" action="">
                     <div>
                         <h4>예약일</h4>
-                        <input type="date" name="reservation date">
+                        <input type="date" name="reservation date" value="{{ wedding_schedule_dict.date_format }}">
                     </div>
                     <div >
                         <h4>예약시간</h4>
                         <div class="reservation-time">
 
                             <select name="reservation time hour" id="">
-                                <option value="">없음</option>
-                                <option value="">오전 7시</option>
-                                <option value="">오전 8시</option>
-                                <option value="">오전 9시</option>
-                                <option value="">오전 10시</option>
-                                <option value="">오전 11시</option>
-                                <option value="">낮 12시</option>
-                                <option value="" selected>오후 1시</option>
-                                <option value="">오후 2시</option>
-                                <option value="">오후 3시</option>
-                                <option value="">오후 4시</option>
-                                <option value="">오후 5시</option>
-                                <option value="">오후 6시</option>
-                                <option value="">오후 7시</option>
-                                <option value="">오후 8시</option>
-                                <option value="">오후 9시</option>
-                                <option value="">오후 10시</option>
+                                <option value="없음" {{ "selected" if wedding_schedule_dict.time_hour == "" else ""}}>없음</option>
+                                <option value="오전 7시" {{ "selected" if wedding_schedule_dict.time_hour == "오전 7시" else ""}}>오전 7시</option>
+                                <option value="오전 8시" {{ "selected" if wedding_schedule_dict.time_hour == "오전 8시" else ""}}>오전 8시</option>
+                                <option value="오전 9시" {{ "selected" if wedding_schedule_dict.time_hour == "오전 9시" else ""}}>오전 9시</option>
+                                <option value="오전 10시" {{ "selected" if wedding_schedule_dict.time_hour == "오전 10시" else ""}}>오전 10시</option>
+                                <option value="오전 11시" {{ "selected" if wedding_schedule_dict.time_hour == "오전 11시" else ""}}>오전 11시</option>
+                                <option value="낮 12시" {{ "selected" if wedding_schedule_dict.time_hour == "낮 12시" else ""}}>낮 12시</option>
+                                <option value="오후 1시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 1시" else ""}}>오후 1시</option>
+                                <option value="오후 2시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 2시" else ""}}>오후 2시</option>
+                                <option value="오후 3시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 3시" else ""}}>오후 3시</option>
+                                <option value="오후 4시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 4시" else ""}}>오후 4시</option>
+                                <option value="오후 5시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 5시" else ""}}>오후 5시</option>
+                                <option value="오후 6시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 6시" else ""}}>오후 6시</option>
+                                <option value="오후 7시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 7시" else ""}}>오후 7시</option>
+                                <option value="오후 8시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 8시" else ""}}>오후 8시</option>
+                                <option value="오후 9시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 9시" else ""}}>오후 9시</option>
+                                <option value="오후 10시" {{ "selected" if wedding_schedule_dict.time_hour == "오후 10시" else ""}}>오후 10시</option>
                             </select>
                             <select name="reservation time minute" id="">
-                                <option value="">정각</option>
-                                <option value="">5분</option>
-                                <option value="">10분</option>
-                                <option value="">15분</option>
-                                <option value="">20분</option>
-                                <option value="">25분</option>
-                                <option value="" selected>30분</option>
-                                <option value="">35분</option>
-                                <option value="">40분</option>
-                                <option value="">45분</option>
-                                <option value="">50분</option>
-                                <option value="">55분</option>
+                                <option value="정각" {{ "selected" if wedding_schedule_dict.time_minute == "정각" else ""}}>정각</option>
+                                <option value="5분" {{ "selected" if wedding_schedule_dict.time_minute == "5분" else ""}}>5분</option>
+                                <option value="10분" {{ "selected" if wedding_schedule_dict.time_minute == "10분" else ""}}>10분</option>
+                                <option value="15분" {{ "selected" if wedding_schedule_dict.time_minute == "15분" else ""}}>15분</option>
+                                <option value="20분" {{ "selected" if wedding_schedule_dict.time_minute == "20분" else ""}}>20분</option>
+                                <option value="25분" {{ "selected" if wedding_schedule_dict.time_minute == "25분" else ""}}>25분</option>
+                                <option value="30분" {{ "selected" if wedding_schedule_dict.time_minute == "30분" else ""}}>30분</option>
+                                <option value="35분" {{ "selected" if wedding_schedule_dict.time_minute == "35분" else ""}}>35분</option>
+                                <option value="40분" {{ "selected" if wedding_schedule_dict.time_minute == "40분" else ""}}>40분</option>
+                                <option value="45분" {{ "selected" if wedding_schedule_dict.time_minute == "45분" else ""}}>45분</option>
+                                <option value="50분" {{ "selected" if wedding_schedule_dict.time_minute == "50분" else ""}}>50분</option>
+                                <option value="55분" {{ "selected" if wedding_schedule_dict.time_minute == "55분" else ""}}>55분</option>
                             </select>
                         </div>
                     </div>
@@ -213,15 +213,15 @@
                 <form name="place-info" action="">
                     <div>
                         <h4>예식장명</h4>
-                        <input type="text" size="10" name="wedding-place name">
+                        <input type="text" size="10" name="wedding-place name" value="{{wedding_schedule_dict.hall_name}}">
                     </div>
                     <div>
                         <h4>층과 홀</h4>
-                        <input type="text" size="10" name="wedding-place detail">
+                        <input type="text" size="10" name="wedding-place detail" value="{{wedding_schedule_dict.hall_floor}}">
                     </div>
                     <div>
                         <h4>주소</h4>
-                        <input type="text" size="1" name="wedding-place addr">
+                        <input type="text" size="1" name="wedding-place addr" value="{{wedding_schedule_dict.hall_addr}}">
                         <div onclick="openPostCode()" class="map-search-btn">검색</div>
                         
                     </div>
@@ -236,27 +236,15 @@
             <div class="card-top">교통 수단</div>
             <div class="card-body">
                 <form name="transit-info" action="">
+                    {% for transport in transport_list %}
                     <div>
-                        <h4>자가용</h4>
+                        <h4>{{transport.title_transport}}</h4>
                         <div class="textarea-container">
-                            <input type="text" placeholder="자가용">
+                            <input type="text" hidden value="{{transport.title_transport}}">
                             <textarea name="" id="" cols="10"  rows="5"></textarea>
                         </div>
                     </div>
-                    <div>
-                        <h4>지하철</h4>
-                        <div class="textarea-container">
-                            <input type="text" placeholder="지하철">
-                            <textarea name="" id="" cols="10"  rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>버스</h4>
-                        <div class="textarea-container">
-                            <input type="text" placeholder="버스">
-                            <textarea name="" id="" cols="10"  rows="5"></textarea>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </form>
             </div>
         </div>
@@ -308,11 +296,11 @@
                 <form name="couple-call-info" action="">
                     <div>
                         <h4>신랑님</h4>
-                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요" value="{{groom_dict.phoneNum}}">
                     </div>
                     <div>
                         <h4>신부님</h4>
-                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요" value="{{bride_dict.phoneNum}}">
                     </div>
                 </form>
             </div>
@@ -327,19 +315,19 @@
                 <form name="couple-parents-call-info" action="">
                     <div>
                         <h4>신랑 아버님</h4>
-                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요" value="{{groom_dict.fatherPhoneNum}}">
                     </div>
                     <div>
                         <h4>신랑 어머님</h4>
-                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요" value="{{groom_dict.motherPhoneNum}}">
                     </div>
                     <div>
                         <h4>신부 아버님</h4>
-                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요" value="{{bride_dict.fatherPhoneNum}}">
                     </div>
                     <div>
                         <h4>신부 어머님</h4>
-                        <input type="text" size="10" placeholder="'-'없이 입력해주세요">
+                        <input type="text" size="10" placeholder="'-'없이 입력해주세요" value="{{bride_dict.motherPhoneNum}}">
                     </div>
                 </form>
             </div>
@@ -352,37 +340,31 @@
             </div>
             <div class="card-body">
                 <form name="account-number-info" action="">
+                    {% for bank in bank_acc %}
                     <div>
                         <h4>그룹명</h4>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <h4>계좌번호</h4>
-                        <div class="account-data">
-                            <input type="text" placeholder="은행">
-                            <input type="text" placeholder="계좌번호">
-                        </div>
-                    </div>
-                    <div>
-                        <h4>예금주</h4>
-                        <input type="text">
+                        <input type="text" value="{{bank.group_name}}" placeholder="신랑측">
                     </div>
                     <br>
-                    <div>
-                        <h4>그룹명</h4>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <h4>계좌번호</h4>
-                        <div class="account-data">
-                            <input type="text" placeholder="은행">
-                            <input type="text" placeholder="계좌번호">
+
+                    {% for bank_data in bank.list %}
+                        <div>
+                            <h4>계좌번호</h4>
+                            <div class="account-data">
+                                <input type="text" placeholder="은행" value="{{bank_data.bank}}">
+                                <input type="text" placeholder="계좌번호" value="{{bank_data.number}}">
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h4>예금주</h4>
-                        <input type="text">
-                    </div>
+                        <div>
+                            <h4>예금주</h4>
+                            <input type="text" value="{{bank_data.name}}">
+                        </div>
+                        <br>
+
+                    {% endfor %}
+                    <br>
+
+                    {% endfor %}
                 </form>
             </div>
         </div>
@@ -395,7 +377,7 @@
             <div class="card-body">
                 <form name="cropper-info" class="cropper-info">
                     <div>
-                        <h4>계좌번호</h4>
+                        <h4>비밀번호</h4>
                         <input type="text">
                     </div>
                 </form>
@@ -408,6 +390,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/0.8.1/cropper.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
+    <script>
+        // jinja2 데이터 받기
+        const wedding_schedule_dict = {{wedding_schedule_dict|safe}};
+    </script>
     <script src="/static/js/create.js"></script>
 </body>
 </html>

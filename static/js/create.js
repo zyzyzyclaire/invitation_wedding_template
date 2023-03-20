@@ -286,7 +286,9 @@ const addSampleRhrase = (target) => {
 document.querySelector('.btn-show-sample-phrase').addEventListener('click',(e)=>{openSamplePhrasesModal(e)})
 
 // 예약일 기본 값 오늘로 지정
-document.querySelector('[name="reservation-info"] [type="date"]').value = new Date().toISOString().substring(0, 10);;
+if(document.querySelector('[name="reservation-info"] [type="date"]').value == ''){
+    document.querySelector('[name="reservation-info"] [type="date"]').value = new Date().toISOString().substring(0, 10);;
+}
 
 
 const _gallery = document.querySelector('form[name="gallery-info"] div')
@@ -304,8 +306,12 @@ const openPostCode = (str=null) => {
     });
 
 }
+
+// 위도 경도 좌표 찍기
+const lat_lng = wedding_schedule_dict.lat_lng
+
 const createMapOptions = {
-    center: new naver.maps.LatLng(37.3595704, 127.105399), //지도의 초기 중심 좌표
+    center: new naver.maps.LatLng(lat_lng[0], lat_lng[1]), //지도의 초기 중심 좌표
     zoom: 16, //지도의 초기 줌 레벨
     minZoom: 7, //지도의 최소 줌 레벨
     zoomControl: false, //줌 컨트롤의 표시 여부
@@ -316,7 +322,7 @@ const createMapOptions = {
 const createMap = new naver.maps.Map('createMap', createMapOptions);
 new naver.maps.Marker({
     map: createMap,
-    position: new naver.maps.LatLng(37.3595704, 127.105399)
+    position: new naver.maps.LatLng(lat_lng[0], lat_lng[1])
 })
 
 
@@ -339,28 +345,28 @@ const clientId = "ko0r34e7m9";
 const clientSecret = "prCzt8XuwLxK0WlPW8QxqyDQHVhWnZkywBSlrlDA";
 
 // 입력한 주소를 네이버 지오코딩 API에 전달하여 좌표 값을 받아옵니다.
-async function getCoordinate(address) {
-  const url = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURI(address)}`;
-  const response = await fetch(url, {
-    headers: {
-      "X-NCP-APIGW-API-KEY-ID": clientId,
-      "X-NCP-APIGW-API-KEY": clientSecret,
-    },
-  });
-  const data = await response.json();
-  if (data.meta.count > 0) {
-    const [x, y] = data.addresses[0];
-    return { lat: y, lon: x };
-  }
-  return null;
-}
+// async function getCoordinate(address) {
+//   const url = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURI(address)}`;
+//   const response = await fetch(url, {
+//     headers: {
+//       "X-NCP-APIGW-API-KEY-ID": clientId,
+//       "X-NCP-APIGW-API-KEY": clientSecret,
+//     },
+//   });
+//   const data = await response.json();
+//   if (data.meta.count > 0) {
+//     const [x, y] = data.addresses[0];
+//     return { lat: y, lon: x };
+//   }
+//   return null;
+// }
 
 // 주소를 입력받아 좌표 값을 출력합니다.
-const address = prompt("주소를 입력하세요:");
-getCoordinate(address).then((coordinate) => {
-  if (coordinate) {
-    console.log(`입력한 주소의 좌표 값은 (${coordinate.lat}, ${coordinate.lon})입니다.`);
-  } else {
-    console.log("주소를 다시 확인해주세요.");
-  }
-});
+// const address = prompt("주소를 입력하세요:");
+// getCoordinate(address).then((coordinate) => {
+//   if (coordinate) {
+//     console.log(`입력한 주소의 좌표 값은 (${coordinate.lat}, ${coordinate.lon})입니다.`);
+//   } else {
+//     console.log("주소를 다시 확인해주세요.");
+//   }
+// });
