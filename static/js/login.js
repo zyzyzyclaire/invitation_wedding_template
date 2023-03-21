@@ -6,7 +6,7 @@ const loginSubmit = (event) =>{
     const dataKey = _input.id.split('input')[1].toLocaleLowerCase()
     submitData[dataKey] = _input.value;
   })
-  postApi('/login_check', submitData, callbackFun);
+  postApi('/login', submitData, callbackFun);
 }
 
 const callbackFun = (data) => {

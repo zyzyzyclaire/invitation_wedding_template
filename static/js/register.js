@@ -6,7 +6,7 @@ const registerSubmit = (event) =>{
     const dataKey = _input.id.split('input')[1].toLocaleLowerCase()
     submitData[dataKey] = _input.value;
   })
-  postApi('/create_account', submitData, callbackFun);
+  postApi('/register', submitData, callbackFun);
 }
 
 const callbackFun = (data) => {

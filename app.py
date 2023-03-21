@@ -30,15 +30,6 @@ def index():
     with session_scope() as db_session:
         test = db_session.query(User).filter(User.id == 1).first()
         name = test.name
-        # 더미 존
-        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list, image_list
-        groom_dict = groom_dict # 신랑 데이터
-        bride_dict = bride_dict # 신부 데이터
-        wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
-        message_templates_dict = message_templates_dict # 글귀 데이터
-        transport_list = transport_list # 교통 수단 데이터
-        guestbook_list = guestbook_list # 방명록 데이터
-        image_list = image_list # 이미지 데이터
         print(geocoding("부산시 연제구 거제대로 198"))
     return render_template('/index.html',  
                            groom_dict=groom_dict, 
@@ -59,9 +50,28 @@ def login():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
-        response = jsonify({'message': 'Success'})
-        response.status_code = 200
-        return response
+        
+        id = data['id']
+        pw = data['password']
+
+        with session_scope() as db_session:
+            user_item = db_session.query(User)\
+                                .filter(User.user_id == id)\
+                                .filter(User.user_pw == bcrypt.hashpw(pw.encode("utf-8"), bcrypt.gensalt()))\
+                                .first()
+            
+            print("user",user_item)
+            if user_item:   # 로그인 성공
+                print("로그인성공")
+                session['user']=user_item.user
+                response = jsonify({'message': 'Success'})
+                response.status_code = 200
+            else:           # 로그인 실패
+                print("로그인실패")
+                response = jsonify({'message': 'Success'})
+                response.status_code = 401
+            
+            return response
     
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -71,6 +81,17 @@ def register():
     if request.method == 'POST':
         data = request.get_json()
         print(data)
+        
+        name = data['email']
+        id = data['name']
+        pwd = data['id']
+        email = data['password']
+
+        with session_scope() as db_session:
+            user_item = User(name, id, pwd, email, 1)
+            db_session.add(user_item)
+            db_session.commit()
+            db_session.refresh(user_item)
         response = jsonify({'message': 'Success'})
         response.status_code = 200
         return response
@@ -78,6 +99,9 @@ def register():
 
 @app.route("/create")
 def create():
+
+
+
     return render_template('/create.html',  
                         groom_dict=groom_dict, 
                         bride_dict=bride_dict,
@@ -104,25 +128,6 @@ def create_account():
 
     return render_template('/create.html')
 
-
-@app.route('/login_check', methods=['GET','POST'])  
-def login_check():
-    # session['token']=request.form.get('token')
-    id = request.form.get('id')
-    pw = request.form.get('pw')
-
-    with session_scope() as db_session:
-        user_item = db_session.query(User)\
-                            .filter(User.user_id == id)\
-                            .filter(User.user_pw == bcrypt.hashpw(pw.encode("utf-8"), bcrypt.gensalt()))\
-                            .first()
-        if user_item:   # 로그인 성공
-            print("로그인성공")
-            session['user']=user_item.user
-            return redirect('/login')
-        else:           # 로그인 실패
-            print("로그인실패")
-            return redirect('/login')
 
 
 if __name__ == '__main__':
