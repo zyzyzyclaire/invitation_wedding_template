@@ -39,7 +39,7 @@ def index():
         transport_list = transport_list # 교통 수단 데이터
         guestbook_list = guestbook_list # 방명록 데이터
         image_list = image_list # 이미지 데이터
-        print(geocoding("부산시 연제구 거제대로 198"))
+        print(geocoding("부산시 사하구 낙동남로 1353번길 31"))
     return render_template('/index.html',  
                            groom_dict=groom_dict, 
                            bride_dict=bride_dict,
