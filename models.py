@@ -63,13 +63,14 @@ class User(Base):
     email = Column(String(512), nullable=False, unique=True)
     template_id = Column(Integer, ForeignKey('template.id'), nullable=True, default=None)
 
-    def __init__(self, name, user_id, user_pw, email):
+    def __init__(self, name, user_id, user_pw, email, template_id):
         from app import bcrypt
-        
+
         self.name = name
         self.user_id = user_id
         self.user_pw = bcrypt.generate_password_hash(user_pw)
         self.email = email
+        self.template_id = template_id
 
 
 class Account(Base):
