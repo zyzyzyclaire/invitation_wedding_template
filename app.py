@@ -30,7 +30,6 @@ def index():
     with session_scope() as db_session:
         test = db_session.query(User).filter(User.id == 1).first()
         name = test.name
-<<<<<<< HEAD
         # 더미 존
         from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list, image_list
         groom_dict = groom_dict # 신랑 데이터
@@ -40,10 +39,6 @@ def index():
         transport_list = transport_list # 교통 수단 데이터
         guestbook_list = guestbook_list # 방명록 데이터
         image_list = image_list # 이미지 데이터
-        print(geocoding("부산시 사하구 낙동남로 1353번길 31"))
-=======
-        print(geocoding("부산시 연제구 거제대로 198"))
->>>>>>> 42638631ba4b54d98dbf50954b69a4903ac45608
     return render_template('/index.html',  
                            groom_dict=groom_dict, 
                            bride_dict=bride_dict,
@@ -113,8 +108,6 @@ def register():
 @app.route("/create")
 def create():
 
-
-
     return render_template('/create.html',  
                         groom_dict=groom_dict, 
                         bride_dict=bride_dict,
@@ -141,6 +134,24 @@ def create_account():
 
     return render_template('/create.html')
 
+
+@app.route("/search_geocoding", methods=['GET', 'POST'])
+def search_geocoding():
+    if request.method == 'POST':
+        address = request.get_json()
+        lat_lon = geocoding(address);
+        response = jsonify({
+            'data' : lat_lon,
+            'message': 'Success'
+            })
+        response.status_code = 200
+        return response
+
+
+@app.route("/home", methods=['GET', 'POST'])
+def home():
+    if request.method == 'GET':
+        return render_template('/home.html')
 
 
 if __name__ == '__main__':

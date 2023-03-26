@@ -1,71 +1,78 @@
 
-.login {
+.container {
   position: relative;
-  padding: 60px;
+  padding: 40px;
   background: rgba(255, 255, 255, .25);
   backdrop-filter: blur(15px);
   border: 1px solid #fff;
   border-right: 1px solid rgba(255, 255, 255, .5);
   border-bottom: 1px solid rgba(255, 255, 255, .5);
   border-radius: 20px;
-  width: 500px;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   box-shadow: 0 25px 50px rgba(0,0,0,0.1);
 }
-.login h2 {
+.container .top h2 {
   position: relative;
   width: 100%;
-  text-align: center;
   font-size: 2.5em;
   font-weight: 600;
   color: #8f2c24;
   margin-bottom: 10px;
 }
-.login .inputBox {
-  position: relative;
+.container .top span {
+  color: #3c3c3c;
 }
-.login .inputBox input,
-.login .inputBox button{
-  position: relative;
+
+.container .middle .templates .card {
+  max-width: 480px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+}
+.container .middle .templates .card .card-img img{
   width: 100%;
-  padding: 15px 20px;
-  outline: none;
-  font-size: 1.25em;
-  color: #8f2c24;
-  border-radius: 5px;
-  background: #fff;
-  border: none;
-  margin-bottom: 10px;
+  border-radius: 20px;
 }
-.login .inputBox ::placeholder {
-  color: #926562;
-}
-.login .inputBox #btn{
-  position: relative;
-  border: none;
-  outline: none;
-  background: #8f2c24;
-  color: #fff;
-  cursor: pointer;
-  font-size: 1.25em;
-  font-weight: 500;
-  transition: .5s;
-}
-.login .inputBox #btn:hover{
-  background: #d64c42;
-}
-.login .group{
+.container .middle .templates .card .card-content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
 }
-.login .group a{
-  font-size: 1.25em;
-  color: #8f2c24;
-  font-weight: 500;
-  text-decoration: none;
+.container .middle .templates .card .card-content .left {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
 }
+.container .middle .templates .card .card-content .left h4{
+  font-size: 22px;
+  font-weight: 400;
+}
+.container .middle .templates .card .card-content .left .price{
+  display: flex;
+  gap: 10px;
+}
+.container .middle .templates .card .card-content .left .event-price{
+}
+.container .middle .templates .card .card-content .left .origin-price{
+  text-decoration: line-through;
+  color: #7c7c7c;
+}
+.container .middle .templates .card .card-content .right {
+  
+}
+.container .middle .templates .card .card-content .right a{
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+}
+.container .middle .templates .card .card-content .right a:hover{
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+}
+
 
 
 

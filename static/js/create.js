@@ -299,12 +299,13 @@ const openPostCode = (str=null) => {
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-            console.log(data)
+            postApi('search_geocoding',data.address, setMarkerPosition)
+            // search_geocoding
+
         }
     }).open({
         q: str,
     });
-
 }
 
 // 위도 경도 좌표 찍기
@@ -320,11 +321,18 @@ const createMapOptions = {
     }
 };
 const createMap = new naver.maps.Map('createMap', createMapOptions);
-new naver.maps.Marker({
+const createMarker = new naver.maps.Marker({
     map: createMap,
     position: new naver.maps.LatLng(lat_lng[0], lat_lng[1])
 })
 
+function setMarkerPosition(data) {
+    const lat = data.data[0];
+    const lng = data.data[1];
+    let newLatLng = new naver.maps.LatLng(lat, lng);
+    createMarker.setPosition(newLatLng);
+    createMap.setCenter(newLatLng);
+}
 
 // setOptions 메서드를 이용해 옵션을 조정할 수도 있습니다.
 // map.setOptions("mapTypeControl", false); // 지도 유형 컨트롤의 표시 여부
@@ -339,34 +347,94 @@ inputElement.addEventListener("keyup", function(event) {
     }
 });
 
+// 계좌번호 HTML 추가
+const addbankDataHtml = (event, index) => {
+    event.preventDefault();
+    const _buttons = document.querySelector(`.bank-data-buttons-${index}`)
+    let html = `
+        <div class="other bank-number-${index}">
+            <h4>계좌번호</h4>
+            <div class="account-data">
+                <input type="text" placeholder="은행" value="">
+                <input type="text" placeholder="계좌번호" value="">
+            </div>
+        </div>
+        <div class="other bank-name-${index}">
+            <h4>예금주</h4>
+            <input type="text" value="">
+        </div>
+        <br class="other bank-br-tag-${index}">
+    `
+    _buttons.insertAdjacentHTML('beforebegin', html)
+}
+// 계좌번호 HTML 삭제
+const deletebankDataHtml = (event, index) => {
+    event.preventDefault();
+    const inputList = ['number', 'name', 'br-tag']
+    let bankLength = 0;    
+    inputList.forEach((type)=>{
+        const __bank = document.querySelectorAll(`[name="account-number-info"] .other.bank-${type}-${index}`);    
+        bankLength = __bank.length;    
+        const _bank = __bank[bankLength-1];
+        if(bankLength>0) _bank.remove();
+    })
+    if(bankLength === 0) return alert('계좌정보는 그룹 당 최소 한 개 이상 작성해 주세요.')
+}
 
-// 클라이언트 ID와 클라이언트 시크릿을 입력합니다.
-const clientId = "ko0r34e7m9";
-const clientSecret = "prCzt8XuwLxK0WlPW8QxqyDQHVhWnZkywBSlrlDA";
+// submit 데이터 쌓기
+const getInputData = () => {
+    const typeList = [
+        'groom_dict', 
+        'bride_dict', 
+        'wedding_schedule_dict', 
+        'message_templates_dict',
+        'guestbook_password'
+    ];
+    const submitObj = new Object;
+    typeList.forEach((type)=>{
+        const __inputGroom = document.querySelectorAll(`[data-type="${type}"]`);
+        const keyObj = new Object;
+        __inputGroom.forEach((_inputGroom)=>{
+            const key = _inputGroom.getAttribute('data-name');
+            const value = _inputGroom.value;
+            keyObj[key] = value;
+            
+        })
+        submitObj[type] = keyObj
+    })
+    submitObj['bank_acc'] = getBankData()
 
-// 입력한 주소를 네이버 지오코딩 API에 전달하여 좌표 값을 받아옵니다.
-// async function getCoordinate(address) {
-//   const url = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURI(address)}`;
-//   const response = await fetch(url, {
-//     headers: {
-//       "X-NCP-APIGW-API-KEY-ID": clientId,
-//       "X-NCP-APIGW-API-KEY": clientSecret,
-//     },
-//   });
-//   const data = await response.json();
-//   if (data.meta.count > 0) {
-//     const [x, y] = data.addresses[0];
-//     return { lat: y, lon: x };
-//   }
-//   return null;
-// }
+    console.log(submitObj);
+    
+}
 
-// 주소를 입력받아 좌표 값을 출력합니다.
-// const address = prompt("주소를 입력하세요:");
-// getCoordinate(address).then((coordinate) => {
-//   if (coordinate) {
-//     console.log(`입력한 주소의 좌표 값은 (${coordinate.lat}, ${coordinate.lon})입니다.`);
-//   } else {
-//     console.log("주소를 다시 확인해주세요.");
-//   }
-// });
+const getBankData = () => {
+    const __bankAcc = document.querySelectorAll('[data-type="bank_acc"]');
+    const arr = [];
+    let obj = {};
+    let listObj = {};
+    __bankAcc.forEach((_bankAcc)=>{
+        const dataName = _bankAcc.getAttribute('data-name');
+        if(dataName == 'group_name'){
+            if(obj['groupName']){
+                obj['list'].push(listObj)
+                listObj = {};
+                arr.push(obj)
+                obj = {};
+            }
+            obj['groupName'] = _bankAcc.value;
+            obj['list'] = [];
+        }
+        if(dataName == 'list'){
+            const listType = _bankAcc.getAttribute('list-type');
+            if(listObj[listType]){
+                obj['list'].push(listObj)
+                listObj = {};
+            }
+            listObj[listType] = _bankAcc.value
+        }
+    })
+    obj['list'].push(listObj)
+    arr.push(obj)
+    return arr;
+}

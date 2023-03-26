@@ -14,7 +14,7 @@
   gap: 15px;
   max-width: 640px;
   width: 100%;
-  /* padding: 0 15px; */
+  margin-bottom: 80px;
 }
 .card {
   /* max-width: 570px; */
@@ -370,3 +370,31 @@ input[name="wedding-place addr"] {
 }
 
 /* 끝 계좌번호 */
+
+[name="guest-book-info"] input {
+  padding: 0 10px;
+  border: 1px solid #ebebeb;
+  font-size: 13px;
+  color: #111;
+  background: #fafafa;
+}
+
+.card.card-submit {
+  
+}
+.card.card-submit .card-top{
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+}
+.card.card-submit .card-top button,
+.card.card-submit .card-top a{
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  font-weight: 400;
+}
+.card.card-submit .card-top button:hover,
+.card.card-submit .card-top a:hover {
+  background: #111;
+  color: #fff;
+}

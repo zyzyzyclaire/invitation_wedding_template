@@ -2,6 +2,7 @@ groom_dict = {
     "firstname":"지혁",
     "lastname":"강",
     "phoneNum" : "01000002222",
+    
     "father":"강재만",
     "fatherFirstName":"재만",
     "fatherLastName":"강",
@@ -11,18 +12,6 @@ groom_dict = {
     "motherLastName":"서",
     "motherPhoneNum" : "01033332222",
     "relation" : "아들",
-    "bank_acc":[
-        {
-            "bank":"신한",
-            "name":"강재만",
-            "number":"123-456-789"
-        },
-        {
-            "bank":"신한",
-            "name":"강지혁",
-            "number":"123-456-789"
-        }
-    ]
 }
 bride_dict = {
     "firstname":"유라",
@@ -37,18 +26,6 @@ bride_dict = {
     "motherLastName":"정",
     "motherPhoneNum" : "01033333333",
     "relation" : "딸",
-    "bank_acc":[
-        {
-            "bank":"신한",
-            "name":"최현상",
-            "number":"123-456-789"
-        },
-        {
-            "bank":"신한",
-            "name":"최유라",
-            "number":"123-456-789"
-        }
-    ]
 }
 
 bank_acc = [
@@ -153,7 +130,8 @@ guestbook_list=[
         "content_guestbook":"유라야💕 너무 이쁘다 러블리하구 봄바람에 흩날리는 민들레꽃씨같아! 행복행복기운이 뿜뿜한다! 평생 이쁘고 행복하게 잘살거같아 나는 걱정이 하나도 없어❣️축하해💝",
         "created_at":"2021.08.08"
     }
-]
+],
+guestbook_password = {'password' : 'test'},
 
 image_list = {
     "main_img" : "/static/images/users/testtest/main_img.jpg",
@@ -197,3 +175,4 @@ image_list = {
         },
     ]
 }
+
