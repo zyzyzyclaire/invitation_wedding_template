@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, session
-from flask_bcrypt import Bcrypt
+import bcrypt
+# from flask_bcrypt import Bcrypt
 
 from models import session_scope, User
 from config import secret_key, bcrypt_level
@@ -22,7 +23,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = secret_key
 app.config['BCRYPT_LEVEL'] = bcrypt_level
 
-bcrypt = Bcrypt(app) 
+# bcrypt_app = Bcrypt(app) 
 
 
 @app.route("/")
@@ -31,7 +32,7 @@ def index():
         test = db_session.query(User).filter(User.id == 1).first()
         name = test.name
         # 더미 존
-        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list, image_list
+        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, guestbook_list, image_list
         groom_dict = groom_dict # 신랑 데이터
         bride_dict = bride_dict # 신부 데이터
         wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
@@ -65,13 +66,12 @@ def login():
         with session_scope() as db_session:
             user_item = db_session.query(User)\
                                 .filter(User.user_id == id)\
-                                .filter(User.user_pw == bcrypt.hashpw(pw.encode("utf-8"), bcrypt.gensalt()))\
                                 .first()
             
             print("user",user_item)
-            if user_item:   # 로그인 성공
+            if user_item and bcrypt.checkpw(pw.encode('utf-8'), user_item.user_pw.encode('utf-8')):   # 로그인 성공
                 print("로그인성공")
-                session['user']=user_item.user
+                session['user']=user_item.user_id
                 response = jsonify({'message': 'Success'})
                 response.status_code = 200
             else:           # 로그인 실패
@@ -90,13 +90,13 @@ def register():
         data = request.get_json()
         print(data)
         
-        name = data['email']
-        id = data['name']
-        pwd = data['id']
-        email = data['password']
+        name = data['name']
+        id = data['id']
+        pwd = data['password']
+        email = data['email']
 
         with session_scope() as db_session:
-            user_item = User(name, id, pwd, email, 1)
+            user_item = User(name, id, pwd, email)
             db_session.add(user_item)
             db_session.commit()
             db_session.refresh(user_item)
@@ -107,7 +107,13 @@ def register():
 
 @app.route("/create")
 def create():
-
+    from views.template_dummy_for_html import groom_dict, bride_dict, bank_acc, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
+    groom_dict = groom_dict
+    bride_dict = bride_dict
+    bank_acc = bank_acc
+    wedding_schedule_dict = wedding_schedule_dict
+    message_templates_dict = message_templates_dict
+    guestbook_list = guestbook_list
     return render_template('/create.html',  
                         groom_dict=groom_dict, 
                         bride_dict=bride_dict,
