@@ -405,9 +405,10 @@ const getInputData = () => {
     submitObj['bank_acc'] = getBankData()
 
     console.log(submitObj);
+    console.log(getImgData())
     
 }
-
+// 계좌 정보 받아오기
 const getBankData = () => {
     const __bankAcc = document.querySelectorAll('[data-type="bank_acc"]');
     const arr = [];
@@ -437,4 +438,16 @@ const getBankData = () => {
     obj['list'].push(listObj)
     arr.push(obj)
     return arr;
+}
+// 이미지 받아오기
+const getImgData = () =>{
+    const __imgList = document.querySelectorAll('[data-type="image_list"]');
+    const formData = new FormData();
+
+    __imgList.forEach((_imgList)=>{
+        const key = _imgList.getAttribute('data-name');
+        const file = _imgList.files[0];
+        console.log(key, file)
+        formData.append(key, file);
+    })
 }

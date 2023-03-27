@@ -140,7 +140,7 @@
                     <div>
                         <h4>사진</h4>
                         <div class="main-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
+                            <input type="file" accept="image/*" data-type="image_list"  data-name="sub_img" hidden="hidden" onchange="changeInputImg(this)">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
                         </div>
@@ -256,7 +256,7 @@
                     <div>
                         <h4>사진</h4>
                         <div class="main-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
+                            <input type="file" accept="image/*" data-type="image_list"  data-name="main_img"  hidden="hidden" onchange="changeInputImg(this)">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
                         </div>
@@ -276,7 +276,7 @@
                     <div>
                         <!-- <h4>갤러리</h4> -->
                         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
+                            <input type="file" accept="image/*" hidden="hidden" data-type="image_list"  data-name="sub_img" onchange="changeInputImg(this);">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
                         </div>
