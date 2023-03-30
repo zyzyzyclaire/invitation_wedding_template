@@ -109,16 +109,12 @@ message_templates_dict = {
         </div>\
     ",
 }
-                
-dday = 42
-pic_list = []
 
-guestbook_list=[
+guestbook_list = [
     {
         "name":"김주리",
         "content_guestbook":"지혁씨 많이많이 축하합니다!! 함께 걸어가는 길에 꽃길만🌸🌼🌿",
         "created_at":"2021.08.08"
-    
     },
     {
         "name":"박수림",
@@ -130,8 +126,8 @@ guestbook_list=[
         "content_guestbook":"유라야💕 너무 이쁘다 러블리하구 봄바람에 흩날리는 민들레꽃씨같아! 행복행복기운이 뿜뿜한다! 평생 이쁘고 행복하게 잘살거같아 나는 걱정이 하나도 없어❣️축하해💝",
         "created_at":"2021.08.08"
     }
-],
-guestbook_password = {'password' : 'test'},
+]
+guestbook_password = {'password' : 'test'}
 
 image_list = {
     "main_img" : "/static/images/users/testtest/main_img.jpg",

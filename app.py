@@ -17,7 +17,6 @@ guestbook_list = guestbook_list # 방명록 데이터
 image_list = image_list # 이미지 데이터
 bank_acc = bank_acc # 계좌번호 데이터
 
-
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = secret_key
@@ -30,15 +29,16 @@ app.config['BCRYPT_LEVEL'] = bcrypt_level
 def index():
     with session_scope() as db_session:
         test = db_session.query(User).filter(User.id == 1).first()
-        name = test.name
+        # name = test.name
         # 더미 존
-        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, guestbook_list, image_list
+        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, guestbook_list, image_list, transport_list
         groom_dict = groom_dict # 신랑 데이터
         bride_dict = bride_dict # 신부 데이터
         wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
         message_templates_dict = message_templates_dict # 글귀 데이터
         transport_list = transport_list # 교통 수단 데이터
         guestbook_list = guestbook_list # 방명록 데이터
+        
         image_list = image_list # 이미지 데이터
     return render_template('/index.html',  
                            groom_dict=groom_dict, 
@@ -105,24 +105,29 @@ def register():
         return response
 
 
-@app.route("/create")
+@app.route("/create", methods=['GET', 'POST'])
 def create():
-    from views.template_dummy_for_html import groom_dict, bride_dict, bank_acc, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
-    groom_dict = groom_dict
-    bride_dict = bride_dict
-    bank_acc = bank_acc
-    wedding_schedule_dict = wedding_schedule_dict
-    message_templates_dict = message_templates_dict
-    guestbook_list = guestbook_list
-    return render_template('/create.html',  
-                        groom_dict=groom_dict, 
-                        bride_dict=bride_dict,
-                        wedding_schedule_dict=wedding_schedule_dict,
-                        message_templates_dict=message_templates_dict,
-                        transport_list=transport_list,
-                        guestbook_list=guestbook_list,
-                        image_list=image_list,
-                        bank_acc=bank_acc)
+    if request.method == 'GET':
+        # from views.template_dummy_for_html import groom_dict, bride_dict, bank_acc, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
+        # groom_dict = groom_dict
+        # bride_dict = bride_dict
+        # bank_acc = bank_acc
+        # wedding_schedule_dict = wedding_schedule_dict
+        # message_templates_dict = message_templates_dict
+        # guestbook_list = guestbook_list
+        return render_template('/create.html',  
+                            groom_dict=groom_dict, 
+                            bride_dict=bride_dict,
+                            wedding_schedule_dict=wedding_schedule_dict,
+                            message_templates_dict=message_templates_dict,
+                            transport_list=transport_list,
+                            guestbook_list=guestbook_list,
+                            image_list=image_list,
+                            bank_acc=bank_acc)
+        
+    if request.method == 'POST':
+        data = request.get_json()
+        print(data)
 
 
 @app.route("/create_account", methods=['GET', 'POST'])

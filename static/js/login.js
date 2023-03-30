@@ -10,5 +10,5 @@ const loginSubmit = (event) =>{
 }
 
 const callbackFun = (data) => {
-  console.log(data)
+  window.location = '/home'
 }

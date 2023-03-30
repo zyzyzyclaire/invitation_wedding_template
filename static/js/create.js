@@ -405,7 +405,9 @@ const getInputData = () => {
     submitObj['bank_acc'] = getBankData()
 
     console.log(submitObj);
-    console.log(getImgData())
+    postApi('/create', submitObj)
+    // create
+    // console.log(getImgData())
     
 }
 // 계좌 정보 받아오기
