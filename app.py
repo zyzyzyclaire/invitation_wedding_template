@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, session
 import bcrypt
 # from flask_bcrypt import Bcrypt
+import json
 
 from models import session_scope, User
 from config import secret_key, bcrypt_level
@@ -126,9 +127,27 @@ def create():
                             bank_acc=bank_acc)
         
     if request.method == 'POST':
-        data = request.get_json()
-        print(data)
+        # data = request.get_json()
+        main_img_file = request.files['main_img']
+        sub_img_file = request.files['sub_img']
+        gallery_img_files = [v for k, v in request.files.items() if k.startswith('gallery_img')]
 
+        print('main_img_file,',main_img_file)
+        print('sub_img_file,',sub_img_file)
+        print('gallery_img_files,',gallery_img_files)
+        # if 'main_img' in request.files:
+        #   file = request.files['main_img']
+        # print(f'{file.filename} uploaded successfully')
+
+        json_data = request.form.get('json')
+        if json_data:
+            data = json.loads(json_data)
+            print(data)
+    response = jsonify({
+        'message': 'Success'
+    })
+    response.status_code = 200
+    return response
 
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():

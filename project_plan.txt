@@ -164,17 +164,17 @@ user db에 userkey 추가하기(사람들이 해당 유저의 청첩장을 볼 �
   ubuntu DB Table생성
 
 팀)
-  ubuntu DB 포트포워딩
-  이미지 전송
-  html 전송
+  ubuntu DB port forwarding(완료)
+  이미지 전송[sm 이미지 작업 남음]
+  html 전송(완료)
 
 --DB(tim pc vmware ubuntu server)-- 
 Hostname: 1.220.211.20
 Port: 20233
 Username: user
 Password: password
-포트포워딩: 1.220.211.20:20233 >> 192.168.0.202:3306
-vmware network : bridge(host pc 와 동일한 ip,port 사용)
+port forwarding: 1.220.211.20:20233 >> 192.168.0.202:3306
+vmware network : bridge(host pc 와 동일한 ip, port 사용)
 
 
 

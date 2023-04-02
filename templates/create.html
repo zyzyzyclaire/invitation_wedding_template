@@ -22,6 +22,8 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ko0r34e7m9"></script>
 
     <script src="https://unpkg.com/phosphor-icons"></script>
+    <!-- tiny mce 텍스트 에디터 -->
+    <script src="https://cdn.tiny.cloud/1/f9kc4lu9ej52cu9u6hcoqrflsjlfpb00kkj8dl4ngqmvbu1k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     
 
 </head>
@@ -134,7 +136,7 @@
                         <h4>내용</h4>
                         <div class="textarea-container">
                             <button class="sample-phrase btn-show-sample-phrase">샘플 문구 보기</button>
-                            <textarea cols="10" rows="5" data-type="message_templates_dict"  data-name="sub_message"></textarea>
+                            <textarea id="phrase_textarea" cols="10" rows="5" data-type="message_templates_dict"  data-name="sub_message"></textarea>
                         </div>
                     </div>
                     <div>
@@ -239,7 +241,7 @@
                         <h4>{{transport.title_transport}}</h4>
                         <div class="textarea-container">
                             <input type="text" hidden value="{{transport.title_transport}}">
-                            <textarea name="" id="" cols="10"  rows="5"></textarea>
+                            <textarea id="transport_textarea_{{loop.index0}}" data-type="transport_list" data-name="titlecontents_transport_transport"></textarea>
                         </div>
                     </div>
                     {% endfor %}
@@ -276,7 +278,8 @@
                     <div>
                         <!-- <h4>갤러리</h4> -->
                         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" data-type="image_list"  data-name="sub_img" onchange="changeInputImg(this);">
+                            <input type="file" accept="image/*" hidden="hidden" data-type="gallery_img" data-name="img" onchange="changeInputImg(this);">
+                            <input type="file" accept="image/*" hidden="hidden" data-type="gallery_img" data-name="img_sm">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
                         </div>
@@ -390,7 +393,7 @@
         <div class="card card-submit">
             <div class="card-top">
                 <button onclick="getInputData()">저장</button>
-                <button>삭제</button>
+                <button onclick="">삭제</button>
                 <a href="/home">돌아가기</a>
             </div>
         </div>
@@ -406,6 +409,8 @@
     <script>
         // jinja2 데이터 받기
         const wedding_schedule_dict = {{wedding_schedule_dict|safe}};
+        const transport_list = {{transport_list|safe}};
+        const message_templates_dict = {{message_templates_dict|safe}};
     </script>
     <script src="/static/js/common.js"></script>
     <script src="/static/js/create.js"></script>
