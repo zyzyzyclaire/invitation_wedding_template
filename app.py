@@ -32,7 +32,7 @@ def index():
         test = db_session.query(User).filter(User.id == 1).first()
         name = test.name
         # 더미 존
-        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, guestbook_list, image_list
+        from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, guestbook_list, image_list, transport_list
         groom_dict = groom_dict # 신랑 데이터
         bride_dict = bride_dict # 신부 데이터
         wedding_schedule_dict = wedding_schedule_dict # 장소와 시간 데이터
