@@ -205,6 +205,9 @@ input[name="wedding-place addr"] {
 /* 끝 메인 이미지 */
 
 /* 시작 갤러리 */
+#subImg {
+  display: none;
+}
 [name="gallery-info"] div {
   gap: 10px;  
   flex-wrap: wrap;
@@ -214,7 +217,9 @@ input[name="wedding-place addr"] {
   max-width: 30%;
   max-height: 30%;
   min-width: 90px;
-
+}
+[name="gallery-info"] .crop-img {
+  display: none;
 }
 
 .btn-open-modal {
@@ -411,4 +416,8 @@ input[name="wedding-place addr"] {
 }
 .tox .tox-statusbar__text-container {
 	display: none !important;
+}
+
+.origin-img {
+  display: none;
 }
