@@ -145,6 +145,7 @@
                             <input type="file" accept="image/*" data-type="image_list"  data-name="sub_img" hidden="hidden" onchange="changeInputImg(this)">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
+                            <img class="origin-img" src="" alt="">
                         </div>
                     </div>
                     
@@ -261,6 +262,8 @@
                             <input type="file" accept="image/*" data-type="image_list"  data-name="main_img"  hidden="hidden" onchange="changeInputImg(this)">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
+                            <img class="origin-img" src="" alt="">
+
                         </div>
                     </div>
                 </form>
@@ -274,14 +277,16 @@
                 갤러리
             </div>
             <div class="card-body">
+                <div id="subImg"></div>
                 <form name="gallery-info" class="image-info">
                     <div>
                         <!-- <h4>갤러리</h4> -->
                         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" data-type="gallery_img" data-name="img" onchange="changeInputImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" data-type="gallery_img" data-name="img_sm">
+                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
+                            <img class="origin-img" src="" alt="">
+                            <img class="crop-img" src="" alt="">
                         </div>
                     </div>
                 </form>
@@ -411,6 +416,7 @@
         const wedding_schedule_dict = {{wedding_schedule_dict|safe}};
         const transport_list = {{transport_list|safe}};
         const message_templates_dict = {{message_templates_dict|safe}};
+        const image_list = {{image_list|safe}};
     </script>
     <script src="/static/js/common.js"></script>
     <script src="/static/js/create.js"></script>

@@ -3,57 +3,95 @@ const imgTypelist = ['main-image-info', 'gallery-info', 'phrase-info'];
 
 // input type file의 value가 변했을 때
 const changeInputImg = (target) => {
-    const fileList = target.files ;
+    const fileList = target.files ;    
     if(fileList.length === 0 ) return;
-
     const _imgContainer = target.closest('.img-container');
     const targetName = target.closest('.image-info').getAttribute('name');
     const isMainImageInfo = targetName === imgTypelist[0] || targetName === imgTypelist[2] ? true : false;
     const _canvas = _imgContainer.querySelector('canvas');
+    const originImg = _imgContainer.querySelector('.origin-img');
+    const _cropImg = _imgContainer.querySelector('.crop-img');
+
     // 읽기
     const reader = new FileReader();
     reader.readAsDataURL(fileList[0]);
-    
     reader.onload = () =>  {
-        // 썸네일 이미지 생성
+        
+        originImg.src = reader.result // origin img 넣기
+        originImg.setAttribute('data-type','gallery_img')
+        originImg.setAttribute('data-name','img')
+
         const tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+        // 썸네일 이미지 생성
         tempImage.src = reader.result; //data-uri를 이미지 객체에 주입
+        
         // 이미지 URL 로드가 완료된 후
         tempImage.onload = (e) => {
-            const canvas = createCanvasTag(_canvas, e);
-            _imgContainer.appendChild(canvas);
-            _imgContainer.classList.add('hasImg');
+            const canvas = createCanvasTag(_canvas, e.target);
+            setHasImg(_imgContainer, canvas)
 
-            const closeDiv = `<div class="btn-delete-img"><i class="ph-x-fill"></i></div>`
-            _imgContainer.insertAdjacentHTML('beforeend',closeDiv);
-            _imgContainer.querySelector('.btn-delete-img').addEventListener('click',(e)=>clickDeleteImg(e))
             if(isMainImageInfo) return;
-            const EditButton = `<button class="btn-open-modal">썸네일 편집</button>`
-            _imgContainer.insertAdjacentHTML('beforeend',EditButton);
-            _imgContainer.querySelector('.btn-open-modal').addEventListener('click',(e)=>openCropModar(reader.result, e))
+            // 초기 크롭이미지 생성을 위한 서브 이미지 태그 생성
+            _cropImg.setAttribute('data-type', 'gallery_img')
+            _cropImg.setAttribute('data-name', 'img_sm')
+            const subImg = document.querySelector('#subImg');
+            subImg.appendChild(tempImage);
+            const image = document.querySelector('#subImg img');
+            // 초기 이미지 태그 생성
+            const cropper = new Cropper(image, {
+                autoCropArea:1,
+                aspectRatio: 1 / 1,
+                crop: function (event) {
+                    const croppedImage = cropper.getCroppedCanvas();
+                    const croppedImageDataUrl = croppedImage.toDataURL();
+                    _cropImg.src = croppedImageDataUrl
+                }
+            });
+            subImg.innerHTML = ''
+            setGalleryHasImg(_imgContainer, reader.result)
             addNewImgContainer();
-
         }
-    }
+    }    
+}
+
+// 이미지 추가 시 html 세팅
+const setHasImg = (_imgContainer, canvas) => {
+    const closeDiv = `<div class="btn-delete-img"><i class="ph-x-fill"></i></div>`
+    _imgContainer.classList.add('hasImg');
+    _imgContainer.appendChild(canvas);
+    _imgContainer.insertAdjacentHTML('beforeend',closeDiv);
+    _imgContainer.querySelector('.btn-delete-img').addEventListener('click',(e)=>clickDeleteImg(e))
+}
+// 갤러리 이미지 추가 시 html 세팅
+const setGalleryHasImg = (_imgContainer, src) => {
+    const EditButton = `<button class="btn-open-modal">썸네일 편집</button>`
+    _imgContainer.insertAdjacentHTML('beforeend',EditButton);
+    _imgContainer.querySelector('.btn-open-modal').addEventListener('click',(e)=>{
+        openCropModar(src, e, _imgContainer)
+    })
+    
 }
 
 // 이미지 캔바스 태그 만들기
-const createCanvasTag = (canvas, e) => {
+const createCanvasTag = (canvas, img) => {
     const canvasContext = canvas.getContext("2d");
-    const imgWidth = e.target.width;
-    const imgHeight = e.target.height;
+    const imgWidth = img.width;
+    const imgHeight = img.height;
+    canvasContext.clearRect(0, 0, 300, 300);
     const canvasSize = 300;
     if(imgWidth > imgHeight) {
         const canvasImgHeight = (imgHeight*canvasSize)/imgWidth;
         const cnavasImgY = (canvasSize-canvasImgHeight)/2;
         // 이미지를 캔버스에 그리기
-        canvasContext.drawImage(e.target, 0, cnavasImgY, canvasSize, canvasImgHeight);
+        canvasContext.drawImage(img, 0, cnavasImgY, canvasSize, canvasImgHeight);
     }else{
         const canvasImgWidth = (imgWidth*canvasSize)/imgHeight;
         const cnavasImgX =  (canvasSize-canvasImgWidth)/2;
-        canvasContext.drawImage(e.target, cnavasImgX, 0, canvasImgWidth, canvasSize);
+        canvasContext.drawImage(img, cnavasImgX, 0, canvasImgWidth, canvasSize);
     }   
     return canvas;
+
+    
 }
 
 // 이미지 추가 컨텐츠 클릭
@@ -87,17 +125,23 @@ const clickDeleteImg = (e) => {
 const addNewImgContainer = () => {
     const newImgContainer = `
         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-            <input type="file" accept="image/*" hidden="hidden" data-type="image_list" data-name="gallery_img" onchange="changeInputImg(this)">
+            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
             <p>클릭 후 업로드</p>
             <canvas width="300" height="300"></canvas>
+            <img class="origin-img" src="" alt="">
+            <img class="crop-img" src="" alt="">
         </div>`;
-    const lastImgContainer = document.querySelector('[name="gallery-info"] div .img-container:last-child');
+    const lastImgContainer = [...document.querySelectorAll('[name="gallery-info"] div .img-container')].pop();
+    
     lastImgContainer.insertAdjacentHTML('afterend',newImgContainer);
+    // setGalleryInputIndex();
 }
 
 // 이미지 크롭 모달 생성
-const openCropModar = (src, e) => {
+const openCropModar = (src, e, _imgContent) => {
     e.preventDefault();
+    _imgContent.setAttribute('data-crop', 'active')
+    
     const modalHtml = `
     <div class="crop-modal modal">
         <!-- 모달 콘텐츠 -->
@@ -123,21 +167,39 @@ const openCropModar = (src, e) => {
     document.querySelector('.crop-modal').addEventListener('click',(e)=>{clickDeleteCropModal(e)});
     document.querySelector('.btn-close-modal').addEventListener('click',(e)=>{clickDeleteCropModal(e)});
     const image = document.querySelector('.crop-modal-content img');
-    createNewCropper(image)
-    
+    const _inputSm = _imgContent.querySelector('.hasCropBoxData');
+    if(!_inputSm) return createNewCropper(image);
+    const positionList = ['left', 'top', 'width', 'height']
+    const cropBoxPosition = new Object;
+    positionList.forEach((position)=>{
+        cropBoxPosition[`${position}`] = getCropBoxPostion(_inputSm,position)
+    })
+    createNewCropper(image, cropBoxPosition)
+}
+// html 속성에 담긴 position 데이터 빼내기
+const getCropBoxPostion = (html, type) => {
+    const strData = html.getAttribute(`data-${type}`);
+    const data = Math.floor(parseFloat(strData))
+    return data
 }
 
-// 크랍 모달 HTML 삭제
+// 크랍 모달 닫기 클릭 영역 확인
 const clickDeleteCropModal = (e) => {
     const isCropModal = e.target == document.querySelector('.crop-modal') ? true : false;
     const isBtnCloseModal = e.target == document.querySelector('.btn-close-modal') ? true : false;
     const isICloseModal = e.target == document.querySelector('.i-close-modal') ? true : false;
     if(!isCropModal && !isBtnCloseModal && !isICloseModal) return;
+    DeleteCropModal();
+}
+// 크랍 모달 HTML 삭제 
+const DeleteCropModal = () => {
     document.querySelector('.crop-modal').removeEventListener('click', clickDeleteImg)
     document.querySelector('.crop-modal').remove();
+    const _imgContent = document.querySelector('[data-crop="active"]')
+    _imgContent.setAttribute('data-crop', '');
 }
 // 크롭퍼 객체 생성
-function createNewCropper (img) {
+function createNewCropper (img, position) {
     window.cropper = new Cropper(img, {
         toggleDragModeOnDblclick: false,
         dragMode: 'none',
@@ -145,26 +207,60 @@ function createNewCropper (img) {
         zoomable: false,
         autoCropArea:1,
         aspectRatio: 1 / 1,
+        checkOrientation: false, // 자동 회전 방지
     });
+    if(!position) return
+    cropper.setCropBoxData(position)
 };
+
 
 // 크롭 모달에서 적용 버튼 클릭 시
 const clickSaveCropImage = () => {
+    const _imgContent = document.querySelector('[data-crop="active"]')
+    let _canvas = _imgContent.querySelector('canvas')
+
+    let _inputSm = _imgContent.querySelector('[data-name="img_sm"]')
+    const _cropImg = _imgContent.querySelector('.crop-img');
     const cropper = window.cropper;
+    const cropBoxData = cropper.getCropBoxData();
+    _inputSm.classList.add('hasCropBoxData');
     cropper.getCroppedCanvas({
         width: 300,
         height: 300,
     }).toBlob((blob) => {
+        // const file = new File([blob], 'image.png', { type: 'image/png' });
+        // console.log(file)
+
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = function() {
             const img = new Image();
+            _cropImg.src = reader.result;
             img.src = reader.result;
-            document.querySelector('form[name="cropper-info"] div').appendChild(img)
+            img.onload = (e) => {
+                const canvas = createCanvasTag(_canvas, e.target);
+                _canvas = canvas
+                
+                _inputSm.setAttribute('data-top', cropBoxData.top)
+                _inputSm.setAttribute('data-left', cropBoxData.left)
+                _inputSm.setAttribute('data-width', cropBoxData.width)
+                _inputSm.setAttribute('data-height', cropBoxData.height)
+            }
+            // _cropImg.innerHTML = '';
+            // _cropImg.appendChild(img);
         };
     }, 'image/png' );
-    
+    DeleteCropModal();
 };
+
+// 이미지를 가지고 있는 img-container에 index 정리하기
+// const setGalleryInputIndex = () => {
+//     const __imgContainer = document.querySelectorAll('.img-container.hasImg');
+//     if(__imgContainer.length == 0) return 
+//     __imgContainer.forEach((_imgContainer, index)=>{
+//         _imgContainer.setAttribute('data-index', index);
+//     })
+// }
 
 
 // 샘플 문구 모달 생성
@@ -275,6 +371,7 @@ const clickDeleteSamplePhraseModal = (e) => {
     if(!isCropModal && !isBtnCloseModal && !isICloseModal) return;
     // document.querySelector('.sample-phrase-modal').removeEventListener('click', clickDeleteImg)
     document.querySelector('.sample-phrase-modal').remove();
+
 }
 
 // 샘플 문구를 클릭했을 때 textarea에 해당 문구를 추가한다.
@@ -294,7 +391,9 @@ if(document.querySelector('[name="reservation-info"] [type="date"]').value == ''
 
 
 const _gallery = document.querySelector('form[name="gallery-info"] div')
-let sortable = Sortable.create(_gallery);
+let sortable = Sortable.create(_gallery,{
+    draggable: '.hasImg'
+});
 
 const openPostCode = (str=null) => {
     new daum.Postcode({
@@ -420,21 +519,69 @@ const getImgData = () =>{
     const _subImg = document.querySelectorAll('[data-name="sub_img"]');
     const __mainSubImgList = [... _mainImg, ..._subImg]
     const __galleryImgList = document.querySelectorAll('[data-type="gallery_img"][data-name="img"]') 
+    const __gallerySmImgList = document.querySelectorAll('[data-type="gallery_img"][data-name="img_sm"]') 
     
     const formData = new FormData();
     __mainSubImgList.forEach((_imgList)=>{
         const key = _imgList.getAttribute('data-name');
-        const file = _imgList.files[0];
+        const _imgContainer = _imgList.closest('.img-container');
+        const originImg = _imgContainer.querySelector('img');
+        const file = getUriToBlob(originImg.src, `${key}`)
         formData.append(key, file);
     })
-    __galleryImgList.forEach((_imgList,index)=>{
-        const key = _imgList.getAttribute('data-name');
-        const file = _imgList.files[0];
-        formData.append(`${key}[${index}][img]`, file);
-        // formData.append(`${key}[${index}][img_sm]`, galleryImgThumbnailFiles[index]);
+    __galleryImgList.forEach((_img,index)=>{
+        const key = _img.getAttribute('data-type');
+        const subKey = _img.getAttribute('data-name');
+        const dataURI = checkImageLoaded(_img);
+        const file = getUriToBlob(dataURI, `gallery_${subKey}_${String(index).padStart(3, '0')}`)
+        formData.append(`${key}[${index}][${subKey}]`, file);
     })
-    
+    __gallerySmImgList.forEach((_img,index)=>{
+        const key = _img.getAttribute('data-type');
+        const subKey = _img.getAttribute('data-name');
+        const dataURI = checkImageLoaded(_img);
+        const file = getUriToBlob(dataURI, `gallery_${subKey}_${String(index).padStart(3, '0')}`)
+        formData.append(`${key}[${index}][${subKey}]`, file);
+    })
     return formData;
+}
+
+// 이미지 로드 후 blob 데이터 뽑기
+const checkImageLoaded = (_img) => {
+    if(_img){
+        // 이미지가 로드된 후 실행할 코드
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = _img.naturalWidth;
+        canvas.height = _img.naturalHeight;
+        // canvas에 이미지 그리기
+        ctx.drawImage(_img, 0, 0);
+        // 이미지 데이터 가져오기
+        const dataURI = canvas.toDataURL('image/png');
+        return dataURI
+    }else{
+        setTimeout(() => {
+            checkImageLoaded(_img);
+        }, 50);
+    }
+}
+
+
+// uri 데이터를 blob 데이터로 변환
+const getUriToBlob = (dataURI, fileName) => {
+    // data URI to Blob
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([ab], { type: mimeString });
+
+    // Blob to File
+    const file = new File([blob], `${fileName}.jpg`, { type: "image/jpeg" });
+    return file;
 }
 
 // 텍스트 에디터 세팅
@@ -451,16 +598,14 @@ tinymceList.forEach((item,index)=>{
         toolbar: 'bold italic forecolor',
         height: 200,
         menubar: '',
+        setup: function (editor) {
+            editor.on('init', function () {
+                editor.setContent(item['content']);
+            });
+        }
     });  
 })
 
-window.onload = function () {
-    setTimeout(()=>{
-        tinymceList.forEach((item,index)=>{
-            tinymce.get(item['id']).setContent(item['content']);
-        })
-    },[50])
-}
 
 const getTransportHtml = () => {
     const transportList = ['버스', '지하철', '자가용']
@@ -504,7 +649,7 @@ const getInputData = () => {
     submitObj['bank_acc'] = getBankData()
     submitObj['message_templates_dict']['sub_message'] = getTextHtml('phrase_textarea');
     submitObj['transport_list'] = getTransportHtml()
-    console.log(submitObj)
+    // console.log(submitObj)
 
 
     const formData = getImgData()
@@ -515,3 +660,80 @@ const getInputData = () => {
 const callbackFun = (data) => {
     console.log('성공', data)
 }
+
+const setMainImg = () => {
+    const mainAndSub = ['main', 'sub']
+    mainAndSub.forEach((type)=>{
+        const _mainImgInput = document.querySelector(`[data-type="image_list"][data-name="${type}_img"]`)
+        const _imgContainer = _mainImgInput.closest('.img-container');
+        let _canvas = _imgContainer.querySelector('canvas');
+        const img = new Image();
+        img.src = image_list[`${type}_img`];
+        img.onload = function() {
+            const dataURL = getSrcImgData(img);
+            const canvas = createCanvasTag(_canvas, img);
+            _canvas = canvas;
+            setHasImg(_imgContainer, canvas)
+            const _originImg = _imgContainer.querySelector('img')
+            _originImg.src = dataURL;
+        }
+    })
+}
+const setGalleryImg = () => {
+    const galleryImg = image_list['gallery_img'];
+    galleryImg.forEach((imgData)=>{
+        const originImgSrc = imgData['img'];
+        const cropImgSrc = imgData['img_sm'];
+        let html = `
+            <div class="gallery-image img-container hasImg" onclick="clickAddImg(this);">
+                <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
+                <p>클릭 후 업로드</p>
+                <canvas width="300" height="300"></canvas>
+                <img class="origin-img" src="${originImgSrc}" data-type="gallery_img" data-name="img" alt="">
+                <img class="crop-img" src="${cropImgSrc}" data-type="gallery_img" data-name="img_sm" alt="">
+            </div>
+        `
+        document.querySelector('form[name="gallery-info"] div').insertAdjacentHTML('afterbegin', html);
+        const _imgContainer = document.querySelector('form[name="gallery-info"] div .hasImg');
+        let _canvas =  _imgContainer.querySelector('canvas');
+        const _originImg = _imgContainer.querySelector('.origin-img');
+        const _cropImg = _imgContainer.querySelector('.crop-img');
+
+        _originImg.addEventListener("load", function() {
+            const dataURL = getSrcImgData(_originImg);
+            _originImg.src = dataURL;
+            setGalleryHasImg(_imgContainer, dataURL)
+            setHasImg(_imgContainer, _canvas)
+
+            // 이벤트 리스너 제거
+            _originImg.removeEventListener("load", this);
+        }, { once: true });
+
+        _cropImg.addEventListener("load", function() {
+            const dataURL = getSrcImgData(_cropImg);
+            const canvas = createCanvasTag(_canvas, _cropImg);
+            _canvas = canvas;
+            _cropImg.src = dataURL;
+            // 이벤트 리스너 제거
+            _cropImg.removeEventListener("load", this);
+        }, { once: true });
+    })
+}
+// src 데이터로 이미지 데이터 뽑기
+const getSrcImgData = (img) => {
+    const subCanvas = document.createElement("canvas");
+    const context = subCanvas.getContext("2d");
+    subCanvas.width = img.width;
+    subCanvas.height = img.height;
+    context.drawImage(img, 0, 0);
+    // 그려진 이미지 데이터 사용 예시
+    const imageData = context.getImageData(0, 0, subCanvas.width, subCanvas.height);
+    const dataURL = subCanvas.toDataURL();
+    // console.log(imageData,dataURL);
+    return dataURL
+} 
+if(image_list){
+    setMainImg()
+    setGalleryImg()
+}
+

@@ -128,13 +128,29 @@ def create():
         
     if request.method == 'POST':
         # data = request.get_json()
+        print(request.files)
         main_img_file = request.files['main_img']
         sub_img_file = request.files['sub_img']
-        gallery_img_files = [v for k, v in request.files.items() if k.startswith('gallery_img')]
+        # gallery_img_files = [v for k, v in request.files.items() if k.startswith('gallery_img')]
+        gallery_img = {}
+        gallery_img_sm = {}
+
+        for k, v in request.files.items():
+            if k.startswith('gallery_img') and k.endswith('[img]'):
+                idx = int(k.split('[')[1].split(']')[0])
+                gallery_img[idx] = v
+            elif k.startswith('gallery_img') and k.endswith('[img_sm]'):
+                idx = int(k.split('[')[1].split(']')[0])
+                gallery_img_sm[idx] = v
+
+        # 정렬
+        gallery_img = [v for k, v in sorted(gallery_img.items())]
+        gallery_img_sm = [v for k, v in sorted(gallery_img_sm.items())]
 
         print('main_img_file,',main_img_file)
         print('sub_img_file,',sub_img_file)
-        print('gallery_img_files,',gallery_img_files)
+        print('gallery_img,',gallery_img)
+        print('gallery_img_sm,',gallery_img_sm)
         # if 'main_img' in request.files:
         #   file = request.files['main_img']
         # print(f'{file.filename} uploaded successfully')

@@ -105,7 +105,9 @@ select[name="relation"]{
   /* max-width: 400px; */
   /* width: 100%; */
 }
-
+[name="phrase-info"] .origin-img{
+  display: none;
+}
 
 .textarea-container {
   display: flex;
@@ -202,9 +204,15 @@ input[name="wedding-place addr"] {
   color: #1f1f1f;
   font-size: 16px; 
 }
+[name="main-image-info"] .origin-img {
+  display: none;
+}
 /* 끝 메인 이미지 */
 
 /* 시작 갤러리 */
+#subImg {
+  display: none;
+}
 [name="gallery-info"] div {
   gap: 10px;  
   flex-wrap: wrap;
@@ -214,9 +222,14 @@ input[name="wedding-place addr"] {
   max-width: 30%;
   max-height: 30%;
   min-width: 90px;
-
 }
-
+[name="gallery-info"] .crop-img,
+[name="gallery-info"] .origin-img {
+  display: none;
+}
+form[name="gallery-info"] div.gallery-image:nth-child(n+10) {
+  display: none;
+}
 .btn-open-modal {
   position: absolute;
   bottom: 0;
@@ -412,3 +425,4 @@ input[name="wedding-place addr"] {
 .tox .tox-statusbar__text-container {
 	display: none !important;
 }
+
