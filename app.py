@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, session
 import bcrypt
 # from flask_bcrypt import Bcrypt
+import json
 
 from models import session_scope, User
 from config import secret_key, bcrypt_level
@@ -17,7 +18,6 @@ guestbook_list = guestbook_list # 방명록 데이터
 image_list = image_list # 이미지 데이터
 bank_acc = bank_acc # 계좌번호 데이터
 
-
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = secret_key
@@ -30,7 +30,7 @@ app.config['BCRYPT_LEVEL'] = bcrypt_level
 def index():
     with session_scope() as db_session:
         test = db_session.query(User).filter(User.id == 1).first()
-        name = test.name
+        # name = test.name
         # 더미 존
         from views.template_dummy import groom_dict, bride_dict, wedding_schedule_dict, message_templates_dict, guestbook_list, image_list, transport_list
         groom_dict = groom_dict # 신랑 데이터
@@ -39,6 +39,7 @@ def index():
         message_templates_dict = message_templates_dict # 글귀 데이터
         transport_list = transport_list # 교통 수단 데이터
         guestbook_list = guestbook_list # 방명록 데이터
+        
         image_list = image_list # 이미지 데이터
     return render_template('/index.html',  
                            groom_dict=groom_dict, 
@@ -105,25 +106,48 @@ def register():
         return response
 
 
-@app.route("/create")
+@app.route("/create", methods=['GET', 'POST'])
 def create():
-    from views.template_dummy_for_html import groom_dict, bride_dict, bank_acc, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
-    groom_dict = groom_dict
-    bride_dict = bride_dict
-    bank_acc = bank_acc
-    wedding_schedule_dict = wedding_schedule_dict
-    message_templates_dict = message_templates_dict
-    guestbook_list = guestbook_list
-    return render_template('/create.html',  
-                        groom_dict=groom_dict, 
-                        bride_dict=bride_dict,
-                        wedding_schedule_dict=wedding_schedule_dict,
-                        message_templates_dict=message_templates_dict,
-                        transport_list=transport_list,
-                        guestbook_list=guestbook_list,
-                        image_list=image_list,
-                        bank_acc=bank_acc)
+    if request.method == 'GET':
+        # from views.template_dummy_for_html import groom_dict, bride_dict, bank_acc, wedding_schedule_dict, message_templates_dict, transport_list, guestbook_list
+        # groom_dict = groom_dict
+        # bride_dict = bride_dict
+        # bank_acc = bank_acc
+        # wedding_schedule_dict = wedding_schedule_dict
+        # message_templates_dict = message_templates_dict
+        # guestbook_list = guestbook_list
+        return render_template('/create.html',  
+                            groom_dict=groom_dict, 
+                            bride_dict=bride_dict,
+                            wedding_schedule_dict=wedding_schedule_dict,
+                            message_templates_dict=message_templates_dict,
+                            transport_list=transport_list,
+                            guestbook_list=guestbook_list,
+                            image_list=image_list,
+                            bank_acc=bank_acc)
+        
+    if request.method == 'POST':
+        # data = request.get_json()
+        main_img_file = request.files['main_img']
+        sub_img_file = request.files['sub_img']
+        gallery_img_files = [v for k, v in request.files.items() if k.startswith('gallery_img')]
 
+        print('main_img_file,',main_img_file)
+        print('sub_img_file,',sub_img_file)
+        print('gallery_img_files,',gallery_img_files)
+        # if 'main_img' in request.files:
+        #   file = request.files['main_img']
+        # print(f'{file.filename} uploaded successfully')
+
+        json_data = request.form.get('json')
+        if json_data:
+            data = json.loads(json_data)
+            print(data)
+    response = jsonify({
+        'message': 'Success'
+    })
+    response.status_code = 200
+    return response
 
 @app.route("/create_account", methods=['GET', 'POST'])
 def create_account():

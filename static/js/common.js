@@ -2,10 +2,10 @@
 const postApi = (url, data, successFun) => {
   fetch(url, {
     method: 'POST', // 요청 메서드
-    headers: {
-      'Content-Type': 'application/json' // 요청 헤더 설정
-    },
-    body: JSON.stringify(data) // 요청 바디에 보낼 데이터
+    // headers: {
+    //   'Content-Type': 'application/json' // 요청 헤더 설정
+    // },
+    body: data // 요청 바디에 보낼 데이터
   })
   .then(response => response.json()) // 응답 데이터를 JSON으로 파싱
   .then(result => {

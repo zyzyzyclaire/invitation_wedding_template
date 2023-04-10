@@ -109,16 +109,12 @@ message_templates_dict = {
         </div>\
     ",
 }
-                
-dday = 42
-pic_list = []
 
-guestbook_list=[
+guestbook_list = [
     {
         "name":"김주리",
         "content_guestbook":"지혁씨 많이많이 축하합니다!! 함께 걸어가는 길에 꽃길만🌸🌼🌿",
         "created_at":"2021.08.08"
-    
     },
     {
         "name":"박수림",
@@ -131,7 +127,6 @@ guestbook_list=[
         "created_at":"2021.08.08"
     }
 ]
-
 guestbook_password = {'password' : 'test'}
 
 image_list = {

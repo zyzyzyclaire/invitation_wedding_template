@@ -168,6 +168,31 @@ template create db에 넣기(html텍스트, 이미지 제외)
 팀)
 
 ================================================================
+클레어)
+  데이터 DB 저장 코드 짜기
+  ubuntu DB Table생성 (O)
+
+팀)
+  ubuntu DB port forwarding(완료)
+  이미지 전송[sm 이미지 작업 남음]
+  html 전송(완료)
+
+--DB(tim pc vmware ubuntu server)-- 
+Hostname: 1.220.211.20
+Port: 20233
+Username: user
+Password: password
+port forwarding: 1.220.211.20:20233 >> 192.168.0.202:3306
+vmware network : bridge(host pc 와 동일한 ip, port 사용)
+
+
+
+
+
+
+
+
+
 고도화 작업
 계좌번호 추가, 삭제 기능 구현
 달력 스크립트 수정,

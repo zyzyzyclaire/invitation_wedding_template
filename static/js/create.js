@@ -87,7 +87,7 @@ const clickDeleteImg = (e) => {
 const addNewImgContainer = () => {
     const newImgContainer = `
         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this)">
+            <input type="file" accept="image/*" hidden="hidden" data-type="image_list" data-name="gallery_img" onchange="changeInputImg(this)">
             <p>클릭 후 업로드</p>
             <canvas width="300" height="300"></canvas>
         </div>`;
@@ -141,6 +141,7 @@ function createNewCropper (img) {
     window.cropper = new Cropper(img, {
         toggleDragModeOnDblclick: false,
         dragMode: 'none',
+        viewMode: 2, // crop box 가 img를 넘어가지 않게 함
         zoomable: false,
         autoCropArea:1,
         aspectRatio: 1 / 1,
@@ -278,8 +279,9 @@ const clickDeleteSamplePhraseModal = (e) => {
 
 // 샘플 문구를 클릭했을 때 textarea에 해당 문구를 추가한다.
 const addSampleRhrase = (target) => {
-    const newText = target.innerHTML.replace(/<br>/g, "\n").trim().split('\n').map(line => line.trimLeft()).join('\n');
-    document.querySelector('[name="phrase-info"] textarea').value = newText
+    const newText = target.innerHTML
+    var editor = tinymce.get('phrase_textarea');
+    editor.setContent(newText);
     document.querySelector('.sample-phrase-modal').remove();
 }
 
@@ -299,7 +301,7 @@ const openPostCode = (str=null) => {
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
             // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-            postApi('search_geocoding',data.address, setMarkerPosition)
+            postApi('search_geocoding', JSON.stringify(data.address), setMarkerPosition)
             // search_geocoding
 
         }
@@ -381,33 +383,7 @@ const deletebankDataHtml = (event, index) => {
     if(bankLength === 0) return alert('계좌정보는 그룹 당 최소 한 개 이상 작성해 주세요.')
 }
 
-// submit 데이터 쌓기
-const getInputData = () => {
-    const typeList = [
-        'groom_dict', 
-        'bride_dict', 
-        'wedding_schedule_dict', 
-        'message_templates_dict',
-        'guestbook_password'
-    ];
-    const submitObj = new Object;
-    typeList.forEach((type)=>{
-        const __inputGroom = document.querySelectorAll(`[data-type="${type}"]`);
-        const keyObj = new Object;
-        __inputGroom.forEach((_inputGroom)=>{
-            const key = _inputGroom.getAttribute('data-name');
-            const value = _inputGroom.value;
-            keyObj[key] = value;
-            
-        })
-        submitObj[type] = keyObj
-    })
-    submitObj['bank_acc'] = getBankData()
-
-    console.log(submitObj);
-    
-}
-
+// 계좌 정보 받아오기
 const getBankData = () => {
     const __bankAcc = document.querySelectorAll('[data-type="bank_acc"]');
     const arr = [];
@@ -437,4 +413,105 @@ const getBankData = () => {
     obj['list'].push(listObj)
     arr.push(obj)
     return arr;
+}
+// 이미지 받아오기
+const getImgData = () =>{
+    const _mainImg = document.querySelectorAll('[data-name="main_img"]');
+    const _subImg = document.querySelectorAll('[data-name="sub_img"]');
+    const __mainSubImgList = [... _mainImg, ..._subImg]
+    const __galleryImgList = document.querySelectorAll('[data-type="gallery_img"][data-name="img"]') 
+    
+    const formData = new FormData();
+    __mainSubImgList.forEach((_imgList)=>{
+        const key = _imgList.getAttribute('data-name');
+        const file = _imgList.files[0];
+        formData.append(key, file);
+    })
+    __galleryImgList.forEach((_imgList,index)=>{
+        const key = _imgList.getAttribute('data-name');
+        const file = _imgList.files[0];
+        formData.append(`${key}[${index}][img]`, file);
+        // formData.append(`${key}[${index}][img_sm]`, galleryImgThumbnailFiles[index]);
+    })
+    
+    return formData;
+}
+
+// 텍스트 에디터 세팅
+const tinymceList = [
+    { 'id':'phrase_textarea', 'content' : message_templates_dict['sub_message'].trim(),}, 
+    { 'id': 'transport_textarea_0', 'content' : transport_list[0]['contents_transport'].trim(),}, 
+    { 'id' : 'transport_textarea_1','content' : transport_list[1]['contents_transport'].trim(),}, 
+    { 'id' : 'transport_textarea_2','content' : transport_list[2]['contents_transport'].trim()}
+]
+tinymceList.forEach((item,index)=>{
+    tinymce.init({
+        selector: `#${item['id']}`,
+        content: item['content'],
+        toolbar: 'bold italic forecolor',
+        height: 200,
+        menubar: '',
+    });  
+})
+
+window.onload = function () {
+    setTimeout(()=>{
+        tinymceList.forEach((item,index)=>{
+            tinymce.get(item['id']).setContent(item['content']);
+        })
+    },[50])
+}
+
+const getTransportHtml = () => {
+    const transportList = ['버스', '지하철', '자가용']
+    const __textArea = document.querySelectorAll('[data-type="transport_list"]')
+    const transport_list = [];
+    __textArea.forEach((textare,index)=>{
+        transport_list.push({
+            'title_transport' : transportList[index],
+            'contents_transport' : getTextHtml(textare.id)
+        })
+    })
+    return transport_list
+}
+
+// 텍스트 에디터를 이용하여 text 스타일 적용된 html 뽑기
+const getTextHtml = (id) => {
+    return tinymce.get(id).getContent();
+}
+
+// submit 데이터 쌓기
+const getInputData = () => {
+    const typeList = [
+        'groom_dict', 
+        'bride_dict', 
+        'wedding_schedule_dict', 
+        'message_templates_dict',
+        'guestbook_password'
+    ];
+    const submitObj = new Object;
+    typeList.forEach((type)=>{
+        const __inputGroom = document.querySelectorAll(`[data-type="${type}"]`);
+        const keyObj = new Object;
+        __inputGroom.forEach((_inputGroom)=>{
+            const key = _inputGroom.getAttribute('data-name');
+            const value = _inputGroom.value;
+            keyObj[key] = value;
+            
+        })
+        submitObj[type] = keyObj
+    })
+    submitObj['bank_acc'] = getBankData()
+    submitObj['message_templates_dict']['sub_message'] = getTextHtml('phrase_textarea');
+    submitObj['transport_list'] = getTransportHtml()
+    console.log(submitObj)
+
+
+    const formData = getImgData()
+    formData.append('json', JSON.stringify(submitObj));
+    postApi('/create', formData, callbackFun)
+
+}
+const callbackFun = (data) => {
+    console.log('성공', data)
 }

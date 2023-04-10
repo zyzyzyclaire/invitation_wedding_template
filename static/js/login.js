@@ -6,9 +6,9 @@ const loginSubmit = (event) =>{
     const dataKey = _input.id.split('input')[1].toLocaleLowerCase()
     submitData[dataKey] = _input.value;
   })
-  postApi('/login', submitData, callbackFun);
+  postApi('/login', JSON.stringify(submitData), callbackFun);
 }
 
 const callbackFun = (data) => {
-  console.log(data)
+  window.location = '/home'
 }

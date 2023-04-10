@@ -398,3 +398,17 @@ input[name="wedding-place addr"] {
   background: #111;
   color: #fff;
 }
+
+/* 텍스트 에디터 라이브러리 스타일 죽이기 */
+.tox-tinymce {
+	border-radius: inherit !important;
+	box-shadow: inherit !important;
+	font-family: inherit !important;
+}
+.tox:not(.tox-tinymce-inline) .tox-editor-header {
+  box-shadow: 0 2px 2px -2px rgba(34,47,62,.1) !important;
+  padding: inherit !important;
+}
+.tox .tox-statusbar__text-container {
+	display: none !important;
+}
