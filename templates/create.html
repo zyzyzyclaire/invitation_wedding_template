@@ -282,11 +282,11 @@
                     <div>
                         <!-- <h4>갤러리</h4> -->
                         <div class="gallery-image img-container" onclick="clickAddImg(this);">
-                            <input type="file" accept="image/*" hidden="hidden" data-type="gallery_img" data-name="img" onchange="changeInputImg(this);">
+                            <input type="file" accept="image/*" hidden="hidden" onchange="changeInputImg(this);">
                             <p>클릭 후 업로드</p>
                             <canvas width="300" height="300"></canvas>
-                            <div class="crop-img" data-type="gallery_img" data-name="img_sm"></div>
                             <img class="origin-img" src="" alt="">
+                            <img class="crop-img" src="" alt="">
                         </div>
                     </div>
                 </form>
