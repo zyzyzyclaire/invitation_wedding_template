@@ -3,7 +3,7 @@ import bcrypt
 # from flask_bcrypt import Bcrypt
 import json
 
-from models import session_scope, User, Information
+from models import session_scope, User, Information, Weddinghall, Transportation
 from config import secret_key, bcrypt_level
 from views.index import geocoding
 
@@ -135,15 +135,15 @@ def create():
 
         groom_dict = json_data['groom_dict']
         bride_dict = json_data['bride_dict']
-        wedding_schedule_dict = json_data['wedding_schedule_dict']
-        message_templates_dict = json_data['message_templates_dict']
+        wedding_dict = json_data['wedding_schedule_dict']
+        message_dict = json_data['message_templates_dict']
         guestbook_password = json_data['guestbook_password']
         bank_acc = json_data['bank_acc']
         transport_list = json_data['transport_list']
         # print("@@groom_dict",groom_dict)
         # print("@@bride_dict",bride_dict)
-        print("@@wedding_schedule_dict",wedding_schedule_dict)
-        print("@@message_templates_dict",message_templates_dict)
+        print("@@wedding_schedule_dict",wedding_dict)
+        print("@@message_templates_dict",message_dict)
         print("@@guestbook_password",guestbook_password)
         print("@@bank_acc",bank_acc)
         print("@@transport_list",transport_list)
@@ -159,7 +159,31 @@ def create():
                     db_session.refresh(info_item)
 
             # 웨딩홀 정보
-            wedding_hall_item = 
+            wedding_hall_item = Weddinghall(wedding_dict['hall_name'], wedding_dict['hall_addr'], wedding_dict['hall_floor'], wedding_dict['date'], wedding_dict['time_hour']+wedding_dict['time_minute'], 5, 0, 0)
+            db_session.add(wedding_hall_item)
+            db_session.commit()
+            db_session.refresh(wedding_hall_item)
+
+            # 메시지
+            # message_dict 위에 시는 안보내는지?
+
+            # 방명록 비밀번호 업데이트 -> 디폴트값 0000
+            user_item = db_session.query(User).filter(User.id == 5).first()
+            user_item.guestbook_pw = guestbook_password
+            db_session.commit()
+
+            # 계좌
+            # 계좌 디비 좀 수정해야할듯
+
+            # 대중교통
+            for i, t in enumerate(transport_list):
+                transport_item = Transportation(t['contents_transport'], 5, i+1)
+                db_session.add(transport_item)
+                db_session.commit()
+                db_session.refresh(transport_item)
+
+
+
 
         print(request.files)
         main_img_file = request.files['main_img']

@@ -61,6 +61,7 @@ class User(Base):
     user_id = Column(String(512), nullable=False, unique=True)
     user_pw = Column(String(512), nullable=False)
     email = Column(String(512), nullable=False, unique=True)
+    guestbook_pw = Column(String(512), nullable=False, default='0000')
 
     def __init__(self, name, user_id, user_pw, email):
         from app import bcrypt
@@ -215,7 +216,7 @@ class Weddinghall(Base):
     address = Column(String(256), nullable=False, unique=True)
     address_detail = Column(String(256), nullable=False, unique=True)
     date = Column(Date, nullable=False)
-    time = Column(Time, nullable=False)
+    time = Column(String(128), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'), default=None)
     lat = Column(Float, nullable=False)
     lng = Column(Float, nullable=False)
