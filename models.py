@@ -129,12 +129,14 @@ class Information(Base):
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
     tel = Column(String(50), nullable=True)
-    relation_id = Column(BigInteger, ForeignKey('user.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    relation_id = Column(BigInteger, ForeignKey('relation.id'), nullable=False)
 
-    def __init__(self, first_name, last_name, tel, relation_id):
+    def __init__(self, first_name, last_name, tel, user_id, relation_id):
         self.first_name = first_name
         self.last_name = last_name
         self.tel = tel
+        self.user_id = user_id
         self.relation_id = relation_id
 
 

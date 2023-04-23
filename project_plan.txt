@@ -170,6 +170,8 @@ template create db에 넣기(html텍스트, 이미지 제외)
 ================================================================
 클레어)
   데이터 DB 저장 코드 짜기
+  - create 전부 user 임시로 5로 만듦. session or current_user 사용해서 다시 넣기
+  - wedding hall lat/lng 정보 안받아져옴
   ubuntu DB Table생성 (O)
 
 팀)
